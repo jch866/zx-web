@@ -13,6 +13,8 @@ export default {
       flex="cross:center"
       class={ { 'd2-theme-header-menu': true, 'is-scrollable': this.isScroll } }
       ref="page">
+        <h3 style="margin-right:10px">数智化经营分析平台</h3>
+        <el-tag size="small">企业版</el-tag>
       <div
         ref="content"
         class="d2-theme-header-menu__content"

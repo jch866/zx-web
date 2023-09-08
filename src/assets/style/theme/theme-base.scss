@@ -75,6 +75,9 @@
     .d2-theme-container {
       .d2-theme-container-aside {
         position: relative;
+        background-color: $color-primary-new;
+        //todo
+        // background-image: url('./../../image/menu-bg.png');
         .d2-layout-header-aside-menu-side {
           @extend %full;
           overflow: hidden;
@@ -120,6 +123,7 @@
       .logo-group {
         float: left;
         text-align: center;
+        background-color: $color-primary-new;
         img {
           height: 60px;
         }
@@ -285,7 +289,7 @@
             .d2-container-full {
               position: absolute;
               top: 0px;
-              right: 20px;
+              right: 0px;
               bottom: 0px;
               left: 0px;
               display: flex;

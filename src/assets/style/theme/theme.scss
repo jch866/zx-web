@@ -85,7 +85,7 @@
     // 切换按钮
     .toggle-aside-btn {
       i {
-        color: $theme-header-item-color;
+        color: $theme-header-item-color-toggle;
         background: $theme-header-item-background-color;
         &:hover {
           color: $theme-header-item-color-hover;
@@ -153,7 +153,7 @@
     // 顶栏右侧
     .d2-header-right {
       .btn-text {
-        color: $theme-header-item-color;
+        color: $color-text-normal;
         &.can-hover {
           &:hover {
             color: $theme-header-item-color-hover;

@@ -30,7 +30,8 @@ $theme-menu-item-color-hover: #293849;
 $theme-menu-item-background-color-hover: #ecf5ff;
 
 // 顶栏上的文字颜色
-$theme-header-item-color: $color-text-normal;
+$theme-header-item-color: $color-text-normal-new;
+$theme-header-item-color-toggle: $color-text-normal;//菜单切换按钮颜色
 $theme-header-item-background-color: transparent;
 // 顶栏上的项目在 hover 时
 $theme-header-item-color-hover: #2f74ff;
@@ -43,16 +44,16 @@ $theme-header-item-color-active: #2f74ff;
 $theme-header-item-background-color-active: rgba(#FFF, .5);
 
 // 侧边栏上的文字颜色
-$theme-aside-item-color: $color-text-normal;
+$theme-aside-item-color: $color-text-normal-new;
 $theme-aside-item-background-color: transparent;
 // 侧边栏上的项目在 hover 时
-$theme-aside-item-color-hover: #2f74ff;
+$theme-aside-item-color-hover: #ffffff;
 $theme-aside-item-background-color-hover: rgba(#FFF, .5);
 // 侧边栏上的项目在 focus 时
-$theme-aside-item-color-focus: #2f74ff;
+$theme-aside-item-color-focus: #ffffff;
 $theme-aside-item-background-color-focus: rgba(#FFF, .5);
 // 侧边栏上的项目在 active 时
-$theme-aside-item-color-active: #2f74ff;
+$theme-aside-item-color-active: #ffffff;
 $theme-aside-item-background-color-active: rgba(#FFF, .5);
 
 // 侧边栏菜单为空的时候显示的元素

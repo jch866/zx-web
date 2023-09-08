@@ -97,7 +97,7 @@ export const handleAsideMenu = function (menuData) {
     strict: true
   })
   const menu = [
-    { path: '/index', title: '控制台', icon: 'home' },
+    { path: '/index', title: '首页', icon: 'home' },
     ...data
   ]
   return supplementPath(menu)
