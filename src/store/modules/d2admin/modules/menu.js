@@ -11,7 +11,9 @@ export default {
     // 侧边栏收缩
     asideCollapse: setting.menu.asideCollapse,
     // 侧边栏折叠动画
-    asideTransition: setting.menu.asideTransition
+    asideTransition: setting.menu.asideTransition,
+    collectList: [], // 用户的收藏菜单列表
+    asideType: 1// 当前显示主菜单还是用户的收藏列表
   },
   actions: {
     /**
@@ -110,6 +112,11 @@ export default {
     asideSet (state, menu) {
       // store 赋值
       state.aside = menu
+    },
+    collectListSet (state, { list, type }) {
+      // store 赋值
+      state.collectList = list
+      state.asideType = type
     }
   }
 }

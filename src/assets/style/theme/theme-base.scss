@@ -76,8 +76,6 @@
       .d2-theme-container-aside {
         position: relative;
         background-color: $color-primary-new;
-        //todo
-        // background-image: url('./../../image/menu-bg.png');
         .d2-layout-header-aside-menu-side {
           @extend %full;
           overflow: hidden;
@@ -217,6 +215,21 @@
               margin-top: -10px;
             }
           }
+        }
+        //点击收藏的时候显示
+        .d2-layout-header-aside-menu-collect{
+            color: white;
+            ul{
+                list-style: none;
+            }
+            li{
+                line-height: 40px;
+                text-align: center;
+                height: 40px;
+                &:hover{
+                    cursor: pointer;
+                }
+            }
         }
         // 菜单为空的时候显示的信息
         .d2-layout-header-aside-menu-empty {

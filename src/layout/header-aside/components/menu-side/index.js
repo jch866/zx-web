@@ -10,16 +10,27 @@ export default {
   ],
   render (h) {
     return <div class="d2-layout-header-aside-menu-side">
-      <menuSearch/>
-      <el-menu
-        collapse={ this.asideCollapse }
-        collapseTransition={ this.asideTransition }
-        uniqueOpened={ true }
-        defaultActive={ this.$route.fullPath }
-        ref="menu"
-        onSelect={ this.handleMenuSelect }>
-        { this.aside.map(menu => createMenu.call(this, h, menu)) }
-      </el-menu>
+      <menuSearch />
+      {
+        this.asideType === 1 && <el-menu
+          collapse={this.asideCollapse}
+          collapseTransition={this.asideTransition}
+          uniqueOpened={true}
+          defaultActive={this.$route.fullPath}
+          ref="menu"
+          onSelect={this.handleMenuSelect}>
+          {this.aside.map(menu => createMenu.call(this, h, menu))}
+        </el-menu>
+      }
+      {
+        this.asideType === 2
+          ? (this.collectList.length > 0
+            ? <div class="d2-layout-header-aside-menu-collect"><ul>{this.collectList.map(item => <li key={item.name} onClick={
+              () => this.handleMenuSelect(item.path)
+            }>{item.name}</li>)}</ul></div>
+            : <span>没有收藏项目</span>)
+          : null
+      }
       {
         this.aside.length === 0 && !this.asideCollapse
           ? <div class="d2-layout-header-aside-menu-empty" flex="dir:top main:center cross:center">
@@ -40,7 +51,9 @@ export default {
     ...mapState('d2admin/menu', [
       'aside',
       'asideCollapse',
-      'asideTransition'
+      'asideTransition',
+      'collectList',
+      'asideType'
     ])
   },
   watch: {
