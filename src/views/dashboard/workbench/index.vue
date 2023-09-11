@@ -79,7 +79,7 @@
                         资产规模及分布
                     </div>
                 </div>
-                
+
             </div>
             <div class="card-top-section">
                 <div class="card-bottom">
@@ -102,7 +102,7 @@
                         客户总数
                     </div>
                 </div>
-                
+
             </div>
         </div>
         <!-- <div class="widgets" ref="widgets">
@@ -162,176 +162,176 @@ import DashboardConfig from '@/views/dashboard/workbench/config'
 import initData from './init.js'
 
 export default {
-    components: {
-        DashboardConfig,
-        SuspendedLibrary,
-        draggable,
-        GridLayout: VueGridLayout.GridLayout,
-        GridItem: VueGridLayout.GridItem
-    },
-    data() {
-        return {
-            customizing: false,
-            allComps: allComps,
-            selectLayout: [],
-            defaultLayout: initData,
-            layout: [],
-            colNum: 48,
-            minimize: false,
-            pxData: {}
-        }
-    },
-    async created() {
-        this.layout = await this.$store.dispatch('d2admin/db/get', {
-            dbName: 'sys',
-            path: 'grid-layout',
-            defaultValue: JSON.parse(JSON.stringify(this.defaultLayout)),
-            user: true
-        }, { root: true })
-    },
-    mounted() {
-        this.$emit('on-mounted')
-    },
-    computed: {
-        allCompsList() {
-            var allCompsList = []
-            for (var key in this.allComps) {
-                allCompsList.push({
-                    key: key,
-                    sort: allComps[key].sort,
-                    title: allComps[key].title,
-                    icon: allComps[key].icon,
-                    height: allComps[key].height,
-                    width: allComps[key].width,
-                    config: allComps[key].config || {},
-                    isResizable: allComps[key].isResizable || null,
-                    description: allComps[key].description
-                })
-            }
-            allCompsList.sort(function (a, b) {
-                return (a.sort || 0) - (b.sort || 0)
-            })
-            return allCompsList
-        },
-        myCompsList() {
-            return this.allCompsList
-        },
-        nowCompsList() {
-            return this.allCompsList
-        }
-    },
-    methods: {
-        // 开启自定义
-        custom() {
-            this.customizing = true
-            this.$refs.suspendedLibrary.menu = true
-            const oldWidth = this.$refs.widgets.offsetWidth
-            this.$nextTick(() => {
-                const scale = this.$refs.widgets.offsetWidth / oldWidth
-                this.$refs.widgets.style.setProperty('transform', `scale(${scale})`)
-            })
-        },
-        getLayoutElementNumber(elementName) {
-            return elementName + this.layout.length
-        },
-        // 追加
-        push(item) {
-            this.layout.push({
-                i: this.getLayoutElementNumber(item.key),
-                x: (this.layout.length * 2) % (this.colNum || 12),
-                y: this.layout.length + (this.colNum || 12),
-                w: item.width,
-                h: item.height,
-                config: item.config || {},
-                isResizable: item.isResizable || null,
-                element: item.key
-            })
-        },
-        // 删除组件
-        remove(index) {
-            this.layout.splice(index, 1)
-        },
-        // 保存
-        async save() {
-            console.log(this.layout)
-            this.customizing = false
-            this.minimize = false
-            this.$refs.suspendedLibrary.menu = false
-            this.$refs.widgets.style.removeProperty('transform')
-            var layout = JSON.parse(JSON.stringify(this.layout))
-            layout.map(val => {
-                delete val.pxData
-            })
-            await this.$store.dispatch('d2admin/db/set', {
-                dbName: 'sys',
-                path: 'grid-layout',
-                value: layout,
-                user: true
-            }, { root: true })
-        },
-        // 恢复默认
-        backDefault() {
-            this.customizing = false
-            this.minimize = false
-            this.$refs.suspendedLibrary.menu = false
-            this.$refs.widgets.style.removeProperty('transform')
-            this.layout = JSON.parse(JSON.stringify(this.defaultLayout))
-            // 设为默认
-            this.$store.dispatch('d2admin/db/set', {
-                dbName: 'sys',
-                path: 'grid-layout',
-                value: this.layout,
-                user: true
-            }, { root: true })
-        },
-        // 关闭
-        async close() {
-            this.customizing = false
-            this.minimize = false
-            this.$refs.suspendedLibrary.menu = false
-            this.$refs.widgets.style.removeProperty('transform')
-            this.layout = await this.$store.dispatch('d2admin/db/get', {
-                dbName: 'sys',
-                path: 'grid-layout',
-                defaultValue: JSON.stringify(this.defaultLayout),
-                user: true
-            }, { root: true })
-        },
-        // 清空画布
-        clickEmpty() {
-            this.layout = []
-        },
-        // 保存配置
-        saveConfig(myComp, items) {
-            this.layout.map(val => {
-                if (val.i === items.i) {
-                    val.config = JSON.parse(JSON.stringify(items.config))
-                }
-            })
-        },
-        // 最小化
-        clickMinimize() {
-            this.minimize = !this.minimize
-            this.$refs.suspendedLibrary.menu = !this.$refs.suspendedLibrary.menu
-        },
-        // 打开系统配置
-        clickConfig(itme) {
-            this.$refs.dashboardConfig.deviceUpgradeDrawer = true
-            this.$refs.dashboardConfig.initData(this.allComps[itme.element], JSON.parse(JSON.stringify(itme)))
-            this.minimize = false
-        },
-        // 设置实际的宽度和高度
-        containerResizedEvent: function (i, newH, newW, newHPx, newWPx) {
-            this.layout.map(val => {
-                if (val.i === i) {
-                    this.$set(this.pxData, val.i, {
-                        hpx: Number(newHPx),
-                        wpx: Number(newWPx)
-                    })
-                }
-            })
-        }
+  components: {
+    DashboardConfig,
+    SuspendedLibrary,
+    draggable,
+    GridLayout: VueGridLayout.GridLayout,
+    GridItem: VueGridLayout.GridItem
+  },
+  data () {
+    return {
+      customizing: false,
+      allComps: allComps,
+      selectLayout: [],
+      defaultLayout: initData,
+      layout: [],
+      colNum: 48,
+      minimize: false,
+      pxData: {}
     }
+  },
+  async created () {
+    this.layout = await this.$store.dispatch('d2admin/db/get', {
+      dbName: 'sys',
+      path: 'grid-layout',
+      defaultValue: JSON.parse(JSON.stringify(this.defaultLayout)),
+      user: true
+    }, { root: true })
+  },
+  mounted () {
+    this.$emit('on-mounted')
+  },
+  computed: {
+    allCompsList () {
+      var allCompsList = []
+      for (var key in this.allComps) {
+        allCompsList.push({
+          key: key,
+          sort: allComps[key].sort,
+          title: allComps[key].title,
+          icon: allComps[key].icon,
+          height: allComps[key].height,
+          width: allComps[key].width,
+          config: allComps[key].config || {},
+          isResizable: allComps[key].isResizable || null,
+          description: allComps[key].description
+        })
+      }
+      allCompsList.sort(function (a, b) {
+        return (a.sort || 0) - (b.sort || 0)
+      })
+      return allCompsList
+    },
+    myCompsList () {
+      return this.allCompsList
+    },
+    nowCompsList () {
+      return this.allCompsList
+    }
+  },
+  methods: {
+    // 开启自定义
+    custom () {
+      this.customizing = true
+      this.$refs.suspendedLibrary.menu = true
+      const oldWidth = this.$refs.widgets.offsetWidth
+      this.$nextTick(() => {
+        const scale = this.$refs.widgets.offsetWidth / oldWidth
+        this.$refs.widgets.style.setProperty('transform', `scale(${scale})`)
+      })
+    },
+    getLayoutElementNumber (elementName) {
+      return elementName + this.layout.length
+    },
+    // 追加
+    push (item) {
+      this.layout.push({
+        i: this.getLayoutElementNumber(item.key),
+        x: (this.layout.length * 2) % (this.colNum || 12),
+        y: this.layout.length + (this.colNum || 12),
+        w: item.width,
+        h: item.height,
+        config: item.config || {},
+        isResizable: item.isResizable || null,
+        element: item.key
+      })
+    },
+    // 删除组件
+    remove (index) {
+      this.layout.splice(index, 1)
+    },
+    // 保存
+    async save () {
+      console.log(this.layout)
+      this.customizing = false
+      this.minimize = false
+      this.$refs.suspendedLibrary.menu = false
+      this.$refs.widgets.style.removeProperty('transform')
+      var layout = JSON.parse(JSON.stringify(this.layout))
+      layout.map(val => {
+        delete val.pxData
+      })
+      await this.$store.dispatch('d2admin/db/set', {
+        dbName: 'sys',
+        path: 'grid-layout',
+        value: layout,
+        user: true
+      }, { root: true })
+    },
+    // 恢复默认
+    backDefault () {
+      this.customizing = false
+      this.minimize = false
+      this.$refs.suspendedLibrary.menu = false
+      this.$refs.widgets.style.removeProperty('transform')
+      this.layout = JSON.parse(JSON.stringify(this.defaultLayout))
+      // 设为默认
+      this.$store.dispatch('d2admin/db/set', {
+        dbName: 'sys',
+        path: 'grid-layout',
+        value: this.layout,
+        user: true
+      }, { root: true })
+    },
+    // 关闭
+    async close () {
+      this.customizing = false
+      this.minimize = false
+      this.$refs.suspendedLibrary.menu = false
+      this.$refs.widgets.style.removeProperty('transform')
+      this.layout = await this.$store.dispatch('d2admin/db/get', {
+        dbName: 'sys',
+        path: 'grid-layout',
+        defaultValue: JSON.stringify(this.defaultLayout),
+        user: true
+      }, { root: true })
+    },
+    // 清空画布
+    clickEmpty () {
+      this.layout = []
+    },
+    // 保存配置
+    saveConfig (myComp, items) {
+      this.layout.map(val => {
+        if (val.i === items.i) {
+          val.config = JSON.parse(JSON.stringify(items.config))
+        }
+      })
+    },
+    // 最小化
+    clickMinimize () {
+      this.minimize = !this.minimize
+      this.$refs.suspendedLibrary.menu = !this.$refs.suspendedLibrary.menu
+    },
+    // 打开系统配置
+    clickConfig (itme) {
+      this.$refs.dashboardConfig.deviceUpgradeDrawer = true
+      this.$refs.dashboardConfig.initData(this.allComps[itme.element], JSON.parse(JSON.stringify(itme)))
+      this.minimize = false
+    },
+    // 设置实际的宽度和高度
+    containerResizedEvent: function (i, newH, newW, newHPx, newWPx) {
+      this.layout.map(val => {
+        if (val.i === i) {
+          this.$set(this.pxData, val.i, {
+            hpx: Number(newHPx),
+            wpx: Number(newWPx)
+          })
+        }
+      })
+    }
+  }
 }
 </script>
 <style scoped lang="scss">
@@ -510,7 +510,7 @@ export default {
 }
 .card5 {
     border-left: 4px solid #DB5CEE;
-} 
+}
 .card-title-common{
     font-size: 16px;
     font-weight: bold;

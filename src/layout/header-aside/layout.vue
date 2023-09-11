@@ -32,7 +32,8 @@
           />
         </router-link>
         <div class="toggle-aside-btn" @click="handleToggleAside" flex-box="0">
-          <d2-icon name="bars" />
+          <!-- <d2-icon name="bars" /> -->
+          <i :class="asideCollapse ?'el-icon-s-unfold':'el-icon-s-fold'"></i>
         </div>
         <d2-menu-header flex-box="1" />
         <!-- 顶栏右侧 -->
@@ -62,6 +63,7 @@
           :style="{
             width: asideCollapse ? asideWidthCollapse : asideWidth,
             opacity: this.searchActive ? 0.5 : 1,
+            backgroundImage:'url('+menuBg+')'
           }"
         >
           <d2-menu-side />
@@ -106,16 +108,17 @@ import d2MenuSide from './components/menu-side'
 import d2MenuHeader from './components/menu-header'
 import d2Tabs from './components/tabs'
 import d2HeaderFullscreen from './components/header-fullscreen'
-import d2HeaderLocales from './components/header-locales'
-import d2HeaderSearch from './components/header-search'
-import d2HeaderSize from './components/header-size'
-import d2HeaderTheme from './components/header-theme'
+// import d2HeaderLocales from './components/header-locales'
+// import d2HeaderSearch from './components/header-search'
+// import d2HeaderSize from './components/header-size'
+// import d2HeaderTheme from './components/header-theme'
 import d2HeaderUser from './components/header-user'
-import d2HeaderLog from './components/header-log'
-import d2HeaderColor from './components/header-color'
-import d2HeaderMessage from './components/header-message'
+// import d2HeaderLog from './components/header-log'
+// import d2HeaderColor from './components/header-color'
+// import d2HeaderMessage from './components/header-message'
 import { mapState, mapGetters, mapActions } from 'vuex'
 import mixinSearch from './mixins/search'
+import menuBg from '@/../public/image/menu-bg.png'
 export default {
   name: 'd2-layout-header-aside',
   mixins: [mixinSearch],
@@ -124,14 +127,14 @@ export default {
     d2MenuHeader,
     d2Tabs,
     d2HeaderFullscreen,
-    d2HeaderLocales,
-    d2HeaderSearch,
-    d2HeaderSize,
-    d2HeaderTheme,
-    d2HeaderUser,
-    d2HeaderLog,
-    d2HeaderColor,
-    d2HeaderMessage
+    // d2HeaderLocales,
+    // d2HeaderSearch,
+    // d2HeaderSize,
+    // d2HeaderTheme,
+    d2HeaderUser
+    // d2HeaderLog,
+    // d2HeaderColor,
+    // d2HeaderMessage
   },
   provide () {
     return {
@@ -144,6 +147,7 @@ export default {
       asideWidth: '200px',
       // [侧边栏宽度] 折叠状态
       asideWidthCollapse: '65px',
+      menuBg: menuBg,
       showView: true // 用于点击当前页的router时，刷新当前页
     }
   },

@@ -43,7 +43,7 @@ export default {
       this.$slots.header ? <template slot="header">{ this.$slots.header }</template> : null,
       this.$slots.footer ? <template slot="footer">{ this.$slots.footer }</template> : null
     ]
-    console.log(this.component);
+    console.log(this.component)
     return <div
       ref="container"
       class="container-component">

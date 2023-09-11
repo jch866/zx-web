@@ -2,7 +2,7 @@ import { mapState } from 'vuex'
 import menuMixin from '../mixin/menu'
 import { createMenu } from '../libs/util.menu'
 import BScroll from 'better-scroll'
-
+import menuSearch from '../menu-search'
 export default {
   name: 'd2-layout-header-aside-menu-side',
   mixins: [
@@ -10,6 +10,7 @@ export default {
   ],
   render (h) {
     return <div class="d2-layout-header-aside-menu-side">
+      <menuSearch/>
       <el-menu
         collapse={ this.asideCollapse }
         collapseTransition={ this.asideTransition }

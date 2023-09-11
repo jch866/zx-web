@@ -21,8 +21,8 @@ export default {
       if (needList.length === 0) {
         throw new Error('need permissions! Like v-permission="usersphere:user:view" ')
       }
-      const userPermissionList = store.getters['d2admin/permission/permissionList'];
-      return true;
+      const userPermissionList = store.getters['d2admin/permission/permissionList']
+      return true
     //   return userPermissionList.some(permission => {
     //     return needList.includes(permission)
     //   })

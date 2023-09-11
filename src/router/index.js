@@ -65,7 +65,7 @@ router.beforeEach(async (to, from, next) => {
       getMenu().then(ret => {
         // 校验路由是否有效
         ret = checkRouter(ret)
-        const { routes, frameOut } = handleRouter(ret);
+        const { routes, frameOut } = handleRouter(ret)
         // 处理路由 得到每一级的路由设置
         store.commit('d2admin/page/init', routes)
         routes.map((r) => {
@@ -115,7 +115,7 @@ router.beforeEach(async (to, from, next) => {
           })
           window.open(href, '_blank')
           // 取消当前导航
-          NProgress.done() 
+          NProgress.done()
           next(false)
         } else {
           // 取消当前导航
