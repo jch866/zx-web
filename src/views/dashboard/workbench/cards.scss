@@ -1,0 +1,121 @@
+//首页的卡片布局
+.card-wrap {
+    padding: 10px 20px 20px 20px;
+    background-color: #f8f8f8;
+}
+
+.card-top-section {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 14px;
+
+}
+//首页的上部分卡片布局
+.card-top {
+    width: 19%;
+    height: 200px;
+    background-color: white;
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    p{
+      text-align: center;
+    }
+    .c_t_title{
+        font-size: 13px;
+        font-weight: bold;
+        height: 40px;
+    }
+    .c_t_mid {
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        color:#191919;
+        .left1_b{
+            font-weight: bold;
+            font-size: 16px;
+        }
+    }
+    .c_t_bottom{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 10px;
+        height: 50px;
+        margin-top: 20px;
+        color:#191919;
+        .t1{
+            font-size: 12px;
+        }
+        .t2{
+            font-size: 14px;
+        }
+    }
+}
+
+//首页的中部卡片布局
+.card-mid-left {
+    width: 42%;
+    height: 400px;
+    background-color: white;
+    border-radius: 10px;
+    border: none;
+    padding:20px
+}
+.card-mid-right {
+    width: 28%;
+    height: 400px;
+    background-color: white;
+    border-radius: 10px;
+    border: none;
+    padding:20px
+}
+//首页的底部卡片布局
+.card-bottom {
+    width: 24%;
+    height: 350px;
+    background-color: white;
+    border-radius: 10px;
+    border: none;
+    padding:20px
+}
+.card1 {
+    border-left: 4px solid #FF5850;
+}
+.card1_c {
+    color:  #FF5850;
+}
+.card2 {
+    border-left: 4px solid #4B73EF;
+}
+.card2_c {
+    color:  #4B73EF;
+}
+.card3 {
+    border-left: 4px solid #9A74FF;
+}
+.card3_c {
+    color:  #9A74FF;
+}
+.card4 {
+    border-left: 4px solid #FFA526;
+}
+.card4_c {
+    color:  #FFA526;
+}
+.card5 {
+    border-left: 4px solid #DB5CEE;
+}
+.card5_c {
+    color:  #DB5CEE;
+}
+.card-title-common{
+    font-size: 16px;
+    font-weight: bold;
+    height: 36px;
+    line-height: 36px;
+}

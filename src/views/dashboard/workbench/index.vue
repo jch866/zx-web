@@ -46,61 +46,195 @@
             </div>
         </suspended-library>
         <div class="card-wrap">
+          <div class="card-top-section">
+            <div class="card-title-common">
+              公司经营达成情况
+             </div>
+          </div>
             <div class="card-top-section">
                 <div class="card-top card1">
-                    123
+                    <div class="c_t_title card1_c">一环营业净收入总额</div>
+                    <div class="c_t_mid">
+                      <div class="c_t_mid_left">
+                        <p class="left1_t">净利润(万元)</p>
+                        <p class="left1_b">45,498</p>
+                      </div>
+                      <div class="c_t_mid_right">
+                        <p class="right1_t">目标达成率</p>
+                        <p class="right1_b">15.48%</p>
+                      </div>
+                    </div>
+                    <div class="c_t_bottom">
+                      <div class="c_t_bottom_text">
+                        <p class="t1">较上年末(亿)</p>
+                        <p class="t2">45,498</p>
+                      </div>
+                      <div class="c_t_bottom_text">
+                        <p class="t1">较上月末(亿)</p>
+                        <p class="t2">26,88</p>
+                      </div>
+                      <div class="c_t_bottom_text">
+                        <p class="t1">较上日(亿)</p>
+                        <p class="t2">26,88</p>
+                      </div>
+                    </div>
                 </div>
                 <div class="card-top card2">
-                    123
+                    <div class="c_t_title card2_c">ROE年度经营目标达标</div>
+                    <div class="c_t_mid">
+                      <div class="c_t_mid_left">
+                        <p class="left1_t">净利润(万元)</p>
+                        <p class="left1_b">45,498</p>
+                      </div>
+                      <div class="c_t_mid_right">
+                        <p class="right1_t">目标达成率</p>
+                        <p class="right1_b">15.48%</p>
+                      </div>
+                    </div>
+                    <div class="c_t_bottom">
+                      <div class="c_t_bottom_text">
+                        <p class="t1">较上年末(亿)</p>
+                        <p class="t2">45,498</p>
+                      </div>
+                      <div class="c_t_bottom_text">
+                        <p class="t1">较上月末(亿)</p>
+                        <p class="t2">26,88</p>
+                      </div>
+                      <div class="c_t_bottom_text">
+                        <p class="t1">较上日(亿)</p>
+                        <p class="t2">26,88</p>
+                      </div>
+                    </div>
                 </div>
                 <div class="card-top card3">
-                    123
+                    <div class="c_t_title card3_c">ROA年度经营目标达标</div>
+                    <div class="c_t_mid">
+                      <div class="c_t_mid_left">
+                        <p class="left1_t">净利润(万元)</p>
+                        <p class="left1_b">45,498</p>
+                      </div>
+                      <div class="c_t_mid_right">
+                        <p class="right1_t">目标达成率</p>
+                        <p class="right1_b">15.48%</p>
+                      </div>
+                    </div>
+                    <div class="c_t_bottom">
+                      <div class="c_t_bottom_text">
+                        <p class="t1">较上年末(亿)</p>
+                        <p class="t2">45,498</p>
+                      </div>
+                      <div class="c_t_bottom_text">
+                        <p class="t1">较上月末(亿)</p>
+                        <p class="t2">26,88</p>
+                      </div>
+                      <div class="c_t_bottom_text">
+                        <p class="t1">较上日(亿)</p>
+                        <p class="t2">26,88</p>
+                      </div>
+                    </div>
                 </div>
                 <div class="card-top card4">
-                    123
+                    <div class="c_t_title card4_c">营收年度经营目标达标</div>
+                    <div class="c_t_mid">
+                      <div class="c_t_mid_left">
+                        <p class="left1_t">净利润(万元)</p>
+                        <p class="left1_b">45,498</p>
+                      </div>
+                      <div class="c_t_mid_right">
+                        <p class="right1_t">目标达成率</p>
+                        <p class="right1_b">15.48%</p>
+                      </div>
+                    </div>
+                    <div class="c_t_bottom">
+                      <div class="c_t_bottom_text">
+                        <p class="t1">较上年末(亿)</p>
+                        <p class="t2">45,498</p>
+                      </div>
+                      <div class="c_t_bottom_text">
+                        <p class="t1">较上月末(亿)</p>
+                        <p class="t2">26,88</p>
+                      </div>
+                      <div class="c_t_bottom_text">
+                        <p class="t1">较上日(亿)</p>
+                        <p class="t2">26,88</p>
+                      </div>
+                    </div>
                 </div>
                 <div class="card-top card5">
-                    123
+                    <div class="c_t_title card5_c">营收年度经营目标达标</div>
+                    <div class="c_t_mid">
+                      <div class="c_t_mid_left">
+                        <p class="left1_t">净利润(万元)</p>
+                        <p class="left1_b">45,498</p>
+                      </div>
+                      <div class="c_t_mid_right">
+                        <p class="right1_t">目标达成率</p>
+                        <p class="right1_b">15.48%</p>
+                      </div>
+                    </div>
+                    <div class="c_t_bottom">
+                      <div class="c_t_bottom_text">
+                        <p class="t1">较上年末(亿)</p>
+                        <p class="t2">45,498</p>
+                      </div>
+                      <div class="c_t_bottom_text">
+                        <p class="t1">较上月末(亿)</p>
+                        <p class="t2">26,88</p>
+                      </div>
+                      <div class="c_t_bottom_text">
+                        <p class="t1">较上日(亿)</p>
+                        <p class="t2">26,88</p>
+                      </div>
+                    </div>
                 </div>
             </div>
+            <!-- 中间 -->
             <div class="card-top-section">
-                <div class="card-mid-left">
+                <div class="card-mid-left" style="overflow: hidden;">
                     <div class="card-title-common">
                         资产区域集中度
                     </div>
+                    <zkehu-total/>
                 </div>
                 <div class="card-mid-right">
                     <div class="card-title-common">
                         资产规模及分布
                     </div>
+                    <zkehu-total2/>
                 </div>
                 <div class="card-mid-right">
                     <div class="card-title-common">
                         资产规模及分布
                     </div>
+                    <zkehu-total3/>
                 </div>
 
             </div>
+            <!-- 下面 -->
             <div class="card-top-section">
                 <div class="card-bottom">
                     <div class="card-title-common">
                         产品规模⾛势
                     </div>
+                    <zkehu-total4/>
                 </div>
                 <div class="card-bottom">
                     <div class="card-title-common">
                         客户总数
                     </div>
+                    <zkehu-total5/>
                 </div>
                 <div class="card-bottom">
                     <div class="card-title-common">
                         资产投放及余额
                     </div>
+                    <zkehu-total7/>
                 </div>
                 <div class="card-bottom">
                     <div class="card-title-common">
                         客户总数
                     </div>
+                    <zkehu-total6/>
                 </div>
 
             </div>
@@ -160,14 +294,21 @@ import VueGridLayout from 'vue-grid-layout'
 import SuspendedLibrary from '@/views/dashboard/workbench/suspendedLibrary'
 import DashboardConfig from '@/views/dashboard/workbench/config'
 import initData from './init.js'
-
+import ZkehuTotal from './components/zkehuTotal.vue'
+import ZkehuTotal2 from './components/zkehuTotal2.vue'
+import ZkehuTotal3 from './components/zkehuTotal3.vue'
+import ZkehuTotal4 from './components/zkehuTotal4.vue'
+import ZkehuTotal5 from './components/zkehuTotal5.vue'
+import ZkehuTotal6 from './components/zkehuTotal6.vue'
+import ZkehuTotal7 from './components/zkehuTotal7.vue'
 export default {
   components: {
     DashboardConfig,
     SuspendedLibrary,
     draggable,
     GridLayout: VueGridLayout.GridLayout,
-    GridItem: VueGridLayout.GridItem
+    GridItem: VueGridLayout.GridItem,
+    ZkehuTotal,ZkehuTotal2,ZkehuTotal3,ZkehuTotal4,ZkehuTotal5,ZkehuTotal6,ZkehuTotal7,
   },
   data () {
     return {
@@ -335,6 +476,7 @@ export default {
 }
 </script>
 <style scoped lang="scss">
+@import 'cards.scss';
 ::v-deep .d2-container-full__body {
     padding: 0 !important;
 }
@@ -445,76 +587,4 @@ export default {
     right: 15px;
 }
 
-//首页的卡片布局
-.card-wrap {
-    padding: 10px 20px 20px 20px;
-    background-color: #f8f8f8;
-}
-
-.card-top-section {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 14px;
-
-}
-//首页的上部分卡片布局
-.card-top {
-    width: 19%;
-    height: 200px;
-    background-color: white;
-    border-radius: 10px;
-    border: none;
-    padding:20px
-}
-
-//首页的中部卡片布局
-.card-mid-left {
-    width: 42%;
-    height: 400px;
-    background-color: white;
-    border-radius: 10px;
-    border: none;
-    padding:20px
-}
-.card-mid-right {
-    width: 28%;
-    height: 400px;
-    background-color: white;
-    border-radius: 10px;
-    border: none;
-    padding:20px
-}
-//首页的底部卡片布局
-.card-bottom {
-    width: 24%;
-    height: 300px;
-    background-color: white;
-    border-radius: 10px;
-    border: none;
-    padding:20px
-}
-.card1 {
-    border-left: 4px solid #FF5850;
-}
-
-.card2 {
-    border-left: 4px solid #4B73EF;
-}
-
-.card3 {
-    border-left: 4px solid #9A74FF;
-}
-
-.card4 {
-    border-left: 4px solid #FFA526;
-}
-.card5 {
-    border-left: 4px solid #DB5CEE;
-}
-.card-title-common{
-    font-size: 16px;
-    font-weight: bold;
-    height: 36px;
-    line-height: 36px;
-}
 </style>
