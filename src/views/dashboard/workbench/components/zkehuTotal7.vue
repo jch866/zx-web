@@ -35,6 +35,7 @@ export default {
                     borderRadius: 10,
                     itemWidth: 10,
                     itemHeight: 10,
+                    icon: 'circle',
                 },
                 grid: {
                     // left: '3%',

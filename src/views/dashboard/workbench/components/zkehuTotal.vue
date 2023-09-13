@@ -43,7 +43,7 @@ export default {
     }
   },
   methods: {
- 
+
     // initGet () {
     //   request({
     //     url: '/api/system/datav/login_region/'
@@ -63,7 +63,7 @@ export default {
         //地图组件
         geo: {
           map: 'china', //中国地图
-          roam: true, //鼠标缩放的效果
+          // roam: true, //鼠标缩放的效果
           //地图的位置调试
           left: 0,
           top: 0,
@@ -105,7 +105,7 @@ export default {
             },
             label: {
               fontSize: 12,
-              color:"blue"
+              color: "blue"
             },
           },
         },
@@ -116,103 +116,68 @@ export default {
           right: 0,
           bottom: 0,
         },
-        // series: [
-        //   {
-        //     type: 'lines', //航线的系列
-        //     data: [
-        //       // {
-        //       //   coords: [
-        //       //     [116.405285, 39.904989], // 起点
-        //       //     [119.306239, 26.075302], // 终点
-        //       //   ],
-        //       //   // 统一的样式设置
-        //       //   lineStyle: {
-        //       //     color: 'orange',
-        //       //     width: 5,
-        //       //   },
-        //       // },
-        //       // {
-        //       //   coords: [
-        //       //     [116.405285, 39.904989], // 起点
-        //       //     [114.298572, 30.584355], // 终点
-        //       //   ],
-        //       //   // 统一的样式设置
-        //       //   lineStyle: {
-        //       //     color: 'yellow',
-        //       //     width: 5,
-        //       //   },
-        //       // },
-        //     ],
-        //     //开启动画特效
-        //     effect: {
-        //       show: false,
-        //       symbol: 'arrow',
-        //       color: 'black',
-        //       symbolSize: 10,
-        //     },
-        //   },
-        // ],
+      
         series: [
-    {
-      name: 'pm2.5',
-      type: 'scatter',
-      coordinateSystem: 'bmap',
-      data:[  { name: '荣成', value: 34 },
-  { name: '连云港', value: 35 },
-  { name: '葫芦岛', value: 35 },
-  { name: '常熟', value: 36 }],
-      symbolSize: function (val) {
-        return val[2] / 10;
-      },
-      encode: {
-        value: 2
-      },
-      label: {
-        formatter: '{b}',
-        position: 'right',
-        show: false
-      },
-      emphasis: {
-        label: {
-          show: true
-        }
-      }
-    },
-    {
-      name: 'Top 5',
-      type: 'effectScatter',
-      coordinateSystem: 'bmap',
-      data:[  { name: '阳泉', value: 31 },
-  { name: '莱州', value: 32 },
-  { name: '湖州', value: 32 },
-  { name: '汕头', value: 32 },
-  { name: '昆山', value: 33 },
-  { name: '宁波', value: 33 }],
-      symbolSize: function (val) {
-        return val[2] / 10;
-      },
-      encode: {
-        value: 2
-      },
-      showEffectOn: 'render',
-      rippleEffect: {
-        brushType: 'stroke'
-      },
-      label: {
-        formatter: '{b}',
-        position: 'right',
-        show: true
-      },
-      itemStyle: {
-        shadowBlur: 10,
-        shadowColor: '#333'
-      },
-      emphasis: {
-        scale: true
-      },
-      zlevel: 1
-    }
-  ]
+          {
+            name: 'pm2.5',
+            type: 'scatter',
+            coordinateSystem: 'bmap',
+            data: [{ name: '荣成', value: 34 },
+            { name: '连云港', value: 35 },
+            { name: '葫芦岛', value: 35 },
+            { name: '常熟', value: 36 }],
+            symbolSize: function (val) {
+              return val[2] / 10;
+            },
+            encode: {
+              value: 2
+            },
+            label: {
+              formatter: '{b}',
+              position: 'right',
+              show: false
+            },
+            emphasis: {
+              label: {
+                show: true
+              }
+            }
+          },
+          {
+            name: 'Top 5',
+            type: 'effectScatter',
+            coordinateSystem: 'bmap',
+            data: [{ name: '阳泉', value: 31 },
+            { name: '莱州', value: 32 },
+            { name: '湖州', value: 32 },
+            { name: '汕头', value: 32 },
+            { name: '昆山', value: 33 },
+            { name: '宁波', value: 33 }],
+            symbolSize: function (val) {
+              return val[2] / 10;
+            },
+            encode: {
+              value: 2
+            },
+            showEffectOn: 'render',
+            rippleEffect: {
+              brushType: 'stroke'
+            },
+            label: {
+              formatter: '{b}',
+              position: 'right',
+              show: true
+            },
+            itemStyle: {
+              shadowBlur: 10,
+              shadowColor: '#333'
+            },
+            emphasis: {
+              scale: true
+            },
+            zlevel: 1
+          }
+        ]
       }
 
       this.myChart.setOption(option)

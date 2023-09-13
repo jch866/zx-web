@@ -28,40 +28,40 @@ export default {
                     borderRadius: 10,
                     itemWidth: 10,
                     itemHeight: 10,
+                    icon: 'circle',
                 },
                 tooltip: {},
-                dataset: {
-                    dimensions: ['product', '2015', '2016', '2017'],
-                    source: [
-                        { product: 'Matcha Latte', 2015: 43.3, 2016: 85.8, 2017: 93.7 },
-                        { product: 'Milk Tea', 2015: 83.1, 2016: 73.4, 2017: 55.1 },
-                        { product: 'Cheese Cocoa', 2015: 86.4, 2016: 65.2, 2017: 82.5 },
-                        { product: 'Walnut Brownie', 2015: 72.4, 2016: 53.9, 2017: 39.1 }
-                    ]
-                },
-                xAxis: { type: 'category' },
-                yAxis: {},
+                xAxis: { type: 'category',data:['北京分行', '上海分行', '厦门分行','福州分行'] },
+                yAxis: {name:'万元'},
                 // Declare several bar series, each will be mapped
                 // to a column of dataset.source by default.
                 series: [{
                     type: 'bar',
-                    
+                    barWidth: "8px",
+                    data:[43.3,83.1, 86.4,72.4],
+                    name:'直销',
+
                 }, {
                     type: 'bar',
-                     
+                    barWidth: "8px",
+                    data:[85,73.1, 65.4,53.9],
+                    name:'母行代销',
+
                 }, {
                     type: 'bar',
+                    barWidth: "8px",
+                    data:[93.3,55.1, 82.4,39.4],
+                    name:'他行代销',
                     // emphasis: {
                     //     focus: 'series'
                     // },
                 }]
             };
-
+          
             this.myChart.setOption(option)
         }
     },
     mounted() {
-        console.log(23)
         this.myChart = this.$echarts.init(document.getElementById('region6'))
         this.drawLine()
     }

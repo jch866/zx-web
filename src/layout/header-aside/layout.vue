@@ -1,39 +1,20 @@
 <template>
-  <div
-    class="d2-layout-header-aside-group"
-    :style="styleLayoutMainGroup"
-    :class="{ grayMode: grayActive }"
-  >
+  <div class="d2-layout-header-aside-group" :style="styleLayoutMainGroup" :class="{ grayMode: grayActive }">
     <!-- 半透明遮罩 -->
     <div class="d2-layout-header-aside-mask"></div>
     <!-- 主体内容 -->
     <div class="d2-layout-header-aside-content" flex="dir:top">
       <!-- 顶栏 -->
-      <div
-        class="d2-theme-header"
-        :style="{ opacity: this.searchActive ? 0.5 : 1 }"
-        flex-box="0"
-        flex
-      >
-        <router-link
-          to="/index"
-          :class="{ 'logo-group': true, 'logo-transition': asideTransition }"
-          :style="{ width: asideCollapse ? asideWidthCollapse : asideWidth }"
-          flex-box="0"
-        >
-        <!-- <h2>经营分析平台</h2> -->
-          <img
-            v-if="asideCollapse"
-            :src="`${$baseUrl}image/theme/${themeActiveSetting.name}/logo/icon-only.png`"
-          />
-          <img
-            v-else
-            :src="`${$baseUrl}image/theme/${themeActiveSetting.name}/logo/all.png`"
-          />
+      <div class="d2-theme-header" :style="{ opacity: this.searchActive ? 0.5 : 1 }" flex-box="0" flex>
+        <router-link to="/index" :class="{ 'logo-group': true, 'logo-transition': asideTransition }"
+          :style="{ width: asideCollapse ? asideWidthCollapse : asideWidth }" flex-box="0">
+          <!-- <h2>经营分析平台</h2> -->
+          <img v-if="asideCollapse" :src="`${$baseUrl}image/theme/${themeActiveSetting.name}/logo/icon-only.png`" />
+          <img v-else :src="`${$baseUrl}image/theme/${themeActiveSetting.name}/logo/all.png`" />
         </router-link>
         <div class="toggle-aside-btn" @click="handleToggleAside" flex-box="0">
           <!-- <d2-icon name="bars" /> -->
-          <i :class="asideCollapse ?'el-icon-s-unfold':'el-icon-s-fold'"></i>
+          <i :class="asideCollapse ? 'el-icon-s-unfold' : 'el-icon-s-fold'"></i>
         </div>
         <d2-menu-header flex-box="1" />
         <!-- 顶栏右侧 -->
@@ -53,19 +34,14 @@
       <!-- 下面 主体 -->
       <div class="d2-theme-container" flex-box="1" flex>
         <!-- 主体 侧边栏 -->
-        <div
-          flex-box="0"
-          ref="aside"
-          :class="{
-            'd2-theme-container-aside': true,
-            'd2-theme-container-transition': asideTransition,
-          }"
-          :style="{
-            width: asideCollapse ? asideWidthCollapse : asideWidth,
-            opacity: this.searchActive ? 0.5 : 1,
-            backgroundImage:'url('+menuBg+')'
-          }"
-        >
+        <div flex-box="0" ref="aside" :class="{
+          'd2-theme-container-aside': true,
+          'd2-theme-container-transition': asideTransition,
+        }" :style="{
+  width: asideCollapse ? asideWidthCollapse : asideWidth,
+  opacity: this.searchActive ? 0.5 : 1,
+  backgroundImage: 'url(' + menuBg + ')'
+}">
           <d2-menu-side />
         </div>
         <!-- 主体 -->
@@ -78,13 +54,9 @@
           </transition>
           <!-- 内容 -->
           <transition name="fade-scale">
-            <div
-              v-if="!searchActive"
-              class="d2-theme-container-main-layer"
-              flex="dir:top"
-            >
+            <div v-if="!searchActive" class="d2-theme-container-main-layer" flex="dir:top">
               <!-- tab -->
-              <div class="d2-theme-container-main-header" flex-box="0">
+              <div class="d2-theme-container-main-header" flex-box="0" v-show="!hiddenTab">
                 <d2-tabs />
               </div>
               <!-- 页面 -->
@@ -136,19 +108,20 @@ export default {
     // d2HeaderColor,
     // d2HeaderMessage
   },
-  provide () {
+  provide() {
     return {
       refreshView: this.refreshView
     }
   },
-  data () {
+  data() {
     return {
       // [侧边栏宽度] 正常状态
       asideWidth: '200px',
       // [侧边栏宽度] 折叠状态
       asideWidthCollapse: '65px',
       menuBg: menuBg,
-      showView: true // 用于点击当前页的router时，刷新当前页
+      showView: true, // 用于点击当前页的router时，刷新当前页
+      hiddenTab: false
     }
   },
   computed: {
@@ -165,7 +138,7 @@ export default {
     /**
      * @description 用来实现带参路由的缓存
      */
-    routerViewKey () {
+    routerViewKey() {
       // 默认情况下 key 类似 __transition-n-/foo
       // 这里的字符串操作是为了最终 key 的格式和原来相同 类似 __transition-n-__stamp-time-/foo
       const stamp = this.$route.meta[`__stamp-${this.$route.fullPath}`] || ''
@@ -174,7 +147,7 @@ export default {
     /**
      * @description 最外层容器的背景图片样式
      */
-    styleLayoutMainGroup () {
+    styleLayoutMainGroup() {
       return this.themeActiveSetting.backgroundImage
         ? {
           backgroundImage: `url('${this.$baseUrl}${this.themeActiveSetting.backgroundImage}')`
@@ -182,28 +155,37 @@ export default {
         : {}
     }
   },
+  watch: {
+    $route: {
+      handler: function (to, from) {
+        console.log(to.fullPath);
+        this.hiddenTab = to.fullPath === '/index' ? true : false;
+      },
+      immediate: true
+    }
+  },
   methods: {
     ...mapActions('d2admin/menu', ['asideCollapseToggle']),
     /**
      * 接收点击切换侧边栏的按钮
      */
-    handleToggleAside () {
+    handleToggleAside() {
       this.asideCollapseToggle()
     },
     /**
      * 刷新页面
      */
-    refreshView () {
+    refreshView() {
       this.showView = false // 通过v-if移除router-view节点
       this.$nextTick(() => {
         this.showView = true // DOM更新后再通过v-if添加router-view节点
       })
     }
   },
-  mounted () {
+  mounted() {
     this.$websocket.initWebSocket()
   },
-  destroyed () {
+  destroyed() {
     // 离开路由之后断开websocket连接
     this.$websocket.closeWebsocket()
   }
@@ -215,7 +197,12 @@ export default {
 @import "~@/assets/style/theme/register.scss";
 
 @-webkit-keyframes bgp {
-  0% {background-position: 0 0; }
-  100% {background-position: -100% 0; }
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: -100% 0;
+  }
 }
 </style>

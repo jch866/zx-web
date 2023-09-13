@@ -21,36 +21,40 @@ export default {
     },
     methods: {
         drawLine() {
-            let  option = {
+            let option = {
                 legend: {
                     left: 'center',
                     bottom: '0',
                     borderRadius: 10,
                     itemWidth: 10,
                     itemHeight: 10,
+                    icon: 'circle',
                 },
                 tooltip: {},
                 dataset: {
-                    dimensions: ['product', '2015', '2016', '2017'],
+                    dimensions: ['product', '直销', '母行代销', '他行代销'],
                     source: [
-                        { product: 'Matcha Latte', 2015: 43.3, 2016: 85.8, 2017: 93.7 },
-                        { product: 'Milk Tea', 2015: 83.1, 2016: 73.4, 2017: 55.1 },
-                        { product: 'Cheese Cocoa', 2015: 86.4, 2016: 65.2, 2017: 82.5 },
-                        { product: 'Walnut Brownie', 2015: 72.4, 2016: 53.9, 2017: 39.1 }
+                        { product: '北京分行', '直销': 43.3, '母行代销': 85.8, '他行代销': 93.7 },
+                        { product: '上海分行', '直销': 83.1, '母行代销': 73.4, '他行代销': 55.1 },
+                        { product: '厦门分行', '直销': 86.4, '母行代销': 65.2, '他行代销': 82.5 },
+                        { product: '福州分行', '直销': 72.4, '母行代销': 53.9, '他行代销': 39.1 }
                     ]
                 },
                 xAxis: { type: 'category' },
-                yAxis: {},
+                yAxis: { name: '万元' },
                 // Declare several bar series, each will be mapped
                 // to a column of dataset.source by default.
                 series: [{
                     type: 'bar',
-                    
+                    barWidth: "8px",
+
                 }, {
                     type: 'bar',
-                     
+                    barWidth: "8px",
+
                 }, {
                     type: 'bar',
+                    barWidth: "8px",
                     // emphasis: {
                     //     focus: 'series'
                     // },
@@ -61,7 +65,6 @@ export default {
         }
     },
     mounted() {
-        console.log(23)
         this.myChart = this.$echarts.init(document.getElementById('region5'))
         this.drawLine()
     }

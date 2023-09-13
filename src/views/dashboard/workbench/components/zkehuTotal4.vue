@@ -38,9 +38,11 @@ export default {
                     borderRadius: 10,
                     itemWidth: 10,
                     itemHeight: 10,
+                    icon: 'circle'
                 },
                 series: [
                     {
+                        name:'资产规模总余额',
                         data: [820, 932, 901, 934, 1290, 930, 820],
                         type: 'line',
                         smooth: true,

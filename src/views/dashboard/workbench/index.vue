@@ -48,12 +48,13 @@
         <div class="card-wrap">
           <div class="card-top-section">
             <div class="card-title-common">
-              公司经营达成情况
+               <span>公司经营达成情况</span><z-select/>
              </div>
           </div>
             <div class="card-top-section">
                 <div class="card-top card1">
                     <div class="c_t_title card1_c">一环营业净收入总额</div>
+                    <zbg-chart :id="'1'"/>
                     <div class="c_t_mid">
                       <div class="c_t_mid_left">
                         <p class="left1_t">净利润(万元)</p>
@@ -81,6 +82,7 @@
                 </div>
                 <div class="card-top card2">
                     <div class="c_t_title card2_c">ROE年度经营目标达标</div>
+                    <zbg-chart :id="'2'"/>
                     <div class="c_t_mid">
                       <div class="c_t_mid_left">
                         <p class="left1_t">净利润(万元)</p>
@@ -108,6 +110,7 @@
                 </div>
                 <div class="card-top card3">
                     <div class="c_t_title card3_c">ROA年度经营目标达标</div>
+                    <zbg-chart :id="'3'"/>
                     <div class="c_t_mid">
                       <div class="c_t_mid_left">
                         <p class="left1_t">净利润(万元)</p>
@@ -135,6 +138,7 @@
                 </div>
                 <div class="card-top card4">
                     <div class="c_t_title card4_c">营收年度经营目标达标</div>
+                    <zbg-chart :id="'4'"/>
                     <div class="c_t_mid">
                       <div class="c_t_mid_left">
                         <p class="left1_t">净利润(万元)</p>
@@ -162,6 +166,7 @@
                 </div>
                 <div class="card-top card5">
                     <div class="c_t_title card5_c">营收年度经营目标达标</div>
+                    <zbg-chart :id="'5'"/>
                     <div class="c_t_mid">
                       <div class="c_t_mid_left">
                         <p class="left1_t">净利润(万元)</p>
@@ -192,19 +197,19 @@
             <div class="card-top-section">
                 <div class="card-mid-left" style="overflow: hidden;">
                     <div class="card-title-common">
-                        资产区域集中度
+                       <span>资产区域集中度</span><z-select/>
                     </div>
                     <zkehu-total/>
                 </div>
                 <div class="card-mid-right">
                     <div class="card-title-common">
-                        资产规模及分布
+                      <span>资产规模及分布</span><z-select/>
                     </div>
                     <zkehu-total2/>
                 </div>
                 <div class="card-mid-right">
                     <div class="card-title-common">
-                        资产规模及分布
+                      <span>资产规模及分布</span><z-select/>
                     </div>
                     <zkehu-total3/>
                 </div>
@@ -214,25 +219,25 @@
             <div class="card-top-section">
                 <div class="card-bottom">
                     <div class="card-title-common">
-                        产品规模⾛势
+                        <span>产品规模⾛势</span><z-select/>
                     </div>
                     <zkehu-total4/>
                 </div>
                 <div class="card-bottom">
                     <div class="card-title-common">
-                        客户总数
+                         <span>客户总数</span><z-select/>
                     </div>
                     <zkehu-total5/>
                 </div>
                 <div class="card-bottom">
                     <div class="card-title-common">
-                        资产投放及余额
+                        <span>资产投放及余额</span><z-select/>
                     </div>
                     <zkehu-total7/>
                 </div>
                 <div class="card-bottom">
                     <div class="card-title-common">
-                        客户总数
+                      <span>客户总数</span><z-select/>
                     </div>
                     <zkehu-total6/>
                 </div>
@@ -301,6 +306,8 @@ import ZkehuTotal4 from './components/zkehuTotal4.vue'
 import ZkehuTotal5 from './components/zkehuTotal5.vue'
 import ZkehuTotal6 from './components/zkehuTotal6.vue'
 import ZkehuTotal7 from './components/zkehuTotal7.vue'
+import zSelect from './components/zSelect.vue'
+import zbgChart from './components/zbgChart.vue'
 export default {
   components: {
     DashboardConfig,
@@ -308,7 +315,7 @@ export default {
     draggable,
     GridLayout: VueGridLayout.GridLayout,
     GridItem: VueGridLayout.GridItem,
-    ZkehuTotal,ZkehuTotal2,ZkehuTotal3,ZkehuTotal4,ZkehuTotal5,ZkehuTotal6,ZkehuTotal7,
+    ZkehuTotal,ZkehuTotal2,ZkehuTotal3,ZkehuTotal4,ZkehuTotal5,ZkehuTotal6,ZkehuTotal7,zSelect,zbgChart
   },
   data () {
     return {
