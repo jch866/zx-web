@@ -4,8 +4,8 @@
 </template>
 
 <script>
-import * as echarts from 'echarts';
-//引入中国地图的JSON数据
+import * as echarts from 'echarts'
+// 引入中国地图的JSON数据
 import chinaJSON from './china.json'
 export default {
   // sort: 7,
@@ -36,7 +36,7 @@ export default {
     //   deep: true
     // }
   },
-  data() {
+  data () {
     this.myChart = null
     return {
       data: []
@@ -53,31 +53,31 @@ export default {
     //   })
     // },
     // 生成一个随机整数
-    randomColor() {
+    randomColor () {
       const color = ['#fffff']
       const ran = Math.floor(Math.random() * 4)
       return color[ran]
     },
-    drawLine() {
-      let option = {
-        //地图组件
+    drawLine () {
+      const option = {
+        // 地图组件
         geo: {
-          map: 'china', //中国地图
+          map: 'china', // 中国地图
           // roam: true, //鼠标缩放的效果
-          //地图的位置调试
+          // 地图的位置调试
           left: 0,
           top: 0,
           right: 0,
           bottom: 0,
-          //地图上的文字的设置
+          // 地图上的文字的设置
           label: {
-            show: false, //文字显示出来
+            show: false, // 文字显示出来
             color: 'white',
-            fontSize: 12,
+            fontSize: 12
           },
 
           itemStyle: {
-            //每一个多边形的样式
+            // 每一个多边形的样式
             color: {
               type: 'linear',
               x: 0,
@@ -87,47 +87,47 @@ export default {
               colorStops: [
                 {
                   offset: 0,
-                  color: '#efefef', // 0% 处的颜色
+                  color: '#efefef' // 0% 处的颜色
                 },
                 {
                   offset: 1,
-                  color: '#efefef', // 100% 处的颜色
-                },
+                  color: '#efefef' // 100% 处的颜色
+                }
               ],
-              global: false, // 缺省为 false
+              global: false // 缺省为 false
             },
-            opacity: 0.8,
+            opacity: 0.8
           },
-          //地图高亮的效果
+          // 地图高亮的效果
           emphasis: {
             itemStyle: {
-              color: 'gray',
+              color: 'gray'
             },
             label: {
               fontSize: 12,
-              color: "blue"
-            },
-          },
+              color: 'blue'
+            }
+          }
         },
-        //布局位置
+        // 布局位置
         grid: {
           left: 0,
           top: 0,
           right: 0,
-          bottom: 0,
+          bottom: 0
         },
-      
+
         series: [
           {
             name: 'pm2.5',
             type: 'scatter',
             coordinateSystem: 'bmap',
             data: [{ name: '荣成', value: 34 },
-            { name: '连云港', value: 35 },
-            { name: '葫芦岛', value: 35 },
-            { name: '常熟', value: 36 }],
+              { name: '连云港', value: 35 },
+              { name: '葫芦岛', value: 35 },
+              { name: '常熟', value: 36 }],
             symbolSize: function (val) {
-              return val[2] / 10;
+              return val[2] / 10
             },
             encode: {
               value: 2
@@ -148,13 +148,13 @@ export default {
             type: 'effectScatter',
             coordinateSystem: 'bmap',
             data: [{ name: '阳泉', value: 31 },
-            { name: '莱州', value: 32 },
-            { name: '湖州', value: 32 },
-            { name: '汕头', value: 32 },
-            { name: '昆山', value: 33 },
-            { name: '宁波', value: 33 }],
+              { name: '莱州', value: 32 },
+              { name: '湖州', value: 32 },
+              { name: '汕头', value: 32 },
+              { name: '昆山', value: 33 },
+              { name: '宁波', value: 33 }],
             symbolSize: function (val) {
-              return val[2] / 10;
+              return val[2] / 10
             },
             encode: {
               value: 2
@@ -183,9 +183,9 @@ export default {
       this.myChart.setOption(option)
     }
   },
-  mounted() {
-    this.myChart = this.$echarts.init(document.getElementById('region1'));
-    this.$echarts.registerMap("china", chinaJSON);
+  mounted () {
+    this.myChart = this.$echarts.init(document.getElementById('region1'))
+    this.$echarts.registerMap('china', chinaJSON)
     // this.initGet()
     this.drawLine()
   }

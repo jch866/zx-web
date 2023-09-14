@@ -108,12 +108,12 @@ export default {
     // d2HeaderColor,
     // d2HeaderMessage
   },
-  provide() {
+  provide () {
     return {
       refreshView: this.refreshView
     }
   },
-  data() {
+  data () {
     return {
       // [侧边栏宽度] 正常状态
       asideWidth: '200px',
@@ -138,7 +138,7 @@ export default {
     /**
      * @description 用来实现带参路由的缓存
      */
-    routerViewKey() {
+    routerViewKey () {
       // 默认情况下 key 类似 __transition-n-/foo
       // 这里的字符串操作是为了最终 key 的格式和原来相同 类似 __transition-n-__stamp-time-/foo
       const stamp = this.$route.meta[`__stamp-${this.$route.fullPath}`] || ''
@@ -147,7 +147,7 @@ export default {
     /**
      * @description 最外层容器的背景图片样式
      */
-    styleLayoutMainGroup() {
+    styleLayoutMainGroup () {
       return this.themeActiveSetting.backgroundImage
         ? {
           backgroundImage: `url('${this.$baseUrl}${this.themeActiveSetting.backgroundImage}')`
@@ -158,8 +158,8 @@ export default {
   watch: {
     $route: {
       handler: function (to, from) {
-        console.log(to.fullPath);
-        this.hiddenTab = to.fullPath === '/index' ? true : false;
+        console.log(to.fullPath)
+        this.hiddenTab = to.fullPath === '/index'
       },
       immediate: true
     }
@@ -169,23 +169,23 @@ export default {
     /**
      * 接收点击切换侧边栏的按钮
      */
-    handleToggleAside() {
+    handleToggleAside () {
       this.asideCollapseToggle()
     },
     /**
      * 刷新页面
      */
-    refreshView() {
+    refreshView () {
       this.showView = false // 通过v-if移除router-view节点
       this.$nextTick(() => {
         this.showView = true // DOM更新后再通过v-if添加router-view节点
       })
     }
   },
-  mounted() {
+  mounted () {
     this.$websocket.initWebSocket()
   },
-  destroyed() {
+  destroyed () {
     // 离开路由之后断开websocket连接
     this.$websocket.closeWebsocket()
   }

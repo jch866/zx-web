@@ -315,7 +315,15 @@ export default {
     draggable,
     GridLayout: VueGridLayout.GridLayout,
     GridItem: VueGridLayout.GridItem,
-    ZkehuTotal,ZkehuTotal2,ZkehuTotal3,ZkehuTotal4,ZkehuTotal5,ZkehuTotal6,ZkehuTotal7,zSelect,zbgChart
+    ZkehuTotal,
+    ZkehuTotal2,
+    ZkehuTotal3,
+    ZkehuTotal4,
+    ZkehuTotal5,
+    ZkehuTotal6,
+    ZkehuTotal7,
+    zSelect,
+    zbgChart
   },
   data () {
     return {

@@ -20,8 +20,8 @@ export default {
       backgroundImage: 'url(' + this.loginBackground + ')',
       // 表单
       formLogin: {
-        username: '',
-        password: '',
+        username: 'superadmin',
+        password: 'admin123456',
         captcha: ''
       },
       // 表单校验
@@ -96,9 +96,11 @@ export default {
      */
     // 提交登录信息
     submit () {
+      // this.$router.replace('/');
+      // return;
       const that = this
       this.$refs.loginForm.validate((valid) => {
-        if (!valid) {
+        if (valid) {
           // 登录
           // 注意 这里的演示没有传验证码
           // 具体需要传递的数据请自行修改代码

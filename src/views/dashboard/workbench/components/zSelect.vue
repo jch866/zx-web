@@ -7,21 +7,21 @@
 
 <script >
 export default {
-    data() {
-        return {
-            options: [{
-                value: '1',
-                label: '近一月'
-            }, {
-                value: '2',
-                label: '近一周'
-            }, {
-                value: '3',
-                label: '近一日'
-            }],
-            value: '1'
-        }
+  data () {
+    return {
+      options: [{
+        value: '1',
+        label: '近一月'
+      }, {
+        value: '2',
+        label: '近一周'
+      }, {
+        value: '3',
+        label: '近一日'
+      }],
+      value: '1'
     }
+  }
 }
 </script>
 

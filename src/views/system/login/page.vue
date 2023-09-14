@@ -8,7 +8,7 @@
       <!-- main content -->
       <div class="w3l-form-info">
         <!-- logo -->
-        <img class="page-login--logo" :src="siteLogo" width="300"/>
+        <!-- <img class="page-login--logo" :src="siteLogo" width="300"/> -->
         <div class="w3_info">
           <h2 style="text-align: center">{{ siteName || processTitle }}</h2>
           <el-card shadow="always" class="card">
@@ -43,7 +43,7 @@
                     >
                     </el-input>
                   </el-form-item>
-                  <el-form-item
+                  <!-- <el-form-item
                     prop="captcha"
                     v-if="captchaState"
                     :rules="{required: true,message: '请输入验证码',trigger: 'blur'}"
@@ -67,9 +67,9 @@
                         />
                       </template>
                     </el-input>
-                  </el-form-item>
+                  </el-form-item> -->
                 </el-form>
-                <el-row v-if="isTenant && isPublic">
+                <!-- <el-row v-if="isTenant && isPublic">
                   <el-col :span="11">
                     <button class="btn btn-primary btn-block" style="padding: 10px 10px;" @click="submit">登录</button>
                   </el-col>
@@ -81,13 +81,14 @@
                       免费试用
                     </button>
                   </el-col>
-                </el-row>
-                <button v-else class="btn btn-primary btn-block" style="padding: 10px 10px;" @click="submit">登录</button>
+                </el-row> -->
+                <!-- v-else -->
+                <button class="btn btn-primary btn-block" style="padding: 10px 10px;" @click="submit">登录</button>
                 <component v-if="componentTag" :is="componentTag"></component>
               </el-tab-pane>
             </el-tabs>
           </el-card>
-          <el-button
+          <!-- <el-button
             class="page-login--quick"
             size="default"
             type="success"
@@ -95,9 +96,9 @@
             v-if="$env === 'development'"
           >
             快速选择用户登录（限dev环境）
-          </el-button>
+          </el-button> -->
           <!-- footer -->
-          <div class="footer">
+          <div class="footer" v-if="false">
             <p class="page-login--content-footer-locales">
               <a
                 v-for="language in $languages"

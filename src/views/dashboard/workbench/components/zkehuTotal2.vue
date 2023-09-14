@@ -13,7 +13,7 @@ export default {
   watch: {
 
   },
-  data() {
+  data () {
     this.myChart = null
     return {
       data: []
@@ -21,26 +21,25 @@ export default {
   },
   methods: {
 
-
-    drawLine() {
-      let option = {
+    drawLine () {
+      const option = {
         tooltip: {
           trigger: 'item'
         },
         title: {
           text: '总额度(元)', // 图表内容文本
-          subtext:'23,400',
+          subtext: '23,400',
           left: 'center', // 图表内容水平居中
           top: '40%', // 图表内容垂直居中
           textStyle: {
             color: '#191919',
-            fontSize: 12,
+            fontSize: 12
           },
           // 文本样式
           subtextStyle: {
             color: '#191919',
-            fontSize: 40,
-          },
+            fontSize: 40
+          }
         },
         legend: {
           left: 'center',
@@ -48,7 +47,7 @@ export default {
           borderRadius: 10,
           itemWidth: 10,
           itemHeight: 10,
-          icon: 'circle',
+          icon: 'circle'
         },
         series: [
           {
@@ -80,12 +79,12 @@ export default {
             ]
           }
         ]
-      };
+      }
 
       this.myChart.setOption(option)
     }
   },
-  mounted() {
+  mounted () {
     this.myChart = this.$echarts.init(document.getElementById('region2'))
     this.drawLine()
   }
