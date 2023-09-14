@@ -91,7 +91,6 @@ export default {
           router.go(0)
         }
       }
-      debugger;
       // 判断是否需要确认
       if (confirm) {
         commit('d2admin/gray/set', true, { root: true })

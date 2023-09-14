@@ -66,29 +66,29 @@ router.beforeEach(async (to, from, next) => {
       await store.dispatch('d2admin/dept/load')
       // 动态添加路由
       // getMenu().then(ret => {
-        let ret = routeList;
-        // 校验路由是否有效
-        ret = checkRouter(ret)
-        const { routes, frameOut } = handleRouter(ret)
-        // 处理路由 得到每一级的路由设置
-        store.commit('d2admin/page/init', routes)
-        routes.map((r) => {
-          router.addRoute(r)
-        })
-        frameOut.map((r) => {
-          router.addRoute(r)
-          router.options.routes.push(r)
-        })
+      let ret = routeList
+      // 校验路由是否有效
+      ret = checkRouter(ret)
+      const { routes, frameOut } = handleRouter(ret)
+      // 处理路由 得到每一级的路由设置
+      store.commit('d2admin/page/init', routes)
+      routes.map((r) => {
+        router.addRoute(r)
+      })
+      frameOut.map((r) => {
+        router.addRoute(r)
+        router.options.routes.push(r)
+      })
 
-        console.log('router', router, routes, frameOut)
-        // routes.forEach(route => router.addRoute(route))
+      console.log('router', router, routes, frameOut)
+      // routes.forEach(route => router.addRoute(route))
 
-        const menu = handleAsideMenu(ret)
-        const aside = handleAsideMenu(ret.filter(value => value.visible === true));
+      const menu = handleAsideMenu(ret)
+      const aside = handleAsideMenu(ret.filter(value => value.visible === true))
 
-        store.commit('d2admin/menu/asideSet', aside) // 设置侧边栏菜单
-        store.commit('d2admin/search/init', menu) // 设置搜索
-        next({ path: to.fullPath, replace: true, params: to.params })
+      store.commit('d2admin/menu/asideSet', aside) // 设置侧边栏菜单
+      store.commit('d2admin/search/init', menu) // 设置搜索
+      next({ path: to.fullPath, replace: true, params: to.params })
       // })
     } else {
       const childrenPath = window.qiankunActiveRule || []

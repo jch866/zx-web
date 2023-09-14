@@ -15,6 +15,9 @@
     line-height: 40px;
   }
 }
+.cell{
+  text-align: center;
+}
 // 整体框架结构
 .d2-layout-header-aside-group {
   height: 100%;
@@ -102,6 +105,7 @@
         }
         .d2-theme-container-main-body {
           position: relative;
+          overflow: auto;
         }
       }
     }

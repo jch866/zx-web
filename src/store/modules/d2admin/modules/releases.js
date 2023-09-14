@@ -16,7 +16,7 @@ export default {
      * @param {Object} state state
      */
     versionShow () {
-      return;
+      return
       util.log.capsule('D2Admin', `v${process.env.VUE_APP_VERSION}`)
       console.log('DVAdmin(Gitee)：https://gitee.com/liqianglog/django-vue-admin')
       console.log('演示地址：https://demo.django-vue-admin.com')
