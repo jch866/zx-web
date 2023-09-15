@@ -11,6 +11,7 @@ import router from '@/router'
 export default {
   hasPermissions (value) {
     if (process.env.VUE_APP_PM_ENABLED) {
+      return true
       const path = router.history.current.path// 当前路由
       let needList = []
       if (typeof value === 'string') {
@@ -21,8 +22,7 @@ export default {
       if (needList.length === 0) {
         throw new Error('need permissions! Like v-permission="usersphere:user:view" ')
       }
-      const userPermissionList = store.getters['d2admin/permission/permissionList']
-      return true
+    // const userPermissionList = store.getters['d2admin/permission/permissionList']
     //   return userPermissionList.some(permission => {
     //     return needList.includes(permission)
     //   })

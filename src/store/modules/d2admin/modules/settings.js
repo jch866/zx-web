@@ -14,6 +14,7 @@ export default {
      * @param {Object} context
      */
     async init ({ state, dispatch, commit }) {
+      return
       // 请求配置
       request({
         url: urlPrefix,

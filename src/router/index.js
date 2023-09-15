@@ -39,9 +39,9 @@ router.beforeEach(async (to, from, next) => {
   // 白名单
   const whiteList = ['/login', '/auth-redirect', '/bind', '/register', '/clientRenew', '/oauth2']
   // 确认已经加载多标签页数据 https://github.com/d2-projects/d2-admin/issues/201
-  await store.dispatch('d2admin/page/isLoaded')
+  // await store.dispatch('d2admin/page/isLoaded')
   // 确认已经加载组件尺寸设置 https://github.com/d2-projects/d2-admin/issues/198
-  await store.dispatch('d2admin/size/isLoaded')
+  // await store.dispatch('d2admin/size/isLoaded')
   // 进度条
   NProgress.start()
   // 关闭搜索面板
@@ -52,18 +52,18 @@ router.beforeEach(async (to, from, next) => {
   const token = util.cookies.get('token')
   if (token && token !== 'undefined') {
     if (!store.state.d2admin.user.info.name) {
-      var res = await request({
-        url: '/api/system/user/user_info/',
-        method: 'get',
-        params: {}
-      })
-      await store.dispatch('d2admin/user/set', res.data, { root: true })
-      await store.dispatch('d2admin/account/load')
+      // var res = await request({
+      //   url: '/api/system/user/user_info/',
+      //   method: 'get',
+      //   params: {}
+      // })
+      // await store.dispatch('d2admin/user/set', res.data, { root: true })
+      // await store.dispatch('d2admin/account/load')
       // store.dispatch('d2admin/settings/init')
     }
     if (!store.state.d2admin.menu || store.state.d2admin.menu.aside.length === 0) {
-      await store.dispatch('d2admin/permission/load', routes)
-      await store.dispatch('d2admin/dept/load')
+      // await store.dispatch('d2admin/permission/load', routes)
+      // await store.dispatch('d2admin/dept/load')
       // 动态添加路由
       // getMenu().then(ret => {
       let ret = routeList

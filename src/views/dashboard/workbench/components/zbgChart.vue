@@ -9,7 +9,7 @@ export default {
 
   props: {
     id: {
-      type: 'string'
+      type: String
     }
   },
   watch: {

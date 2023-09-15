@@ -1,20 +1,15 @@
 
 <template>
   <div class="search_box">
-    <div class="search_condition_date">
-      <div v-for="(item,index) in dateType" :key="item.value"
-      :class="{'date_types':true,'is_active':activeIndex===index}"
-      @click="selectDateType(index)">{{ item.label }}</div>
+    <diff-date />
+    <div class="search_dimension">
+      <div class="search_dimension_name">维度:</div>
+      <treeselect v-model="value" :multiple="true" :options="options" class="search_trees" placeholder="请选择展示维度" />
     </div>
-    <el-date-picker v-model="value3" type="year" size="small" placeholder="选择年">
-    </el-date-picker>
-    <div>
-      <span>维度</span><el-cascader :options="options" :props="props" size="small" clearable></el-cascader>
-    </div>
-    <div>
+    <div class="search_filter">
       <el-button size="small" icon="el-icon-star-off">过滤条件</el-button>
     </div>
-    <div>
+    <div class="search_btngroup">
       <el-button size="small">重置</el-button>
       <el-button size="small">查询</el-button>
     </div>
@@ -22,31 +17,21 @@
 </template>
 
 <script>
-
+import diffDate from './diffDate'
+// import the component
+import Treeselect from '@riophae/vue-treeselect'
+// import the styles
+import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 export default {
   name: 'searchbox',
-
+  components: {
+    diffDate, Treeselect
+  },
   data () {
     return {
-      dateType: [{
-        value: 'day',
-        label: '日'
-      }, {
-        value: 'month',
-        label: '月报'
-      }, {
-        value: 'season',
-        label: '季报'
-      }, {
-        value: 'halfyear',
-        label: '半年报'
-      }, {
-        value: 'year',
-        label: '年报'
-      }],
-      value3: '',
+      value: null,
       props: { multiple: true },
-      options: [{
+      options1: [{
         value: 1,
         label: '东南',
         children: [{
@@ -93,7 +78,43 @@ export default {
           ]
         }]
       }],
-      activeIndex: 0
+      options: [{
+        id: 'a1',
+        label: '产品分类',
+        children: [{
+          id: 'aa2',
+          label: '公司六⼤赛道'
+        }, {
+          id: 'ab3',
+          label: '三分类'
+        }, {
+          id: 'ab4',
+          label: '监管四分类'
+        }]
+      }, {
+        id: 'b5',
+        label: '资产分类',
+        children: [{
+          id: 'aa6',
+          label: '资产一分类'
+        }, {
+          id: 'ab7',
+          label: '资产二分类'
+        }, {
+          id: 'ab8',
+          label: '资产三分类'
+        }]
+      }, {
+        id: 'c9',
+        label: '区域分类'
+      }]
+      // normalizer (node) {
+      //   return {
+      //     id: node.value,
+      //     label: node.label,
+      //     children: node.children
+      //   }
+      // }
     }
   },
   created () {
@@ -113,32 +134,48 @@ export default {
 <style lang="scss">
 .search_box {
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-between;
 }
 
-.search_condition_date {
-  display: flex;
-  border: 1px solid #DCDFE6;
-  border-radius: 4px;
-  height: 36px;
-  // padding: 5px 0;
-  width: 300px;
-  .date_types{
+.search_dimension {
+  width: 260px;
+  // background-color: red;
+  display: flex !important;
+  margin-left: 10px;
+
+  .search_dimension_name {
+    width: 50px;
+    line-height: 32px;
+  }
+
+  .search_trees {
     flex: 1;
-    text-align: center;
-    border-right: 1px solid #DCDFE6;
-    // height: 24px;
-    line-height: 36px;
-    cursor: pointer;
-    &:last-child{
-      border-right:none;
-    }
+    // height: 32px;
   }
-  .is_active{
-    color: white;
-    background-color: #0074f1;
-    border-radius: 4px;
-    border: none;
-  }
+
 }
+.search_filter{
+  margin-left: 10px;
+}
+.search_btngroup{
+  margin-left: 10px;
+}
+// :deep {
+//   .vue-treeselect {
+//     width: 198px;
+//     height: 28px;
+//     line-height: 28px;
+//     margin-top: 7px;
+//     font-size: 12px;
+//   }
+
+//   .vue-treeselect__control {
+//     height: 28px;
+//   }
+
+//   .vue-treeselect__placeholder,
+//   .vue-treeselect__single-value {
+//     line-height: 28px;
+//   }
+// }
 </style>
