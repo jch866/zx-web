@@ -31,14 +31,13 @@ const router = new VueRouter({
   routes
 })
 
-
 /**
  * 路由拦截
  * 权限验证
  */
 router.beforeEach(async (to, from, next) => {
   // 白名单
-  const whiteList = ['/login', '/auth-redirect', '/bind', '/register', '/clientRenew', '/oauth2','/index']
+  const whiteList = ['/login', '/auth-redirect', '/bind', '/register', '/clientRenew', '/oauth2', '/index']
   // 确认已经加载多标签页数据 https://github.com/d2-projects/d2-admin/issues/201
   // await store.dispatch('d2admin/page/isLoaded')
   // 确认已经加载组件尺寸设置 https://github.com/d2-projects/d2-admin/issues/198
@@ -50,7 +49,7 @@ router.beforeEach(async (to, from, next) => {
   // 验证当前路由所有的匹配中是否需要有登录验证的
   // 这里暂时将cookie里是否存有token作为验证是否登录的条件
   // 请根据自身业务需要修改
-  const token = util.cookies.get('token');
+  const token = util.cookies.get('token')
   if (!store.state.d2admin.user.info.name) {
     // var res = await request({
     //   url: '/api/system/user/user_info/',
@@ -135,13 +134,12 @@ router.beforeEach(async (to, from, next) => {
     }
   }
   if (token && token !== 'undefined') {
-   
+
   } else {
     // 没有登录的时候跳转到登录界面
     // 携带上登陆成功之后需要跳转的页面完整路径
     // https://github.com/d2-projects/d2-admin/issues/138
     if (whiteList.indexOf(to.path) !== -1) {
-      
       // 在免登录白名单，直接进入
       next()
     } else {
@@ -151,7 +149,7 @@ router.beforeEach(async (to, from, next) => {
       //     redirect: to.fullPath
       //   }
       // })
-      next();
+      next()
       NProgress.done()
     }
   }

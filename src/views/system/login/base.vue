@@ -96,8 +96,8 @@ export default {
      */
     // 提交登录信息
     submit () {
-      this.$router.replace('/');
-      return;
+      this.$router.replace('/')
+      return
       const that = this
       this.$refs.loginForm.validate((valid) => {
         if (valid) {

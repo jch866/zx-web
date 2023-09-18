@@ -11,15 +11,15 @@
       </div>
       <!-- :header-row-style="{color:'#333'}" -->
       <el-table :data="tableData" style="width: 100%" header-row-class-name="table_header" :span-method="arraySpanMethod">
-        <el-table-column prop="date" label="分行名称" width="150">
+        <el-table-column prop="name1" label="分行名称" width="150">
         </el-table-column>
-        <el-table-column prop="city" label="分行梯队" width="150">
+        <el-table-column prop="name2" label="分行梯队" width="150">
         </el-table-column>
-        <el-table-column prop="province" label="分行大区" width="150">
+        <el-table-column prop="name3" label="分行大区" width="150">
         </el-table-column>
-        <el-table-column prop="zip" label="资产一分类" width="150">
+        <el-table-column prop="name4" label="公司六⼤赛道" width="150">
         </el-table-column>
-        <el-table-column prop="zip" label="资产二分类" width="150">
+        <el-table-column prop="name5" label="三分类" width="150">
         </el-table-column>
         <el-table-column label="资产规模数据(万元)">
           <el-table-column prop="zip" label="期初存量" width="150">
@@ -39,16 +39,16 @@
       <div class="table_wrap_title">
         <span class="t_w_t1">产品规模数据</span>
       </div>
-      <el-table :data="tableData" style="width: 100%" header-row-class-name="table_header">
-        <el-table-column prop="date" label="分行名称" width="150">
+      <el-table :data="tableData" style="width: 100%" header-row-class-name="table_header" :span-method="arraySpanMethod">
+        <el-table-column prop="name1" label="分行名称" width="150">
         </el-table-column>
-        <el-table-column prop="city" label="分行梯队" width="150">
+        <el-table-column prop="name2" label="分行梯队" width="150">
         </el-table-column>
-        <el-table-column prop="province" label="分行大区" width="150">
+        <el-table-column prop="name3" label="分行大区" width="150">
         </el-table-column>
-        <el-table-column prop="name" label="公司六⼤赛道" width="150">
+        <el-table-column prop="name4" label="公司六⼤赛道" width="150">
         </el-table-column>
-        <el-table-column prop="zip" label="三分类" width="150">
+        <el-table-column prop="name5" label="三分类" width="150">
         </el-table-column>
         <el-table-column label="资产规模数据(万元)">
           <el-table-column prop="zip" label="期初存量" width="150">
@@ -71,103 +71,160 @@
 </template>
 
 <script>
-// import list from './data'
-import searchBox from './components/searchBox.vue'
+import searchBox from './components/searchBox'
 export default {
   name: 'report1',
   components: {
     searchBox
   },
-  data() {
+  data () {
     return {
       alldata: [],
-      // list,
       tableData: [{
-        date: '2023-05-088',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        zip: 200333
+        name1: '上海分行',
+        name2: '梯队名称',
+        name3: '长三角',
+        name4: '货币市场⼯具类资产',
+        name5: '活期存款类',
+        zip: '1,999.00'
       }, {
-        date: ' ',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        zip: 200333
+        name1: '上海分行',
+        name2: '梯队名称',
+        name3: '长三角',
+        name4: '货币市场⼯具类资产',
+        name5: '定期存款类(含⼤额存单)',
+        zip: '1,999.00'
       }, {
-        date: '',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        zip: 200333
+        name1: '上海分行',
+        name2: '梯队名称',
+        name3: '长三角',
+        name4: '债权类资产',
+        name5: '信⽤债',
+        zip: '1,999.00'
       }, {
-        date: '2023-05-01',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        zip: 200333
+        name1: '上海分行',
+        name2: '梯队名称',
+        name3: '长三角',
+        name4: '债权类资产',
+        name5: '资产⽀持证券',
+        zip: '1,999.00'
       }, {
-        date: '2023-05-08',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        zip: 200333
+        name1: '上海分行',
+        name2: '梯队名称',
+        name3: '长三角',
+        name4: '项⽬类资产',
+        name5: '企业债权性资产',
+        zip: '1,999.00'
       }, {
-        date: '2023-05-06',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        zip: 200333
+        name1: '上海分行',
+        name2: '梯队名称',
+        name3: '长三角',
+        // name4: '项⽬类资产2',
+        name5: '资产市场债权性资产',
+        zip: '1,999.00'
       }, {
-        date: '2023-05-07',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        zip: 200333
+        name1: '上海分行',
+        name2: '梯队名称',
+        name3: '长三角',
+        // name4: '项⽬类资产3',
+        name5: '资产市场投资性资产',
+        zip: '1,999.00'
+      }, {
+        name1: '上海分行',
+        name2: '梯队名称',
+        name3: '长三角',
+        // name4: '项⽬类资产4',
+        name5: '股权类资产',
+        zip: '1,999.00'
+      }, {
+        name1: '上海分行',
+        name2: '梯队名称',
+        name3: '长三角',
+        // name4: '项⽬类资产5',
+        name5: '同业债权性资产',
+        zip: '1,999.00'
+      }, {
+        name1: '上海分行',
+        name2: '梯队名称',
+        name3: '长三角',
+        // name4: '项⽬类资产6',
+        name5: '资产⽀持证券类⾮标资产',
+        zip: '1,999.00'
+      }, {
+        name1: '上海分行',
+        name2: '梯队名称',
+        name3: '长三角',
+        // name4: '项⽬类资产7',
+        name5: '公募REITS',
+        zip: '1,999.00'
       }]
     }
   },
-  created() {
-    // 二次处理数据
-    // this.alldata = this.handleTableArr(this.list)
-    // console.log(this.alldata)
+  created () {
+
   },
   methods: {
-    // 解析数据
-    // handleTableArr (data) {
-    //   const arr = []
-    //   for (let i = 0; i < data.length; i++) {
-    //     const category_info = data[i]
-    //     const activityPointsDOS = category_info.activityPointsDOS
-    //     let count = 0
-    //     for (let j = 0; j < activityPointsDOS.length; j++) {
-    //       const activityTwo_info = activityPointsDOS[j]
-    //       const activityTwo_activityPointsDOS = activityPointsDOS[j].activityPointsDOS
-    //       for (let k = 0; k < activityTwo_activityPointsDOS.length; k++) {
-    //         count++
-    //         const info = {
-    //           // 确定每天数据的 合并行的数量
-    //           //  big_num: i === 0 ? activityPointsDOS.length : 0,
-    //           span_num: k === 0 ? activityTwo_activityPointsDOS.length : 0,
-    //           value: activityTwo_activityPointsDOS[k].value,
-    //           message: activityTwo_activityPointsDOS[k].message,
-    //           activityName: activityTwo_info.activityName,
-    //           category: category_info.category
-    //         }
-    //         arr.push(info)
-    //       }
-    //     }
-    //     arr[arr.length - count].count = count
-    //   }
-    //   return arr
-    // },
+
     // 表格合并的方法
-    arraySpanMethod({ row, column, rowIndex, columnIndex }) {
-      if (columnIndex === 0) {
-        if (rowIndex % 3 === 0) {
-          return [3, 1];
+    arraySpanMethod ({ row, column, rowIndex, columnIndex }) {
+      const len = this.tableData.length
+      console.log(len)
+      let _row = 0
+      let _col = 0
+      // 前三列
+      if (columnIndex === 0 || columnIndex === 1 || columnIndex === 2) {
+        if (rowIndex % len === 0) {
+          _row = len
+          _col = 1
         } else {
-          return [0, 0];
+          _row = 0
+          _col = 1
+        }
+        return {
+          rowspan: _row,
+          colspan: _col
+        }
+      }
+
+      if (columnIndex === 3) {
+        if (rowIndex === 0 || rowIndex === 1) {
+          if (rowIndex === 0) {
+            _row = 2
+            _col = 1
+          } else {
+            _row = 0
+            _col = 0
+          }
+          return {
+            rowspan: _row,
+            colspan: _col
+          }
+        }
+        if (rowIndex === 2 || rowIndex === 3) {
+          if (rowIndex === 2) {
+            _row = 2
+            _col = 1
+          } else {
+            _row = 0
+            _col = 0
+          }
+          return {
+            rowspan: _row,
+            colspan: _col
+          }
+        }
+        if (rowIndex > 3) {
+          if (rowIndex === 4) {
+            _row = len - 4
+            _col = 1
+          } else {
+            _row = 0
+            _col = 0
+          }
+          return {
+            rowspan: _row,
+            colspan: _col
+          }
         }
       }
     }
