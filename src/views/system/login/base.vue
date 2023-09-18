@@ -83,21 +83,21 @@ export default {
     /**
      * 获取验证码
      */
-    getCaptcha () {
-      if (this.captchaState !== undefined && !this.captchaState) return
-      api.getCaptcha().then((ret) => {
-        this.formLogin.captcha = null
-        this.captchaKey = ret.data.key
-        this.image_base = ret.data.image_base
-      })
-    },
+    // getCaptcha () {
+    //   if (this.captchaState !== undefined && !this.captchaState) return
+    //   api.getCaptcha().then((ret) => {
+    //     this.formLogin.captcha = null
+    //     this.captchaKey = ret.data.key
+    //     this.image_base = ret.data.image_base
+    //   })
+    // },
     /**
      * @description 提交表单
      */
     // 提交登录信息
     submit () {
-      // this.$router.replace('/');
-      // return;
+      this.$router.replace('/');
+      return;
       const that = this
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
@@ -116,7 +116,7 @@ export default {
               this.$router.replace('/')
             })
             .catch(() => {
-              this.getCaptcha()
+              // this.getCaptcha()
             })
         } else {
           // 登录表单校验失败
@@ -137,7 +137,7 @@ export default {
   },
   created () {
     this.$store.dispatch('d2admin/db/databaseClear')
-    this.getCaptcha()
+    // this.getCaptcha()
   }
 }
 </script>
