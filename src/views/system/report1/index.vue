@@ -71,7 +71,7 @@
 </template>
 
 <script>
-import list from './data'
+// import list from './data'
 import searchBox from './components/searchBox.vue'
 export default {
   name: 'report1',
@@ -81,7 +81,7 @@ export default {
   data() {
     return {
       alldata: [],
-      list,
+      // list,
       tableData: [{
         date: '2023-05-088',
         name: '王小虎',
