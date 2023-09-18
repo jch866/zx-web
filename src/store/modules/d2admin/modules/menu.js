@@ -13,7 +13,7 @@ export default {
     // 侧边栏折叠动画
     asideTransition: setting.menu.asideTransition,
     collectList: [], // 用户的收藏菜单列表
-    asideType: 1// 当前显示主菜单还是用户的收藏列表
+    asideType: 1// 当前显示主菜单1还是用户的收藏列表2 或者搜索栏3
   },
   actions: {
     /**
@@ -46,6 +46,9 @@ export default {
         value: state.asideCollapse,
         user: true
       }, { root: true })
+      // if(state.asideCollapse && state.asideType === 3){
+      //   commit('asideTypeSet',1)
+      // }
     },
     /**
      * 设置侧边栏折叠动画
@@ -113,9 +116,12 @@ export default {
       // store 赋值
       state.aside = menu
     },
-    collectListSet (state, { list, type }) {
-      // store 赋值
+    // 收藏列表
+    async collectListSet (state, list) {
       state.collectList = list
+    },
+    // 菜单部分显示类型
+    async asideTypeSet (state, type) {
       state.asideType = type
     }
   }

@@ -5,41 +5,59 @@ import BScroll from 'better-scroll'
 import menuSearch from '../menu-search'
 export default {
   name: 'd2-layout-header-aside-menu-side',
-  mixins: [
-    menuMixin
-  ],
+  mixins: [menuMixin],
   render (h) {
-    return <div class="d2-layout-header-aside-menu-side">
-      <menuSearch />
-      {
-        this.asideType === 1 && <el-menu
-          collapse={this.asideCollapse}
-          collapseTransition={this.asideTransition}
-          uniqueOpened={true}
-          defaultActive={this.$route.fullPath}
-          ref="menu"
-          onSelect={this.handleMenuSelect}>
-          {this.aside.map(menu => createMenu.call(this, h, menu))}
-        </el-menu>
-      }
-      {
-        this.asideType === 2
-          ? (this.collectList.length > 0
-            ? <div class="d2-layout-header-aside-menu-collect"><ul>{this.collectList.map(item => <li key={item.name} onClick={
-              () => this.handleMenuSelect(item.path)
-            }>{item.name}</li>)}</ul></div>
-            : <span>没有收藏项目</span>)
-          : null
-      }
-      {
-        this.aside.length === 0 && !this.asideCollapse
-          ? <div class="d2-layout-header-aside-menu-empty" flex="dir:top main:center cross:center">
-            <d2-icon name="inbox"></d2-icon>
-            <span>没有侧栏菜单</span>
-          </div>
-          : null
-      }
-    </div>
+    console.log(+new Date())
+    return (
+      <div class="d2-layout-header-aside-menu-side">
+        <menuSearch />
+        {/* 菜单列表 */}
+        {this.asideType === 1 && (
+          <el-menu
+            collapse={this.asideCollapse}
+            collapseTransition={this.asideTransition}
+            uniqueOpened={true}
+            defaultActive={this.$route.fullPath}
+            ref="menu"
+            onSelect={this.handleMenuSelect}
+          >
+            {this.aside.map((menu) => createMenu.call(this, h, menu))}
+          </el-menu>
+        )}
+        {this.asideType === 1 &&
+        this.aside.length === 0 &&
+        !this.asideCollapse ? (
+            <div
+              class="d2-layout-header-aside-menu-empty"
+              flex="dir:top main:center cross:center"
+            >
+              <d2-icon name="inbox"></d2-icon>
+              <span>没有侧栏菜单</span>
+            </div>
+          ) : null}
+        {/* 收藏列表 */}
+        {this.asideType === 2 ? (
+          this.collectList.length > 0 ? (
+            <div class="d2-layout-header-aside-menu-collect">
+              <ul>
+                {this.collectList.map((item) => (
+                  <li
+                    key={item.name}
+                    onClick={() => this.handleMenuSelect(item.path)}
+                  >
+                    {this.renderIcon(item)} {item.name}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : (
+            <span>没有收藏项目</span>
+          )
+        ) : null}
+        {/* 搜索列表 DOM直接写在menuSearch中 */}
+        {this.asideType === 3 && null}
+      </div>
+    )
   },
   data () {
     return {
@@ -91,6 +109,15 @@ export default {
         delete this.BS
         this.BS = null
       }
+    },
+    renderIcon (item) {
+      if (item.icon) {
+        return <i slot="title" class={`fa fa-${item.icon}`} />
+      }
+      if (item.iconSvg) {
+        return <d2-icon-svg slot="title" name={item.iconSvg} />
+      }
+      return <i slot="title" class="fa fa-folder-o" />
     }
   }
 }
