@@ -9,17 +9,19 @@
         <el-date-picker v-model="value3" type="month" size="small" placeholder="选择月" v-if="selectType==='month'"></el-date-picker>
         <el-date-picker v-model="value3" type="year" size="small" placeholder="选择年" v-if="selectType==='year'"></el-date-picker>
         <!-- todo -->
-        <el-date-picker v-model="value3" type="year" size="small" placeholder="选择年" v-if="selectType==='halfyear'"></el-date-picker>
+        <halfyear-picker v-model="value3"  ref="halfyearRef" v-if="selectType==='halfyear'" @change="selectHandler"/>
         <el-quarter-picker v-model="value3" size="small" v-if="selectType==='season'"></el-quarter-picker>
     </div>
 </template>
 
 <script>
 import elQuarterPicker from './quarterPicker.vue'
+import halfyearPicker from './halfyearPicker.vue'
 export default {
   name: 'diffdateselect',
   components: {
-    elQuarterPicker
+    elQuarterPicker,
+    halfyearPicker
   },
   data () {
     return {
@@ -52,6 +54,9 @@ export default {
       this.activeIndex = index
       this.selectType = value,
       this.value3 = ''
+    },
+    selectHandler () {
+      console.log(this.value3)
     }
   }
 }
