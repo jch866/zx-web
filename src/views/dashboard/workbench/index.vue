@@ -1,250 +1,112 @@
 <template>
-    <d2-container>
-        <suspended-library ref="suspendedLibrary">
-            <!-- <div class="set-btn-class" slot="callbackButton">
+  <d2-container>
+    <suspended-library ref="suspendedLibrary">
+      <!-- <div class="set-btn-class" slot="callbackButton">
                 <el-button v-if="customizing" type="primary" icon="el-icon-check" round @click="save">完成&nbsp;&nbsp;
                 </el-button>
                 <el-button v-else type="primary" icon="el-icon-edit" round @click="custom">自定义</el-button>
                 <el-button v-if="minimize" type="warning" icon="el-icon-plus" round @click="clickMinimize">展开&nbsp;&nbsp;
                 </el-button>
             </div> -->
-            <div slot="operateButton">
-                <el-tooltip class="item" effect="dark" content="清空画布" placement="top">
-                    <el-button v-if="customizing" type="danger" icon="el-icon-delete" circle size="mini"
-                        @click="clickEmpty"></el-button>
-                </el-tooltip>
-                <el-tooltip class="item" effect="dark" content="最小化" placement="top">
-                    <el-button v-if="customizing" type="success" icon="el-icon-minus" circle size="mini"
-                        @click="clickMinimize"></el-button>
-                </el-tooltip>
-                <el-tooltip class="item" effect="dark" content="恢复默认" placement="top">
-                    <el-button v-if="customizing" type="primary" icon="el-icon-refresh-right" circle size="mini"
-                        @click="backDefault()"></el-button>
-                </el-tooltip>
-                <el-tooltip class="item" effect="dark" content="关闭" placement="top">
-                    <el-button v-if="customizing" type="danger" icon="el-icon-close" circle size="mini"
-                        @click="close()"></el-button>
-                </el-tooltip>
-            </div>
-            <div slot="widgetsList">
-                <div v-if="myCompsList.length <= 0" class="widgets-list-nodata">
-                    <el-empty description="没有部件啦" :image-size="60"></el-empty>
-                </div>
-                <div class="widgetsListBox">
-                    <span v-for="item in myCompsList" :key="item.title">
-                        <el-tooltip class="item" effect="dark" :content="item.description" placement="top">
-                            <div class="widgetsListItem" :style="{ background: $util.randomBackground() }">
-                                <span style="position: relative;right: 8px;float: right;top: -22px;cursor: pointer;"
-                                    @click="push(item)">
-                                    <i class="el-icon-plus"></i>
-                                </span>
-                                <i :class="item.icon"></i> &nbsp;{{ item.title }}
-                            </div>
-                        </el-tooltip>
-                    </span>
-                </div>
-            </div>
-        </suspended-library>
-        <div class="card-wrap">
-          <div class="card-top-section">
-            <div class="card-title-common">
-               <span>公司经营达成情况</span><z-select/>
-             </div>
-          </div>
-            <div class="card-top-section">
-                <div class="card-top card1">
-                    <div class="c_t_title card1_c">一环营业净收入总额</div>
-                    <zbg-chart :id="'1'"/>
-                    <div class="c_t_mid">
-                      <div class="c_t_mid_left">
-                        <p class="left1_t">净利润(万元)</p>
-                        <p class="left1_b">45,498</p>
-                      </div>
-                      <div class="c_t_mid_right">
-                        <p class="right1_t">目标达成率</p>
-                        <p class="right1_b">15.48%</p>
-                      </div>
-                    </div>
-                    <div class="c_t_bottom">
-                      <div class="c_t_bottom_text">
-                        <p class="t1">较上年末(亿)</p>
-                        <p class="t2">45,498</p>
-                      </div>
-                      <div class="c_t_bottom_text">
-                        <p class="t1">较上月末(亿)</p>
-                        <p class="t2">26,88</p>
-                      </div>
-                      <div class="c_t_bottom_text">
-                        <p class="t1">较上日(亿)</p>
-                        <p class="t2">26,88</p>
-                      </div>
-                    </div>
-                </div>
-                <div class="card-top card2">
-                    <div class="c_t_title card2_c">ROE年度经营目标达标</div>
-                    <zbg-chart :id="'2'"/>
-                    <div class="c_t_mid">
-                      <div class="c_t_mid_left">
-                        <p class="left1_t">净利润(万元)</p>
-                        <p class="left1_b">45,498</p>
-                      </div>
-                      <div class="c_t_mid_right">
-                        <p class="right1_t">目标达成率</p>
-                        <p class="right1_b">15.48%</p>
-                      </div>
-                    </div>
-                    <div class="c_t_bottom">
-                      <div class="c_t_bottom_text">
-                        <p class="t1">较上年末(亿)</p>
-                        <p class="t2">45,498</p>
-                      </div>
-                      <div class="c_t_bottom_text">
-                        <p class="t1">较上月末(亿)</p>
-                        <p class="t2">26,88</p>
-                      </div>
-                      <div class="c_t_bottom_text">
-                        <p class="t1">较上日(亿)</p>
-                        <p class="t2">26,88</p>
-                      </div>
-                    </div>
-                </div>
-                <div class="card-top card3">
-                    <div class="c_t_title card3_c">ROA年度经营目标达标</div>
-                    <zbg-chart :id="'3'"/>
-                    <div class="c_t_mid">
-                      <div class="c_t_mid_left">
-                        <p class="left1_t">净利润(万元)</p>
-                        <p class="left1_b">45,498</p>
-                      </div>
-                      <div class="c_t_mid_right">
-                        <p class="right1_t">目标达成率</p>
-                        <p class="right1_b">15.48%</p>
-                      </div>
-                    </div>
-                    <div class="c_t_bottom">
-                      <div class="c_t_bottom_text">
-                        <p class="t1">较上年末(亿)</p>
-                        <p class="t2">45,498</p>
-                      </div>
-                      <div class="c_t_bottom_text">
-                        <p class="t1">较上月末(亿)</p>
-                        <p class="t2">26,88</p>
-                      </div>
-                      <div class="c_t_bottom_text">
-                        <p class="t1">较上日(亿)</p>
-                        <p class="t2">26,88</p>
-                      </div>
-                    </div>
-                </div>
-                <div class="card-top card4">
-                    <div class="c_t_title card4_c">营收年度经营目标达标</div>
-                    <zbg-chart :id="'4'"/>
-                    <div class="c_t_mid">
-                      <div class="c_t_mid_left">
-                        <p class="left1_t">净利润(万元)</p>
-                        <p class="left1_b">45,498</p>
-                      </div>
-                      <div class="c_t_mid_right">
-                        <p class="right1_t">目标达成率</p>
-                        <p class="right1_b">15.48%</p>
-                      </div>
-                    </div>
-                    <div class="c_t_bottom">
-                      <div class="c_t_bottom_text">
-                        <p class="t1">较上年末(亿)</p>
-                        <p class="t2">45,498</p>
-                      </div>
-                      <div class="c_t_bottom_text">
-                        <p class="t1">较上月末(亿)</p>
-                        <p class="t2">26,88</p>
-                      </div>
-                      <div class="c_t_bottom_text">
-                        <p class="t1">较上日(亿)</p>
-                        <p class="t2">26,88</p>
-                      </div>
-                    </div>
-                </div>
-                <div class="card-top card5">
-                    <div class="c_t_title card5_c">营收年度经营目标达标</div>
-                    <zbg-chart :id="'5'"/>
-                    <div class="c_t_mid">
-                      <div class="c_t_mid_left">
-                        <p class="left1_t">净利润(万元)</p>
-                        <p class="left1_b">45,498</p>
-                      </div>
-                      <div class="c_t_mid_right">
-                        <p class="right1_t">目标达成率</p>
-                        <p class="right1_b">15.48%</p>
-                      </div>
-                    </div>
-                    <div class="c_t_bottom">
-                      <div class="c_t_bottom_text">
-                        <p class="t1">较上年末(亿)</p>
-                        <p class="t2">45,498</p>
-                      </div>
-                      <div class="c_t_bottom_text">
-                        <p class="t1">较上月末(亿)</p>
-                        <p class="t2">26,88</p>
-                      </div>
-                      <div class="c_t_bottom_text">
-                        <p class="t1">较上日(亿)</p>
-                        <p class="t2">26,88</p>
-                      </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 中间 -->
-            <div class="card-top-section">
-                <div class="card-mid-left" style="overflow: hidden;">
-                    <div class="card-title-common">
-                       <span>资产区域集中度</span><z-select/>
-                    </div>
-                    <zkehu-total/>
-                </div>
-                <div class="card-mid-right">
-                    <div class="card-title-common">
-                      <span>资产规模及分布</span><z-select/>
-                    </div>
-                    <zkehu-total2/>
-                </div>
-                <div class="card-mid-right">
-                    <div class="card-title-common">
-                      <span>资产规模及分布</span><z-select/>
-                    </div>
-                    <zkehu-total3/>
-                </div>
-
-            </div>
-            <!-- 下面 -->
-            <div class="card-top-section">
-                <div class="card-bottom">
-                    <div class="card-title-common">
-                        <span>产品规模⾛势</span><z-select/>
-                    </div>
-                    <zkehu-total4/>
-                </div>
-                <div class="card-bottom">
-                    <div class="card-title-common">
-                         <span>客户总数</span><z-select/>
-                    </div>
-                    <zkehu-total5/>
-                </div>
-                <div class="card-bottom">
-                    <div class="card-title-common">
-                        <span>资产投放及余额</span><z-select/>
-                    </div>
-                    <zkehu-total7/>
-                </div>
-                <div class="card-bottom">
-                    <div class="card-title-common">
-                      <span>客户总数</span><z-select/>
-                    </div>
-                    <zkehu-total6/>
-                </div>
-
-            </div>
+      <div slot="operateButton">
+        <el-tooltip class="item" effect="dark" content="清空画布" placement="top">
+          <el-button v-if="customizing" type="danger" icon="el-icon-delete" circle size="mini"
+            @click="clickEmpty"></el-button>
+        </el-tooltip>
+        <el-tooltip class="item" effect="dark" content="最小化" placement="top">
+          <el-button v-if="customizing" type="success" icon="el-icon-minus" circle size="mini"
+            @click="clickMinimize"></el-button>
+        </el-tooltip>
+        <el-tooltip class="item" effect="dark" content="恢复默认" placement="top">
+          <el-button v-if="customizing" type="primary" icon="el-icon-refresh-right" circle size="mini"
+            @click="backDefault()"></el-button>
+        </el-tooltip>
+        <el-tooltip class="item" effect="dark" content="关闭" placement="top">
+          <el-button v-if="customizing" type="danger" icon="el-icon-close" circle size="mini"
+            @click="close()"></el-button>
+        </el-tooltip>
+      </div>
+      <div slot="widgetsList">
+        <div v-if="myCompsList.length <= 0" class="widgets-list-nodata">
+          <el-empty description="没有部件啦" :image-size="60"></el-empty>
         </div>
-        <!-- <div class="widgets" ref="widgets">
+        <div class="widgetsListBox">
+          <span v-for="item in myCompsList" :key="item.title">
+            <el-tooltip class="item" effect="dark" :content="item.description" placement="top">
+              <div class="widgetsListItem" :style="{ background: $util.randomBackground() }">
+                <span style="position: relative;right: 8px;float: right;top: -22px;cursor: pointer;" @click="push(item)">
+                  <i class="el-icon-plus"></i>
+                </span>
+                <i :class="item.icon"></i> &nbsp;{{ item.title }}
+              </div>
+            </el-tooltip>
+          </span>
+        </div>
+      </div>
+    </suspended-library>
+    <div class="card-wrap">
+      <div class="card-top-section">
+        <div class="card-title-common">
+          <span>公司经营达成情况</span><z-select />
+        </div>
+      </div>
+      <div class="card-top-section">
+        <template v-for="(item, index) in colormap">
+          <ztop-card :values="item" :key="index" />
+        </template>
+      </div>
+      <!-- 中间 -->
+      <div class="card-top-section">
+        <div class="card-mid-left" style="overflow: hidden;">
+          <div class="card-title-common">
+            <span>资产区域集中度</span><z-select />
+          </div>
+          <zkehu-total />
+        </div>
+        <div class="card-mid-right">
+          <div class="card-title-common">
+            <span>资产规模及分布</span><z-select />
+          </div>
+          <zkehu-total2 />
+        </div>
+        <div class="card-mid-right">
+          <div class="card-title-common">
+            <span>资产规模及分布</span><z-select />
+          </div>
+          <zkehu-total3 />
+        </div>
+
+      </div>
+      <!-- 下面 -->
+      <div class="card-top-section">
+        <div class="card-bottom">
+          <div class="card-title-common">
+            <span>产品规模⾛势</span><z-select />
+          </div>
+          <zkehu-total4 />
+        </div>
+        <div class="card-bottom">
+          <div class="card-title-common">
+            <span>客户总数</span><z-select />
+          </div>
+          <zkehu-total5 />
+        </div>
+        <div class="card-bottom">
+          <div class="card-title-common">
+            <span>资产投放及余额</span><z-select />
+          </div>
+          <zkehu-total7 />
+        </div>
+        <div class="card-bottom">
+          <div class="card-title-common">
+            <span>客户总数</span><z-select />
+          </div>
+          <zkehu-total6 />
+        </div>
+
+      </div>
+    </div>
+    <!-- <div class="widgets" ref="widgets">
       <div :class="['widgets-wrapper',customizing?'widgets-wrapper-bg':'']">
         <div v-if="nowCompsList.length<=0" class="no-widgets">
           <el-empty image="img/no-widgets.svg" description="没有部件啦" :image-size="280"></el-empty>
@@ -288,8 +150,8 @@
         </grid-layout>
       </div>
     </div> -->
-        <dashboard-config ref="dashboardConfig" @saveConfig="saveConfig"></dashboard-config>
-    </d2-container>
+    <dashboard-config ref="dashboardConfig" @saveConfig="saveConfig"></dashboard-config>
+  </d2-container>
 </template>
 
 <script>
@@ -307,7 +169,7 @@ import ZkehuTotal5 from './components/zkehuTotal5.vue'
 import ZkehuTotal6 from './components/zkehuTotal6.vue'
 import ZkehuTotal7 from './components/zkehuTotal7.vue'
 import zSelect from './components/zSelect.vue'
-import zbgChart from './components/zbgChart.vue'
+import ztopCard from './components/ztopCard.vue'
 export default {
   components: {
     DashboardConfig,
@@ -323,7 +185,7 @@ export default {
     ZkehuTotal6,
     ZkehuTotal7,
     zSelect,
-    zbgChart
+    ztopCard
   },
   data () {
     return {
@@ -334,7 +196,33 @@ export default {
       layout: [],
       colNum: 48,
       minimize: false,
-      pxData: {}
+      pxData: {},
+      colormap: [{
+        color: '#FF5850',
+        cid: '1',
+        title: '一环营业净收入总额',
+        data: []
+      }, {
+        color: '#4B73EF',
+        cid: '2',
+        title: 'ROE年度经营目标达标',
+        data: [820, 1932, 1901, 2934, 790, 1230, 1120]
+      }, {
+        color: '#9A74FF',
+        cid: '3',
+        title: 'ROA年度经营目标达标',
+        data: []
+      }, {
+        color: '#FFA526',
+        cid: '4',
+        title: '营收年度经营目标达标',
+        data: []
+      }, {
+        color: '#DB5CEE',
+        cid: '5',
+        title: '营收年度经营目标达标',
+        data: []
+      }]
     }
   },
   async created () {
@@ -492,114 +380,114 @@ export default {
 </script>
 <style scoped lang="scss">
 @import 'cards.scss';
+
 ::v-deep .d2-container-full__body {
-    padding: 0 !important;
+  padding: 0 !important;
 }
 
 .widgetsListItem {
-    width: 168px;
-    height: 75px;
-    border-radius: 4px 4px 4px 4px;
-    font-size: 16px;
-    font-family: Microsoft YaHei-Bold, Microsoft YaHei;
-    font-weight: bold;
-    color: #ffffff;
-    text-align: center;
-    margin-left: 7px;
-    line-height: 75px;
-    margin-bottom: 10px;
-    position: initial;
+  width: 168px;
+  height: 75px;
+  border-radius: 4px 4px 4px 4px;
+  font-size: 16px;
+  font-family: Microsoft YaHei-Bold, Microsoft YaHei;
+  font-weight: bold;
+  color: #ffffff;
+  text-align: center;
+  margin-left: 7px;
+  line-height: 75px;
+  margin-bottom: 10px;
+  position: initial;
 }
 
 .widgetsListBox {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 20px;
-    z-index: 999999;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  z-index: 999999;
 }
 
 .component-header {
-    background-color: #FFFFFF;
-    position: sticky;
-    top: -20px;
+  background-color: #FFFFFF;
+  position: sticky;
+  top: -20px;
+  z-index: 99;
+
+  .set-btn-class {
+    float: right;
     z-index: 99;
+  }
 
-    .set-btn-class {
-        float: right;
-        z-index: 99;
+  .all-component-class {
+    clear: right;
+
+    .widgets-list {
+      display: flex;
+      justify-content: space-between;
+      overflow-x: scroll;
+      padding-bottom: 10px;
+
+      .widgets-list-item {
+        margin-right: 10px;
+      }
+
+      .widgets-list-item:last-child {
+        margin-right: 0px;
+      }
     }
-
-    .all-component-class {
-        clear: right;
-
-        .widgets-list {
-            display: flex;
-            justify-content: space-between;
-            overflow-x: scroll;
-            padding-bottom: 10px;
-
-            .widgets-list-item {
-                margin-right: 10px;
-            }
-
-            .widgets-list-item:last-child {
-                margin-right: 0px;
-            }
-        }
-    }
+  }
 }
 
 .widgets-wrapper-bg {
-    background: rgba(180, 180, 180, .2);
-    min-height: 500px;
+  background: rgba(180, 180, 180, .2);
+  min-height: 500px;
 }
 
 .widgets-wrapper .sortable-ghost {
-    opacity: 0.5;
+  opacity: 0.5;
 }
 
 .set-component-bg {
-    //background: rgba(255, 255, 255, 0.5);
-    border: 1px solid rgba(0, 0, 0, .5);
+  //background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 0, 0, .5);
 }
 
 .customize-overlay {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 5px;
-    left: 0;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 0.5);
-    cursor: move;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 5px;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: move;
 }
 
 .customize-overlay label {
-    background: #409EFF;
-    color: #fff;
-    height: 40px;
-    padding: 0 30px;
-    border-radius: 40px;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: move;
+  background: #409EFF;
+  color: #fff;
+  height: 40px;
+  padding: 0 30px;
+  border-radius: 40px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: move;
 }
 
 .customize-overlay label i {
-    margin-right: 15px;
-    font-size: 24px;
+  margin-right: 15px;
+  font-size: 24px;
 }
 
 .customize-overlay .close {
-    position: absolute;
-    top: 15px;
-    right: 15px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
 }
-
 </style>

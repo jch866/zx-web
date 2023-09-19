@@ -49,6 +49,7 @@ const list = [
     component_name: 'report1',
     cache: false,
     visible: true,
+    collect: true,
     menuPermission: ['Retrieve', 'Search']
   },
   {

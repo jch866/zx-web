@@ -117,11 +117,11 @@ export default {
       state.aside = menu
     },
     // 收藏列表
-    async collectListSet (state, list) {
+    collectListSet (state, list) {
       state.collectList = list
     },
     // 菜单部分显示类型
-    async asideTypeSet (state, type) {
+    asideTypeSet (state, type) {
       state.asideType = type
     }
   }

@@ -57,6 +57,12 @@
         }
         .t2{
             font-size: 14px;
+            .caret_top_style{
+                color: red;
+            }
+            .caret_bottom_style{
+                color:green
+            }
         }
     }
 }

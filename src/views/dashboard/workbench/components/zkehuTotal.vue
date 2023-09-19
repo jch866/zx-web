@@ -59,6 +59,15 @@ export default {
       return color[ran]
     },
     drawLine () {
+      var points = [
+        // 点坐标
+        { value: [110.81, 33.40], itemStyle: { color: '#c1bb1f' }, name: '11', total: 0, bj: 0, yj: 0, yx: 0, tj: 0, dw: 0 },
+        { value: [116.55, 40.01], itemStyle: { color: '#3eef1d' }, name: '北京', total: 0, bj: 0, yj: 0, yx: 0, tj: 0, dw: 0 },
+        { value: [113.11, 28.40], itemStyle: { color: '#3eef1d' }, name: '22', total: 5, bj: 0, yj: 0, yx: 5, tj: 0, dw: 0 },
+        { value: [106.44, 29.50], itemStyle: { color: '#3eef1d' }, name: '33', total: 10, bj: 0, yj: 0, yx: 10, tj: 0, dw: 0 },
+        { value: [112.85, 38.95], itemStyle: { color: '#3eef1d' }, name: '44', total: 8, bj: 0, yj: 0, yx: 8, tj: 0, dw: 0 },
+        { value: [82.78, 43.27], itemStyle: { color: '#3eef1d' }, name: '55', total: 18, bj: 0, yj: 0, yx: 18, tj: 0, dw: 0 }
+      ]
       const option = {
         // 地图组件
         geo: {
@@ -142,6 +151,38 @@ export default {
                 show: true
               }
             }
+          },
+          {
+            name: 'companyPoint',
+            type: 'effectScatter',
+            coordinateSystem: 'geo',
+            showEffectOn: 'render',
+            // zlevel: 2, // zlevel用于 Canvas 分层 相同的绘制在同一个canvas上
+            rippleEffect: {
+              number: 4, // 波纹数量
+              period: 4, // 动画周期 数值越大，波动越慢
+              scale: 3.5, // 动画中波纹的最大缩放比例
+              brushType: 'stroke' // 波纹的绘制方式 stroke fill
+            },
+            label: {
+              show: false,
+              position: 'right',
+              formatter: '{b}',
+              color: '#97e9e1',
+              fontSize: 14
+            },
+            symbol: 'circle',
+            symbolSize: 10,
+            data: points,
+            tooltip: {
+              show: false,
+              backgroundColor: 'rgba(0,0,0,0)',
+              padding: 0,
+              borderWidth: 0,
+              extraCssText: 'box-shadow: 0 0 0 rgba(0, 0, 0, 0);', // 去除box-shadow阴影
+              formatter: (params) => { }
+            },
+            z: 4
           },
           {
             name: 'Top 5',

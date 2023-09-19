@@ -88,6 +88,11 @@
           @extend %full;
           overflow: hidden;
         }
+        .filter_empty_pannel {
+          text-align: center;
+          padding-top: 50px;
+          color: white;
+        }
       }
       .d2-theme-container-transition {
         transition: width .3s;
@@ -228,13 +233,15 @@
         //点击收藏的时候显示
         .d2-layout-header-aside-menu-collect{
             color: white;
+            font-size: 14px;
             ul{
                 list-style: none;
             }
             li{
                 line-height: 40px;
-                text-align: center;
+                // text-align: center;
                 height: 40px;
+                padding-left: 20px;
                 &:hover{
                     cursor: pointer;
                 }

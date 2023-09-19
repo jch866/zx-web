@@ -70,7 +70,7 @@ export default {
       'aside',
       'asideCollapse',
       'asideTransition',
-      'collectList',
+      // 'collectList',
       'asideType'
     ]),
 
@@ -112,9 +112,13 @@ export default {
         console.log(item.name.includes(val))
         return item.name.includes(val)
       })
-      console.log(list)
+      // console.log(list);
       this.filterList = list
     },
+    // show(name) {
+    //   const reg = new RegExp(this.searchVal, "ig"); //全局替换
+    //   return name.replace(reg, (i) => `<span style='color:#0076D6'>${i}</span>`)
+    // },
     selectActive (type) {
       this.isActive = type
       this.$store.commit('d2admin/menu/asideTypeSet', type)
@@ -235,7 +239,7 @@ export default {
 
 .filter_pannel {
   color: white;
-
+  font-size: 14px;
   ul {
     list-style: none;
 
@@ -251,11 +255,11 @@ export default {
   }
 }
 
-.filter_empty_pannel {
-  text-align: center;
-  padding-top: 50px;
-  color: white;
-}
+// .filter_empty_pannel {
+//   text-align: center;
+//   padding-top: 50px;
+//   color: white;
+// }
 
 :deep {
   .el-input__inner {
@@ -263,4 +267,5 @@ export default {
     border: none;
     color: white;
   }
-}</style>
+}
+</style>

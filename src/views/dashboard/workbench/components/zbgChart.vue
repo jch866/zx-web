@@ -1,6 +1,6 @@
 <!-- 环形图 -->
 <template>
-    <div :id="'cardbg'+id" :ref="'cardbg'+id" style="width: 100%;height: 250px;" class="card-bg"></div>
+  <div :id="'cardbg' + id" :ref="'cardbg' + id" style="width: 100%;height: 250px;" class="card-bg"></div>
 </template>
 
 <script>
@@ -10,6 +10,10 @@ export default {
   props: {
     id: {
       type: String
+    },
+    list: {
+      type: Array,
+      default: []
     }
   },
   watch: {
@@ -80,7 +84,7 @@ export default {
       series: [
         {
           // name:'资产规模总余额',
-          data: [820, 932, 1901, 934, 1290, 930, 820],
+          data: (this.list.length > 0 && this.list.length === 7) ? this.list : [820, 932, 1901, 934, 1290, 930, 820],
           type: 'line',
           smooth: true,
           symbol: 'none',
@@ -109,10 +113,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
- .card-bg{
-    position: absolute;
-    top: -15%;
-    left: 0;
-    z-index: 0;
- }
+.card-bg {
+  position: absolute;
+  top: -15%;
+  left: 0;
+  z-index: 0;
+}
 </style>

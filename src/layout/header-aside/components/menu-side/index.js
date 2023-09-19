@@ -7,12 +7,12 @@ export default {
   name: 'd2-layout-header-aside-menu-side',
   mixins: [menuMixin],
   render (h) {
-    console.log(+new Date())
+    console.log('render')
     return (
       <div class="d2-layout-header-aside-menu-side">
         <menuSearch />
         {/* 菜单列表 */}
-        {this.asideType === 1 && (
+        {this.asideType === 1 ? (
           <el-menu
             collapse={this.asideCollapse}
             collapseTransition={this.asideTransition}
@@ -23,7 +23,7 @@ export default {
           >
             {this.aside.map((menu) => createMenu.call(this, h, menu))}
           </el-menu>
-        )}
+        ) : null}
         {this.asideType === 1 &&
         this.aside.length === 0 &&
         !this.asideCollapse ? (
@@ -51,7 +51,10 @@ export default {
               </ul>
             </div>
           ) : (
-            <span>没有收藏项目</span>
+            <div class="filter_empty_pannel">
+              <p>无收藏内容</p>
+              <d2-icon name="inbox" style="font-size: 40px;"></d2-icon>
+            </div>
           )
         ) : null}
         {/* 搜索列表 DOM直接写在menuSearch中 */}
