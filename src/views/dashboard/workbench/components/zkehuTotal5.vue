@@ -1,26 +1,34 @@
 <!-- 环形图 -->
 <template>
-    <div id="region5" style="width: 300px;height: 300px;"></div>
+  <div id="region5" style="width: 300px;height: 300px;"></div>
 </template>
 
 <script>
 import * as echarts from 'echarts'
+import { mapState } from 'vuex'
 export default {
 
   props: {
 
   },
   watch: {
-
+    asideCollapse(newval, oldval) {
+      this.resizeHandler();
+    }
   },
-  data () {
+  computed: {
+    ...mapState('d2admin', {
+      asideCollapse: (state) => state.menu.asideCollapse,
+    }),
+  },
+  data() {
     this.myChart = null
     return {
       data: []
     }
   },
   methods: {
-    drawLine () {
+    drawLine() {
       const option = {
         legend: {
           left: 'center',
@@ -62,11 +70,21 @@ export default {
       }
 
       this.myChart.setOption(option)
+    },
+    resizeHandler() {
+      const dom = document.getElementById('region5');
+      const dow1 = document.querySelectorAll('.card-bottom')[0];
+      dom.style.width = dow1.offsetWidth + 'px';
+      console.log('resize')
+      this.myChart.resize();
     }
   },
-  mounted () {
+  mounted() {
     this.myChart = this.$echarts.init(document.getElementById('region5'))
-    this.drawLine()
+    this.drawLine();
+    window.addEventListener("resize", () => {
+      this.resizeHandler();
+    });
   }
 }
 </script>

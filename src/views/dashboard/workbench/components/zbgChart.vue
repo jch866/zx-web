@@ -5,6 +5,7 @@
 
 <script>
 import * as echarts from 'echarts'
+import { mapState} from 'vuex'
 export default {
 
   props: {
@@ -17,7 +18,14 @@ export default {
     }
   },
   watch: {
-
+    asideCollapse(newval, oldval) {
+        this.resizeHandler();
+    }
+  },
+  computed: {
+    ...mapState('d2admin', {
+      asideCollapse: (state) => state.menu.asideCollapse,
+    }),
   },
   data () {
     return {
@@ -32,6 +40,14 @@ export default {
     }
   },
   methods: {
+    resizeHandler(){
+      const dom = document.getElementById(`cardbg${this.id}`);
+      const dow1 =  document.querySelectorAll('.card-top')[0];
+      console.log(dow1.offsetWidth)
+      dom.style.width = dow1.offsetWidth + 'px';
+      const myChart = this.$echarts.init(document.getElementById(`cardbg${this.id}`))
+      myChart.resize();
+    }
   },
   mounted () {
     const myChart = this.$echarts.init(document.getElementById(`cardbg${this.id}`))
@@ -106,7 +122,10 @@ export default {
         }
       ]
     }
-    myChart.setOption(option)
+    myChart.setOption(option);
+    window.addEventListener("resize", () => {
+      this.resizeHandler();
+    });
     // this.drawLine()
   }
 }
