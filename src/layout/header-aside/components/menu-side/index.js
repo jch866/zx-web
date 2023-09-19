@@ -15,7 +15,7 @@ export default {
         {this.asideType === 1 ? (
           <el-menu
             collapse={this.asideCollapse}
-            collapseTransition={this.asideTransition}
+            collapseTransition={false}
             uniqueOpened={true}
             defaultActive={this.$route.fullPath}
             ref="menu"
@@ -44,8 +44,9 @@ export default {
                   <li
                     key={item.name}
                     onClick={() => this.handleMenuSelect(item.path)}
+                    title={item.name}
                   >
-                    {this.renderIcon(item)} {item.name}
+                    {this.renderIcon(item)} { !this.asideCollapse && item.name}
                   </li>
                 ))}
               </ul>
