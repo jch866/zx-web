@@ -7,7 +7,7 @@
     <div class="table_wrap">
       <search-box />
       <div class="table_wrap_title">
-        <span class="t_w_t1">资产规模数据</span><span class="t_w_t2">编织单位：⻓三⻆/上海分⾏ 报表类型：⽉报 统计⽇期：2023/04/17 － 2023/05/20</span>
+        <span class="t_w_t1">资产规模数据</span><span class="t_w_t2">编制单位：⻓三⻆/上海分⾏ 报表类型：⽉报 统计⽇期：2023/04/17 － 2023/05/20</span>
       </div>
       <!-- :header-row-style="{color:'#333'}" -->
       <el-table :data="tableData" style="width: 100%" header-row-class-name="table_header" :span-method="arraySpanMethod">
@@ -168,7 +168,6 @@ export default {
     // 表格合并的方法
     arraySpanMethod ({ row, column, rowIndex, columnIndex }) {
       const len = this.tableData.length
-      console.log(len)
       let _row = 0
       let _col = 0
       // 前三列

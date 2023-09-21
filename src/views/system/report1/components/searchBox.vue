@@ -6,18 +6,24 @@
       <div class="search_dimension_name">维度:</div>
       <treeselect v-model="value" :multiple="true" :options="options" class="search_trees" placeholder="请选择展示维度" />
     </div>
-    <div class="search_filter">
-      <el-button size="small" icon="el-icon-star-off">过滤条件</el-button>
-    </div>
+    <search-filter />
+    <!-- <div class="search_filter">
+      <el-button size="small">
+        <d2-icon-svg  name='filter' style="width: 15px;height: 15px;" />
+        过滤条件</el-button>
+    </div> -->
     <div class="search_btngroup">
       <el-button size="small">重置</el-button>
       <el-button size="small">查询</el-button>
     </div>
+    <listing-set />
   </div>
 </template>
 
 <script>
 import diffDate from './diffDate'
+import searchFilter from './searchFilter'
+import listingSet from './listingSet.vue'
 // import the component
 import Treeselect from '@riophae/vue-treeselect'
 // import the styles
@@ -25,9 +31,9 @@ import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 export default {
   name: 'searchbox',
   components: {
-    diffDate, Treeselect
+    diffDate, Treeselect, searchFilter, listingSet
   },
-  data () {
+  data() {
     return {
       value: null,
       props: { multiple: true },
@@ -117,12 +123,12 @@ export default {
       // }
     }
   },
-  created () {
+  created() {
     console.log(this)
   },
   methods: {
 
-    selectDateType (index) {
+    selectDateType(index) {
       this.activeIndex = index
     }
 
@@ -134,7 +140,7 @@ export default {
 <style lang="scss">
 .search_box {
   display: flex;
-  // justify-content: space-between;
+  justify-content: space-between;
 }
 
 .search_dimension {
@@ -154,12 +160,15 @@ export default {
   }
 
 }
-.search_filter{
+
+.search_filter {
   margin-left: 10px;
 }
-.search_btngroup{
+
+.search_btngroup {
   margin-left: 10px;
 }
+
 // :deep {
 //   .vue-treeselect {
 //     width: 198px;
@@ -177,5 +186,4 @@ export default {
 //   .vue-treeselect__single-value {
 //     line-height: 28px;
 //   }
-// }
-</style>
+// }</style>

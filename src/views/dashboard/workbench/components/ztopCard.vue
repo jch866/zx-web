@@ -10,7 +10,7 @@
             <div class="c_t_mid_right">
                 <p class="right1_t">目标达成率</p>
                 <p class="right1_b">
-                    <d2-icon-svg slot="title" name='up' style="width: 15px;height: 15px;color:'#ff0000'" />
+                    <d2-icon-svg slot="title" name='up' style="width: 15px;height: 15px;" />
                     <span>15.48%</span>
                 </p>
             </div>
