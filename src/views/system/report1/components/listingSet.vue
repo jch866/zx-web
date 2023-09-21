@@ -5,8 +5,6 @@
             <div class="div_line">
                 <i class="el-icon-close close_new" @click="closePopHandler"></i>
             </div>
-            
-
             <el-tree :data="data" show-checkbox node-key="id" :default-expanded-keys="[2, 3]" :default-checked-keys="[5]"
                 :props="defaultProps">
             </el-tree>
@@ -94,8 +92,5 @@ export default {
     cursor: pointer;
 }
 
-:deep {
-  
-}
 </style>
     

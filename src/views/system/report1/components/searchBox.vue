@@ -7,14 +7,9 @@
       <treeselect v-model="value" :multiple="true" :options="options" class="search_trees" placeholder="请选择展示维度" />
     </div>
     <search-filter />
-    <!-- <div class="search_filter">
-      <el-button size="small">
-        <d2-icon-svg  name='filter' style="width: 15px;height: 15px;" />
-        过滤条件</el-button>
-    </div> -->
     <div class="search_btngroup">
-      <el-button size="small">重置</el-button>
-      <el-button size="small">查询</el-button>
+      <el-button size="small" @click="resetHandler">重置</el-button>
+      <el-button size="small" @click="searchHandler">查询</el-button>
     </div>
     <listing-set />
   </div>
@@ -130,6 +125,14 @@ export default {
 
     selectDateType(index) {
       this.activeIndex = index
+    },
+    resetHandler() {
+
+      this.$emit('resetFn')
+    },
+    searchHandler() {
+
+      this.$emit('searchFn')
     }
 
   }
@@ -154,6 +157,15 @@ export default {
     line-height: 32px;
   }
 
+  .vue-treeselect__control {
+    height: 32px;
+  }
+
+  .vue-treeselect__placeholder {
+    line-height: 32px;
+    font-size: 14px;
+  }
+
   .search_trees {
     flex: 1;
     // height: 32px;
@@ -166,7 +178,8 @@ export default {
 }
 
 .search_btngroup {
-  margin-left: 10px;
+  margin-left: 5px;
+  width: 140px;
 }
 
 // :deep {

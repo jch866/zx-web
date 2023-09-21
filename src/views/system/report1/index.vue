@@ -5,7 +5,7 @@
       <span class="t_w_h3">分⾏表外资产负债表</span><el-button type="primary" size="small" icon="el-icon-share">导出</el-button>
     </div>
     <div class="table_wrap">
-      <search-box />
+      <search-box @searchFn="searchFn" @resetFn="resetFn"/>
       <div class="table_wrap_title">
         <span class="t_w_t1">资产规模数据</span><span class="t_w_t2">编制单位：⻓三⻆/上海分⾏ 报表类型：⽉报 统计⽇期：2023/04/17 － 2023/05/20</span>
       </div>
@@ -164,7 +164,12 @@ export default {
 
   },
   methods: {
-
+    searchFn(){
+      console.log('searchFn')
+    },
+    resetFn(){
+      console.log('resetFn')
+    },
     // 表格合并的方法
     arraySpanMethod ({ row, column, rowIndex, columnIndex }) {
       const len = this.tableData.length
