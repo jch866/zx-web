@@ -53,6 +53,24 @@ const list = [
     menuPermission: ['Retrieve', 'Search']
   },
   {
+    id: 20,
+    parent: 1,
+    icon: 'file-code-o',
+    sort: 1,
+    path: '/report2',
+    name: '分行表外资产负债表',
+    title: '分行表外资产负债表',
+    is_link: false,
+    is_catalog: false,
+    web_path: '/report2',
+    component: 'system/report2/index',
+    component_name: 'report2',
+    cache: false,
+    visible: true,
+    collect: true,
+    menuPermission: ['Retrieve', 'Search']
+  },
+  {
     id: 15,
     parent: 14,
     icon: 'file-text',

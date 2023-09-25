@@ -10,16 +10,17 @@
         <span class="t_w_t1">资产规模数据</span><span class="t_w_t2">编制单位：⻓三⻆/上海分⾏ 报表类型：⽉报 统计⽇期：2023/04/17 － 2023/05/20</span>
       </div>
       <!-- :header-row-style="{color:'#333'}" -->
-      <el-table :data="tableData" style="width: 100%" header-row-class-name="table_header" :span-method="arraySpanMethod">
-        <el-table-column prop="name1" label="分行名称" width="150">
+      <el-table :data="tableData" style="width: 100%" header-row-class-name="table_header" 
+      :span-method="arraySpanMethod" :border="true">
+        <el-table-column prop="name1" label="分行名称" width="100" >
         </el-table-column>
-        <el-table-column prop="name2" label="分行梯队" width="150">
+        <el-table-column prop="name2" label="分行梯队" width="100">
         </el-table-column>
-        <el-table-column prop="name3" label="分行大区" width="150">
+        <el-table-column prop="name3" label="分行大区" width="100">
         </el-table-column>
-        <el-table-column prop="name4" label="公司六⼤赛道" width="150">
+        <el-table-column prop="name4" label="公司六⼤赛道" width="150" :show-overflow-tooltip="true">
         </el-table-column>
-        <el-table-column prop="name5" label="三分类" width="150">
+        <el-table-column prop="name5" label="三分类" min-width="150" :show-overflow-tooltip="true">
         </el-table-column>
         <el-table-column label="资产规模数据(万元)">
           <el-table-column prop="zip" label="期初存量" width="150">
@@ -39,29 +40,29 @@
       <div class="table_wrap_title">
         <span class="t_w_t1">产品规模数据</span>
       </div>
-      <el-table :data="tableData" style="width: 100%" header-row-class-name="table_header" :span-method="arraySpanMethod">
-        <el-table-column prop="name1" label="分行名称" width="150">
+      <el-table :data="tableData" style="width: 100%" header-row-class-name="table_header" 
+      :span-method="arraySpanMethod" :border="true">
+        <el-table-column prop="name1" label="分行名称" width="100" >
         </el-table-column>
-        <el-table-column prop="name2" label="分行梯队" width="150">
+        <el-table-column prop="name2" label="分行梯队" width="100">
         </el-table-column>
-        <el-table-column prop="name3" label="分行大区" width="150">
+        <el-table-column prop="name3" label="分行大区" width="100">
         </el-table-column>
-        <el-table-column prop="name4" label="公司六⼤赛道" width="150">
+        <el-table-column prop="name4" label="公司六⼤赛道" width="150" :show-overflow-tooltip="true"
+        :render-header='renderHeader'>
         </el-table-column>
-        <el-table-column prop="name5" label="三分类" width="150">
+        <el-table-column prop="name5" label="三分类" min-width="150" :show-overflow-tooltip="true">
         </el-table-column>
         <el-table-column label="资产规模数据(万元)">
           <el-table-column prop="zip" label="期初存量" width="150">
           </el-table-column>
-          <el-table-column prop="zip" label="认/申购" width="150">
+          <el-table-column prop="zip" label="新增投放" width="150">
           </el-table-column>
-          <el-table-column prop="zip" label="赎回/到期" width="150">
+          <el-table-column prop="zip" label="投放到期" width="150">
           </el-table-column>
-          <el-table-column prop="zip" label="净认/申购" width="150">
+          <el-table-column prop="zip" label="净投放" width="150">
           </el-table-column>
-          <el-table-column prop="zip" label="期末存量" width="150">
-          </el-table-column>
-          <el-table-column prop="zip" label="期间均值" width="150">
+          <el-table-column prop="zip" label="期未存量" width="150">
           </el-table-column>
         </el-table-column>
 
@@ -164,6 +165,22 @@ export default {
 
   },
   methods: {
+    renderHeader(h, { column, $index }) {
+      return h("span", [
+        h(
+          "el-tooltip",
+          {
+            attrs: {
+              class: "item",
+              effect: "dark",
+              content: column.label,
+              placement: "top",
+            },
+          },
+          [h("span", column.label)]
+        ),
+      ]);
+    },
     searchFn(){
       console.log('searchFn')
     },
@@ -238,6 +255,15 @@ export default {
 </script>
 
 <style lang="scss">
+//  .el-table .cell.el-tooltip {
+//     white-space: nowrap;
+//   }
+//   // 不换行
+//   .el-table .cell {
+//     word-break: keep-all !important;
+//     white-space: nowrap !important;
+//   }
+ 
 .main_box {
   padding: 10px;
   // height: 40px;
