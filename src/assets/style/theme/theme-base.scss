@@ -26,6 +26,10 @@
     margin-bottom: 8px;
   }
 }
+.el-picker-panel{
+  position: absolute;
+  z-index: 2092;
+}
 .cell{
   text-align: center;
 }
