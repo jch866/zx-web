@@ -5,21 +5,21 @@
 
 <script>
 import * as echarts from 'echarts'
-import { mapState  } from 'vuex'
+import { mapState } from 'vuex'
 export default {
 
   props: {
 
   },
   watch: {
-    asideCollapse(newval, oldval) {
-        this.resizeHandler();
+    asideCollapse (newval, oldval) {
+      this.resizeHandler()
     }
   },
   computed: {
     ...mapState('d2admin', {
-      asideCollapse: (state) => state.menu.asideCollapse,
-    }),
+      asideCollapse: (state) => state.menu.asideCollapse
+    })
   },
   data () {
     this.myChart = null
@@ -74,19 +74,19 @@ export default {
       }
       this.myChart.setOption(option)
     },
-    resizeHandler(){
-      const dom = document.getElementById('region4');
-      const dow1 =  document.querySelectorAll('.card-bottom')[0];
-      dom.style.width = dow1.offsetWidth + 'px';
-      this.myChart.resize();
+    resizeHandler () {
+      const dom = document.getElementById('region4')
+      const dow1 = document.querySelectorAll('.card-bottom')[0]
+      dom.style.width = dow1.offsetWidth + 'px'
+      this.myChart.resize()
     }
   },
   mounted () {
     this.myChart = this.$echarts.init(document.getElementById('region4'))
-    this.drawLine();
-    window.addEventListener("resize", () => {
-      this.resizeHandler();
-    });
+    this.drawLine()
+    window.addEventListener('resize', () => {
+      this.resizeHandler()
+    })
   }
 }
 </script>

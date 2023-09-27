@@ -1,6 +1,6 @@
 <template>
     <div class="listing_set">
-        <el-popover placement="bottom" title="自定义展示列" width="240" trigger="click" 
+        <el-popover placement="bottom" title="自定义展示列" width="240" trigger="click"
         :visible-arrow="false" ref="popoverlisting">
             <div class="div_line">
                 <i class="el-icon-close close_new" @click="closePopHandler"></i>
@@ -14,68 +14,67 @@
 </template>
 <script>
 export default {
-    name: 'listingSet',
-    components: {
+  name: 'listingSet',
+  components: {
 
-    },
-    data() {
-        return {
-            visible: false,
-            data: [{
-                id: 1,
-                label: '资产分类',
-                children: [{
-                    id: 4,
-                    label: '二级 1-1',
-                    children: [{
-                        id: 9,
-                        label: '三级 1-1-1'
-                    }, {
-                        id: 10,
-                        label: '三级 1-1-2'
-                    }]
-                }]
-            }, {
-                id: 2,
-                label: '资产规模数量',
-                children: [{
-                    id: 5,
-                    label: '期初存量'
-                }, {
-                    id: 6,
-                    label: '新增投放'
-                }]
-            }, {
-                id: 3,
-                label: '加权平均期限',
-                children: []
-            }, {
-                id: 4,
-                label: '加权平均收益率',
-                children: []
-            }],
-            defaultProps: {
-                children: 'children',
-                label: 'label'
-            }
-        }
-
-    },
-    created() {
-        console.log(this)
-    },
-    methods: {
-        handleChange(value) {
-            console.log(value);
-        },
-        closePopHandler(){
-            this.$refs[`popoverlisting`].doClose()
-        }
+  },
+  data () {
+    return {
+      visible: false,
+      data: [{
+        id: 1,
+        label: '资产分类',
+        children: [{
+          id: 4,
+          label: '二级 1-1',
+          children: [{
+            id: 9,
+            label: '三级 1-1-1'
+          }, {
+            id: 10,
+            label: '三级 1-1-2'
+          }]
+        }]
+      }, {
+        id: 2,
+        label: '资产规模数量',
+        children: [{
+          id: 5,
+          label: '期初存量'
+        }, {
+          id: 6,
+          label: '新增投放'
+        }]
+      }, {
+        id: 3,
+        label: '加权平均期限',
+        children: []
+      }, {
+        id: 4,
+        label: '加权平均收益率',
+        children: []
+      }],
+      defaultProps: {
+        children: 'children',
+        label: 'label'
+      }
     }
+  },
+  created () {
+    console.log(this)
+  },
+  methods: {
+    handleChange (value) {
+      console.log(value)
+    },
+    closePopHandler () {
+      this.$refs.popoverlisting.doClose()
+    }
+  }
 }
 
 </script>
-    
+
 <style lang="scss" scoped>
 .div_line {
     border-top: 1px solid #dddddd;
@@ -93,4 +92,3 @@ export default {
 }
 
 </style>
-    

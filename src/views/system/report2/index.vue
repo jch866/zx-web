@@ -139,7 +139,7 @@ export default {
   components: {
     searchBox
   },
-  data() {
+  data () {
     return {
       alldata: [],
       tableData: [{
@@ -222,7 +222,7 @@ export default {
       }]
     }
   },
-  created() {
+  created () {
 
   },
   methods: {
@@ -242,14 +242,14 @@ export default {
     //     ),
     //   ]);
     // },
-    searchFn() {
+    searchFn () {
       console.log('searchFn')
     },
-    resetFn() {
+    resetFn () {
       console.log('resetFn')
     },
     // 表格合并的方法
-    arraySpanMethod({ row, column, rowIndex, columnIndex }) {
+    arraySpanMethod ({ row, column, rowIndex, columnIndex }) {
       const len = this.tableData.length
       let _row = 0
       let _col = 0
@@ -280,9 +280,8 @@ export default {
           }
         }
       }
-
     },
-    getSummaries(param) {}
+    getSummaries (param) {}
   }
 }
 

@@ -6,11 +6,11 @@
           item.label }}</div>
     </div>
     <el-date-picker v-model="value3" type="date" size="small" placeholder="选择日期"
-      v-if="selectType === 'date'" key="date"></el-date-picker>
+      v-if="selectType === 'date'" :key="Math.random()"></el-date-picker>
     <el-date-picker v-model="value3" type="month" size="small" placeholder="选择月"
-      v-if="selectType === 'month'" key="month"></el-date-picker>
+      v-if="selectType === 'month'" :key="Math.random()"></el-date-picker>
     <el-date-picker v-model="value3" type="year" size="small" placeholder="选择年"
-      v-if="selectType === 'year'" key="year"></el-date-picker>
+      v-if="selectType === 'year'" :key="Math.random()"></el-date-picker>
     <!-- todo -->
     <halfyear-picker v-model="value3" ref="halfyearRef" v-if="selectType === 'halfyear'" @change="selectHandler" />
     <el-quarter-picker v-model="value3" size="small" v-if="selectType === 'season'"></el-quarter-picker>
@@ -79,9 +79,7 @@ export default {
 .search_date_box {
   display: flex;
 }
- 
-  
- 
+
 .search_condition_date {
   display: flex;
   border: 1px solid #DCDFE6;

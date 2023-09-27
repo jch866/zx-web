@@ -51,14 +51,14 @@ export default {
   components: {
     diffDate, Treeselect, searchFilter, listingSet
   },
-  data() {
+  data () {
     return {
       value: null,
       value1: '',
       value2: '',
       value3: '',
       value4: '',
-      showMore:false,
+      showMore: false,
       props: { multiple: true },
       // options1: [{
       //   value: 1,
@@ -146,22 +146,20 @@ export default {
       // }
     }
   },
-  created() {
+  created () {
     console.log(this)
   },
   methods: {
-    searchMore(){
-      this.showMore = !this.showMore;
+    searchMore () {
+      this.showMore = !this.showMore
     },
-    selectDateType(index) {
+    selectDateType (index) {
       this.activeIndex = index
     },
-    resetHandler() {
-
+    resetHandler () {
       this.$emit('resetFn')
     },
-    searchHandler() {
-
+    searchHandler () {
       this.$emit('searchFn')
     }
 

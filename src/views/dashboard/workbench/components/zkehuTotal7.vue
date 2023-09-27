@@ -12,23 +12,23 @@ export default {
 
   },
   watch: {
-    asideCollapse(newval, oldval) {
-        this.resizeHandler();
+    asideCollapse (newval, oldval) {
+      this.resizeHandler()
     }
   },
   computed: {
     ...mapState('d2admin', {
-      asideCollapse: (state) => state.menu.asideCollapse,
-    }),
+      asideCollapse: (state) => state.menu.asideCollapse
+    })
   },
-  data() {
+  data () {
     this.myChart = null
     return {
       data: []
     }
   },
   methods: {
-    drawLine() {
+    drawLine () {
       const option = {
         tooltip: {
           trigger: 'axis',
@@ -91,21 +91,20 @@ export default {
 
       this.myChart.setOption(option)
     },
-    resizeHandler(){
-      const dom = document.getElementById('region7');
-      const dow1 =  document.querySelectorAll('.card-bottom')[0];
-      dom.style.width = dow1.offsetWidth + 'px';
+    resizeHandler () {
+      const dom = document.getElementById('region7')
+      const dow1 = document.querySelectorAll('.card-bottom')[0]
+      dom.style.width = dow1.offsetWidth + 'px'
       console.log('resize')
-      this.myChart.resize();
+      this.myChart.resize()
     }
   },
-  mounted() {
-
+  mounted () {
     this.myChart = this.$echarts.init(document.getElementById('region7'))
-    this.drawLine();
-    window.addEventListener("resize", () => {
-      this.resizeHandler();
-    });
+    this.drawLine()
+    window.addEventListener('resize', () => {
+      this.resizeHandler()
+    })
   }
 }
 </script>

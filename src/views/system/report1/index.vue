@@ -10,7 +10,7 @@
         <span class="t_w_t1">资产规模数据</span><span class="t_w_t2">编制单位：⻓三⻆/上海分⾏ 报表类型：⽉报 统计⽇期：2023/04/17 － 2023/05/20</span>
       </div>
       <!-- :header-row-style="{color:'#333'}" -->
-      <el-table :data="tableData" style="width: 100%" header-row-class-name="table_header" 
+      <el-table :data="tableData" style="width: 100%" header-row-class-name="table_header"
       :span-method="arraySpanMethod" :border="true">
         <el-table-column prop="name1" label="分行名称" width="100" >
         </el-table-column>
@@ -40,7 +40,7 @@
       <div class="table_wrap_title">
         <span class="t_w_t1">产品规模数据</span>
       </div>
-      <el-table :data="tableData" style="width: 100%" header-row-class-name="table_header" 
+      <el-table :data="tableData" style="width: 100%" header-row-class-name="table_header"
       :span-method="arraySpanMethod" :border="true">
         <el-table-column prop="name1" label="分行名称" width="100" >
         </el-table-column>
@@ -165,26 +165,26 @@ export default {
 
   },
   methods: {
-    renderHeader(h, { column, $index }) {
-      return h("span", [
+    renderHeader (h, { column, $index }) {
+      return h('span', [
         h(
-          "el-tooltip",
+          'el-tooltip',
           {
             attrs: {
-              class: "item",
-              effect: "dark",
+              class: 'item',
+              effect: 'dark',
               content: column.label,
-              placement: "top",
-            },
+              placement: 'top'
+            }
           },
-          [h("span", column.label)]
-        ),
-      ]);
+          [h('span', column.label)]
+        )
+      ])
     },
-    searchFn(){
+    searchFn () {
       console.log('searchFn')
     },
-    resetFn(){
+    resetFn () {
       console.log('resetFn')
     },
     // 表格合并的方法
@@ -263,7 +263,7 @@ export default {
 //     word-break: keep-all !important;
 //     white-space: nowrap !important;
 //   }
- 
+
 .main_box {
   padding: 10px;
   // height: 40px;

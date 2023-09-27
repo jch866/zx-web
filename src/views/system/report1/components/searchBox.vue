@@ -28,7 +28,7 @@ export default {
   components: {
     diffDate, Treeselect, searchFilter, listingSet
   },
-  data() {
+  data () {
     return {
       value: null,
       props: { multiple: true },
@@ -118,20 +118,18 @@ export default {
       // }
     }
   },
-  created() {
+  created () {
     console.log(this)
   },
   methods: {
 
-    selectDateType(index) {
+    selectDateType (index) {
       this.activeIndex = index
     },
-    resetHandler() {
-
+    resetHandler () {
       this.$emit('resetFn')
     },
-    searchHandler() {
-
+    searchHandler () {
       this.$emit('searchFn')
     }
 

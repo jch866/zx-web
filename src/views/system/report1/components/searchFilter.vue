@@ -44,7 +44,7 @@
     </el-popover>
   </div>
 </template>
-  
+
 <script>
 
 export default {
@@ -52,7 +52,7 @@ export default {
   components: {
 
   },
-  data() {
+  data () {
     return {
       form: {
         name: '',
@@ -72,7 +72,7 @@ export default {
         label: '大湾区',
         children: [{
           value: 'shejiyuanze',
-          label: '广州分行',
+          label: '广州分行'
         }, {
           value: 'daohang',
           label: '导航',
@@ -99,26 +99,25 @@ export default {
         }]
       }]
     }
-
   },
-  created() {
+  created () {
     console.log(this)
   },
   methods: {
-    cancel() {
-      this.$refs[`popover`].doClose()
+    cancel () {
+      this.$refs.popover.doClose()
     },
-    handleChange(value) {
-      console.log(value);
+    handleChange (value) {
+      console.log(value)
     },
-    onSubmit() {
+    onSubmit () {
       console.log('submit')
     }
   }
 }
 
 </script>
-  
+
 <style lang="scss" scoped>
 .search_filter {
   margin-left: 10px;
@@ -135,8 +134,6 @@ export default {
     margin-bottom: 3px;
   }
 
-  
-
   .el-form-item__label {
     padding-bottom: 0px;
   }
@@ -147,4 +144,3 @@ export default {
   }
 }
 </style>
-  
