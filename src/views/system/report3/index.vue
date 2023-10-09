@@ -29,6 +29,8 @@
           </div>
         </div>
       </div>
+      <echarts-demo/> 
+      <echarts-demo2/> 
       <div class="table_wrap_title">
         <span class="t_w_t1">资产规模数据</span>
         <span class="t_w_t2"><el-button size="small" icon="el-icon-setting" slot="reference">列表设置</el-button></span>

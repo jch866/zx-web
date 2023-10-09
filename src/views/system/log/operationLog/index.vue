@@ -49,6 +49,10 @@ export default {
   data () {
     return {}
   },
+  mounted(){
+    //todo
+    // console.log(this.crud)
+  },
   methods: {
     getCrudOptions () {
       return crudOptions(this)

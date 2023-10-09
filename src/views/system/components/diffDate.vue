@@ -11,7 +11,6 @@
       v-if="selectType === 'month'" :key="Math.random()"></el-date-picker>
     <el-date-picker v-model="value3" type="year" size="small" placeholder="选择年"
       v-if="selectType === 'year'" :key="Math.random()"></el-date-picker>
-    <!-- todo -->
     <halfyear-picker v-model="value3" ref="halfyearRef" v-if="selectType === 'halfyear'" @change="selectHandler" />
     <el-quarter-picker v-model="value3" size="small" v-if="selectType === 'season'"></el-quarter-picker>
   </div>

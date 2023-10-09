@@ -72,7 +72,7 @@
 </template>
 
 <script>
-import searchBox from './components/searchBox'
+import searchBox from './../components/searchBox'
 export default {
   name: 'report1',
   components: {
