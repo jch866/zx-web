@@ -31,17 +31,14 @@
         <span class="t_w_t2"><el-button size="small" icon="el-icon-setting" slot="reference">列表设置</el-button></span>
       </div> -->
       <!-- :header-row-style="{color:'#333'}"  show-summary :sum-text="'合计'"-->
-      <el-table :data="tableData" style="width: 100%" header-row-class-name="table_header" :border="true">
-        <el-table-column prop="name1" label="产品数量" width="300" :show-overflow-tooltip="true">
-          <el-table-column prop="name1"  width="120">
-            <!-- <template #header>
-              <span class="message-title">{{aa.$index}}</span>
-            </template> -->
-          </el-table-column>
-          <el-table-column prop="name2" label="较上月末" width="120">
-          </el-table-column>
-          <el-table-column prop="name3" label="较年初" width="120">
-          </el-table-column>
+      <el-table :data="tableData.slice(0, 6)" style="width: 100%" header-row-class-name="table_header" :border="true"
+        :span-method="arraySpanMethod" :header-cell-style="handerMethod">
+
+        <el-table-column prop="name1" label="产品数量" width="120">
+        </el-table-column>
+        <el-table-column prop="name2" label="较上月末" width="120">
+        </el-table-column>
+        <el-table-column prop="name3" label="较年初" width="120">
         </el-table-column>
         <el-table-column prop="name2" label="产品数量" width="120" :show-overflow-tooltip="true">
         </el-table-column>
@@ -55,7 +52,7 @@
       <!-- 分隔 -->
       <setDetail />
       <el-table :data="tableData" style="width: 100%" header-row-class-name="table_header" :border="true">
-        <el-table-column prop="name1" label="销售渠道" width="300" :show-overflow-tooltip="true">
+        <el-table-column prop="name1" label="销售渠道" width="200" :show-overflow-tooltip="true">
         </el-table-column>
         <el-table-column prop="name2" label="产品数量" width="120" :show-overflow-tooltip="true">
         </el-table-column>
@@ -97,14 +94,14 @@ export default {
   components: {
     setDetail
   },
-  data () {
+  data() {
     return {
       value1: '',
       value: '',
 
       alldata: [],
       tableData: [{
-        name1: '货币市场工具类资产',
+        name1: '上海分行1',
         name2: '信用债',
         name3: '长三角',
         name4: '货币市场⼯具类资产',
@@ -139,8 +136,8 @@ export default {
         name5: '企业债权性资产',
         zip: '1,999.00'
       }, {
-        name1: '上海分行',
-        name2: '资产市场债权性资产',
+        name1: '老产品',
+        name2: '资产市资产12',
         name3: '长三角',
         // name4: '项⽬类资产2',
         name5: '资产市场债权性资产',
@@ -183,66 +180,92 @@ export default {
       }]
     }
   },
-  created () {
+  created() {
 
   },
   methods: {
-    // renderHeader(h, { column, $index }) {
-    //   return h("span", [
-    //     h(
-    //       "el-tooltip",
-    //       {
-    //         attrs: {
-    //           class: "item",
-    //           effect: "dark",
-    //           content: column.label,
-    //           placement: "top",
-    //         },
-    //       },
-    //       [h("span", column.label)]
-    //     ),
-    //   ]);
-    // },
-    searchFn () {
+    handerMethod({ row, column, rowIndex, columnIndex }) {
+
+      if ((columnIndex == 1) | (columnIndex == 2)) {
+        return { display: "none" };
+      }
+      // 第二步， 由于1、2列没有了，后续列就会贴上来（后续列往左错位问题）
+      if ((rowIndex == 0) & (columnIndex == 0)) {
+        // 解决后续列错位问题，就是将隐去的第1、2列的位置再补上，通过第0列来补
+        this.$nextTick(() => {
+          // 原来第0列只占据一个位置，现在要去占据三个位置。即占据三列，即设置为横向三个单元格
+          document.querySelector(`.${column.id}`).setAttribute("colspan", "3");
+          // 这里的column.id实际是dom元素的class，故用点.不用井#，可审查dom验证
+          // 通过设置原生的colspan属性，让原来的第一列只占据一个单元格的表头占据3个单元格即可
+        });
+      }
+    },
+
+    searchFn() {
       console.log('searchFn')
     },
-    resetFn () {
+    resetFn() {
       console.log('resetFn')
     },
     // 表格合并的方法
-    arraySpanMethod ({ row, column, rowIndex, columnIndex }) {
-      const len = this.tableData.length
-      let _row = 0
-      let _col = 0
+    arraySpanMethod({ row, column, rowIndex, columnIndex }) {
       if (columnIndex === 0) {
-        if (rowIndex < 4) {
-          if (rowIndex % 2 === 0) {
-            _row = 2
-            _col = 1
-          } else {
-            _row = 0
-            _col = 1
-          }
-          return {
-            rowspan: _row,
-            colspan: _col
-          }
-        } else {
-          if (rowIndex === 4) {
-            _row = len - 4
-            _col = 1
-          } else {
-            _row = 0
-            _col = 1
-          }
-          return {
-            rowspan: _row,
-            colspan: _col
-          }
+        let array = [1, 2, 3, 4];
+        if (rowIndex === 0) {
+          return [5, 1]
+        }
+        if (array.includes(rowIndex)) {
+          return [0, 1]
+        }
+        //如果写else会对在columnIndex === 0 情况下的其它行产生影响
+      }
+      if (columnIndex === 1) {
+        if (rowIndex === 0 || rowIndex === 2) {
+          return [2, 1]
+        }
+        if (rowIndex === 1 || rowIndex === 3) {
+          return [0, 1]
         }
       }
+      if (columnIndex === 1) {
+        if (rowIndex === 4) {
+          return [1, 2]
+        }
+      }
+      if (columnIndex === 2) {
+        if (rowIndex === 4) {
+          return [1, 0]
+        }
+      }
+      // 二选一
+      // if (columnIndex === 0) {
+      //   if (rowIndex === 5) {
+      //     return [1, 3]
+      //   }  
+      // }
+      // if (columnIndex === 1) {
+      //   if (rowIndex === 5) {
+      //     return [1, 0]
+      //   }  
+      // }
+      // if (columnIndex === 2) {
+      //   if (rowIndex === 5) {
+      //     return [1, 0]
+      //   }  
+      // }
+
+      // 二选一
+      if (rowIndex === 5) {
+        if (columnIndex === 0) {
+          return [1, 3]
+        }
+        if (columnIndex === 1 || columnIndex === 2) {
+          return [1, 0]
+        }
+      }
+
     },
-    getSummaries (param) { }
+    getSummaries(param) { }
 
   }
 }

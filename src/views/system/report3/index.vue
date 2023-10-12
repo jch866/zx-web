@@ -66,6 +66,7 @@
       <!-- :header-row-style="{color:'#333'}" -->
       <el-table :data="tableData" style="width: 100%" header-row-class-name="table_header" :span-method="arraySpanMethod"
         :border="true" show-summary :sum-text="'资产合计'" :summary-method="getSummaries">
+
         <el-table-column prop="name1" label="资产一分类" width="100" :show-overflow-tooltip="true">
         </el-table-column>
         <el-table-column prop="name2" label="资产二分类" width="100" :show-overflow-tooltip="true">
@@ -179,7 +180,7 @@ export default {
     echartsDemo4,
     listingSet
   },
-  data () {
+  data() {
     return {
       value1: '',
       value: '',
@@ -264,18 +265,21 @@ export default {
       }]
     }
   },
-  created () {
+  created() {
 
   },
   methods: {
-    searchFn () {
+    handerMethod({ row, column, rowIndex, columnIndex }) {
+
+    },
+    searchFn() {
       console.log('searchFn')
     },
-    resetFn () {
+    resetFn() {
       console.log('resetFn')
     },
     // 表格合并的方法
-    arraySpanMethod ({ row, column, rowIndex, columnIndex }) {
+    arraySpanMethod({ row, column, rowIndex, columnIndex }) {
       const len = this.tableData.length
       let _row = 0
       let _col = 0
@@ -307,7 +311,7 @@ export default {
         }
       }
     },
-    getSummaries (param) { }
+    getSummaries(param) { }
   }
 }
 

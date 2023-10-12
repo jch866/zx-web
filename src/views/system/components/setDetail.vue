@@ -6,16 +6,15 @@
           @click="onTypesHandle(index)">{{ item }}</li>
       </ul>
     </div>
-    <div class="types_btn">
+    <div class="types_btn" v-if="activeIndex === 0">
       <el-button type="primary" size="small" @click="dialogVisible = true">设置明细</el-button>
     </div>
     <el-dialog title="设置细项" :visible.sync="dialogVisible" width="70%">
 
-      <el-table :data="tableData" style="width: 100%" header-row-class-name="table_header"
-        :border="true"  >
+      <el-table :data="tableData" style="width: 100%" header-row-class-name="table_header" :border="true">
         <el-table-column prop="zip1" label="细项名称" min-width="140" align="left">
         </el-table-column>
-        <el-table-column prop="zip2" label="细项筛选规则" min-width="140" align="left" >
+        <el-table-column prop="zip2" label="细项筛选规则" min-width="140" align="left">
         </el-table-column>
         <el-table-column prop="zip3" label="细项说明" min-width="60" align="left">
         </el-table-column>
@@ -46,7 +45,7 @@
 <script>
 export default {
   name: 'setDetail',
-  data () {
+  data() {
     return {
       listType: ['按产品类型', '按销售渠道', '按期限结构'],
       activeIndex: 0,
@@ -60,14 +59,14 @@ export default {
     }
   },
   methods: {
-    onTypesHandle (index) {
+    onTypesHandle(index) {
       this.activeIndex = index
     },
-    editRow (index, data) {
+    editRow(index, data) {
       console.log(index)
       console.log(data)
     },
-    deleteRow (index, data) {
+    deleteRow(index, data) {
 
     }
   }
@@ -83,7 +82,7 @@ export default {
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #bdbdbd;
-  margin-bottom: 10px;
+  margin: 10px 0;
 
   .types_btn {
     display: flex;
