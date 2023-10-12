@@ -67,7 +67,7 @@ const list = [
     component_name: 'report2',
     cache: false,
     visible: true,
-    collect: true,
+    collect: true
     // menuPermission: ['Retrieve', 'Search']
   },
   {
@@ -158,7 +158,7 @@ const list = [
   {
     id: 4,
     parent: 1,
-    icon: 'bank',
+    icon: 'cog',
     sort: 3,
     path: '/report3',
     name: '资产负债表3',
@@ -170,7 +170,25 @@ const list = [
     component_name: 'report3',
     cache: false,
     visible: true,
-    collect: true,
+    collect: true
+    // menuPermission: ['Retrieve', 'Update', 'Search', 'Create', 'Delete']
+  },
+  {
+    id: 5,
+    parent: 1,
+    icon: 'cog',
+    sort: 3,
+    path: '/report4',
+    name: '产品规模日报',
+    title: '产品规模日报',
+    is_link: false,
+    is_catalog: false,
+    web_path: '/report4',
+    component: 'system/report4/index',
+    component_name: 'report4',
+    cache: false,
+    visible: true,
+    collect: false
     // menuPermission: ['Retrieve', 'Update', 'Search', 'Create', 'Delete']
   },
   {

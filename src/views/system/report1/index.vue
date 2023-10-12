@@ -2,7 +2,8 @@
 <template>
   <div class="main_box">
     <div class="table_wrap_h3">
-      <span class="t_w_h3">分⾏表外资产负债表</span><el-button type="primary" size="small" icon="el-icon-share">导出</el-button>
+      <span class="t_w_h3">分⾏表外资产负债表</span>
+      <!-- <el-button type="primary" size="small" icon="el-icon-share">导出</el-button> -->
     </div>
     <div class="table_wrap">
       <search-box @searchFn="searchFn" @resetFn="resetFn"/>

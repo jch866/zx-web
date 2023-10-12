@@ -49,8 +49,8 @@ export default {
   data () {
     return {}
   },
-  mounted(){
-    //todo
+  mounted () {
+    // todo
     // console.log(this.crud)
   },
   methods: {

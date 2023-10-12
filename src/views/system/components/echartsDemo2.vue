@@ -1,6 +1,6 @@
 <!-- 柱状 拆线图 -->
 <template>
-    <div id="demo2" style="width: 800px;height: 400px;"></div>
+    <div id="demo2" style="width: 800px;height: 400px; "></div>
 </template>
 
 <script>

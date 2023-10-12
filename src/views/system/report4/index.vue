@@ -2,149 +2,106 @@
 <template>
   <div class="main_box">
     <div class="table_wrap_h3">
-      <span class="t_w_h3">分⾏表外资产负债表</span>
+      <span class="t_w_h3">产品规模日报</span>
       <!-- <el-button type="primary" size="small" icon="el-icon-share">导出</el-button> -->
     </div>
     <div class="table_wrap">
-      <search-box @searchFn="searchFn" @resetFn="resetFn" />
-      <div class="describe_title">
+      <div style="display: flex; justify-content: space-between;">
+        <div>
+          <el-date-picker v-model="value" type="date" size="small" placeholder="选择日期"
+            :key="Math.random()"></el-date-picker>
+          <el-button size="small" @click="resetHandler" style="margin-left: 10px;">重置</el-button>
+          <el-button size="small" @click="searchHandler">查询</el-button>
+        </div>
+        <el-button type="primary" size="small" icon="el-icon-share">导出</el-button>
+      </div>
+      <!-- <search-box @searchFn="searchFn" @resetFn="resetFn" /> -->
+      <div class="describe_title mb10">
         <div class="d_title">
-          <p class="d_title_header">分行表外资产负债表</p>
-          <p class="d_items_con1">编制单位：⻓三⻆/上海分⾏ 报表类型：⽉报 统计⽇期: 2023/04/17 - 2023/05/20</p>
+          <p class="d_title_header">产品规模日报-概述</p>
         </div>
         <div class="d_items">
           <div class="d_items_type">
-            <p class="d_items_header">报表类型</p>
-            <p class="d_items_con">月报</p>
-          </div>
-          <el-divider direction="vertical"></el-divider>
-          <div class="d_items_type">
-            <p class="d_items_header">统计日期</p>
-            <p class="d_items_con">2023/04/17 - 2023/05/20 </p>
-          </div>
-          <el-divider direction="vertical"></el-divider>
-          <div class="d_items_type">
-            <p class="d_items_header">单位</p>
-            <p class="d_items_con">万元</p>
+            <p class="d_items_header">单位: 亿元</p>
           </div>
         </div>
       </div>
-      <div class="table_wrap_title">
+      <!-- <div class="table_wrap_title">
         <span class="t_w_t1">资产规模数据</span>
-        <span class="t_w_t2">
-          <listingSet/>
-        </span>
-      </div>
-      <!-- :header-row-style="{color:'#333'}" -->
-      <el-table :data="tableData" style="width: 100%" header-row-class-name="table_header" :span-method="arraySpanMethod"
-        :border="true" show-summary :sum-text="'资产合计'" :summary-method="getSummaries">
-        <el-table-column prop="name1" label="资产一分类" width="100" :show-overflow-tooltip="true">
-        </el-table-column>
-        <el-table-column prop="name2" label="资产二分类" width="100" :show-overflow-tooltip="true">
-        </el-table-column>
-        <el-table-column label="资产规模数据(万元)">
-          <el-table-column prop="zip" label="期初存量" width="120">
+        <span class="t_w_t2"><el-button size="small" icon="el-icon-setting" slot="reference">列表设置</el-button></span>
+      </div> -->
+      <!-- :header-row-style="{color:'#333'}"  show-summary :sum-text="'合计'"-->
+      <el-table :data="tableData" style="width: 100%" header-row-class-name="table_header" :border="true">
+        <el-table-column prop="name1" label="产品数量" width="300" :show-overflow-tooltip="true">
+          <el-table-column prop="name1"  width="120">
+            <!-- <template #header>
+              <span class="message-title">{{aa.$index}}</span>
+            </template> -->
           </el-table-column>
-          <el-table-column prop="zip" label="新增投放" width="120">
+          <el-table-column prop="name2" label="较上月末" width="120">
           </el-table-column>
-          <el-table-column prop="zip" label="投放到期" width="120">
-          </el-table-column>
-          <el-table-column prop="zip" label="净投放" width="120">
-          </el-table-column>
-          <el-table-column prop="zip" label="期未存量" width="120">
-          </el-table-column>
-          <el-table-column prop="zip" label="期间均值" width="120">
+          <el-table-column prop="name3" label="较年初" width="120">
           </el-table-column>
         </el-table-column>
-        <el-table-column label="加权平均期限(年)">
-          <el-table-column prop="zip" label="期初存量" width="120">
-          </el-table-column>
-          <el-table-column prop="zip" label="新增投放" width="120">
-          </el-table-column>
-          <el-table-column prop="zip" label="期未存量" width="120">
-          </el-table-column>
+        <el-table-column prop="name2" label="产品数量" width="120" :show-overflow-tooltip="true">
         </el-table-column>
-        <el-table-column label="加权平均收益率">
-          <el-table-column prop="zip" label="期初存量" width="120">
-          </el-table-column>
-          <el-table-column prop="zip" label="新增投放" width="120">
-          </el-table-column>
-          <el-table-column prop="zip" label="期未存量" width="120">
-          </el-table-column>
+        <el-table-column prop="zip" label="09-28" width="120">
         </el-table-column>
-        <el-table-column label="加权平均收益率(期限)">
-          <el-table-column prop="zip" label="期初存量" width="120">
-          </el-table-column>
-          <el-table-column prop="zip" label="新增投放" width="120">
-          </el-table-column>
-          <el-table-column prop="zip" label="期未存量" width="120">
-          </el-table-column>
+        <el-table-column prop="zip" label="较上月末" width="120">
+        </el-table-column>
+        <el-table-column prop="zip" label="较年初" width="120">
         </el-table-column>
       </el-table>
       <!-- 分隔 -->
-      <div class="table_wrap_title">
-        <span class="t_w_t1">产品规模数据</span>
-      </div>
-      <el-table :data="tableData" style="width: 100%" header-row-class-name="table_header" :span-method="arraySpanMethod"
-        :border="true">
-        <el-table-column prop="name1" label="资产一分类" width="100" :show-overflow-tooltip="true">
+      <setDetail />
+      <el-table :data="tableData" style="width: 100%" header-row-class-name="table_header" :border="true">
+        <el-table-column prop="name1" label="销售渠道" width="300" :show-overflow-tooltip="true">
         </el-table-column>
-        <el-table-column prop="name2" label="资产二分类" width="100" :show-overflow-tooltip="true">
+        <el-table-column prop="name2" label="产品数量" width="120" :show-overflow-tooltip="true">
         </el-table-column>
-        <el-table-column label="资产规模数据(万元)">
-          <el-table-column prop="zip" label="期初存量" width="120">
-          </el-table-column>
-          <el-table-column prop="zip" label="新增投放" width="120">
-          </el-table-column>
-          <el-table-column prop="zip" label="投放到期" width="120">
-          </el-table-column>
-          <el-table-column prop="zip" label="净投放" width="120">
-          </el-table-column>
-          <el-table-column prop="zip" label="期未存量" width="120">
-          </el-table-column>
-          <el-table-column prop="zip" label="期间均值" width="120">
-          </el-table-column>
+        <el-table-column prop="zip" label="09-28" width="120">
         </el-table-column>
-        <el-table-column label="加权平均期限(年)">
-          <el-table-column prop="zip" label="期初存量" width="120">
-          </el-table-column>
-          <el-table-column prop="zip" label="新增投放" width="120">
-          </el-table-column>
-          <el-table-column prop="zip" label="期未存量" width="120">
-          </el-table-column>
+        <el-table-column prop="zip" label="较上月末" width="120">
         </el-table-column>
-        <el-table-column label="加权平均收益率">
-          <el-table-column prop="zip" label="期初存量" width="120">
-          </el-table-column>
-          <el-table-column prop="zip" label="新增投放" width="120">
-          </el-table-column>
-          <el-table-column prop="zip" label="期未存量" width="120">
-          </el-table-column>
-        </el-table-column>
-        <el-table-column label="加权平均收益率(期限)">
-          <el-table-column prop="zip" label="期初存量" width="120">
-          </el-table-column>
-          <el-table-column prop="zip" label="新增投放" width="120">
-          </el-table-column>
-          <el-table-column prop="zip" label="期未存量" width="120">
-          </el-table-column>
+        <el-table-column prop="zip" label="较年初" width="120">
         </el-table-column>
       </el-table>
     </div>
   </div>
 </template>
-
+<!-- getSpan: function getSpan(row, column, rowIndex, columnIndex) {
+  var rowspan = 1;
+  var colspan = 1;
+  var fn = this.table.spanMethod;
+  if (typeof fn === 'function') {
+    var result = fn({
+      row: row,
+      column: column,
+      rowIndex: rowIndex,
+      columnIndex: columnIndex
+    });
+    if (Array.isArray(result)) {
+      rowspan = result[0];
+      colspan = result[1];
+    } else if ((typeof result === 'undefined' ? 'undefined' : _typeof(result)) === 'object') {
+      rowspan = result.rowspan;
+      colspan = result.colspan;
+    }
+  }
+  return { rowspan: rowspan, colspan: colspan };
+}, -->
 <script>
-import searchBox from './../components/searchBox'
-import listingSet from './../components/listingSet'
-
+import setDetail from './../components/setDetail'
 export default {
-  name: 'report2',
+  name: 'report4',
   components: {
-    searchBox, listingSet
+    setDetail
   },
   data () {
     return {
+      value1: '',
+      value: '',
+
       alldata: [],
       tableData: [{
         name1: '货币市场工具类资产',
@@ -285,7 +242,8 @@ export default {
         }
       }
     },
-    getSummaries (param) {}
+    getSummaries (param) { }
+
   }
 }
 
@@ -300,6 +258,9 @@ export default {
 //     word-break: keep-all !important;
 //     white-space: nowrap !important;
 //   }
+.mb10 {
+  margin-bottom: 10px;
+}
 
 .main_box {
   padding: 10px;
@@ -387,5 +348,6 @@ export default {
   .d_items_con1 {
     color: #bdbdbd;
   }
+
 }
 </style>

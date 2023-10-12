@@ -12,14 +12,14 @@ export default {
 
   },
 
-  data() {
+  data () {
     this.myChart = null
     return {
       data: []
     }
   },
   methods: {
-    drawLine() {
+    drawLine () {
       const backgroundColor = '#ffffff'
       const colors = ['#3072ef', '#00c1ff']
       const title = {
@@ -147,7 +147,7 @@ export default {
             axisLabel: {
               show: true,
               formatter: function (value, index) {
-                return value < 0 ? -value : value;
+                return value < 0 ? -value : value
               }
             },
             splitLine: {
@@ -155,7 +155,7 @@ export default {
               lineStyle: {
                 type: 'dashed'
 
-              },
+              }
             }
           }
         ],
@@ -187,7 +187,7 @@ export default {
     //     this.myChart.resize()
     //   }
   },
-  mounted() {
+  mounted () {
     this.myChart = this.$echarts.init(document.getElementById('demo1'))
     this.drawLine()
     //   window.addEventListener('resize', () => {
