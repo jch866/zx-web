@@ -33,8 +33,59 @@
           </template>
         </el-table-column>
       </el-table>
-      <div class="add_detail"><span><i class="el-icon-plus"></i> 添加细项规则</span></div>
+      <div class="add_detail"><span @click="addDetailHandle"><i class="el-icon-plus"></i> 添加细项规则</span></div>
       <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false" size="small">取 消</el-button>
+        <el-button type="primary" @click="dialogVisible = false" size="small">提 交</el-button>
+      </span>
+    </el-dialog>
+    <el-dialog title="添加细项规则" :visible.sync="dialogAdd" width="70%">
+      <!-- :rules="rules" -->
+      <el-form :model="ruleForm" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+        <el-form-item label="细项名细" prop="name">
+          <el-input v-model="ruleForm.name" size="small"></el-input>
+        </el-form-item>
+        <el-form-item label="细项说明" prop="desc">
+          <el-input type="textarea" v-model="ruleForm.desc"></el-input>
+        </el-form-item>
+        <el-form-item label="维度规则" prop="region">
+
+          <el-table :data="tableDataAdd" style="width: 100%" header-row-class-name="table_header" :border="true">
+            <el-table-column prop="zip1" label="规则字段" min-width="140" align="left">
+              <template slot-scope="scope">
+                <el-select v-model="scope.row.zip1" placeholder="" size="small">
+                  <el-option label="区域一" value="shanghai"></el-option>
+                  <el-option label="区域二" value="beijing"></el-option>
+                </el-select>
+              </template>
+            </el-table-column>
+            <el-table-column prop="zip2" label="判断条件" min-width="140" align="left">
+              <template slot-scope="scope">
+                <el-select v-model="scope.row.zip2" placeholder="" size="small">
+                  <el-option label="区域一" value="shanghai"></el-option>
+                  <el-option label="区域二" value="beijing"></el-option>
+                </el-select>
+              </template>
+            </el-table-column>
+            <el-table-column prop="zip3" label="规则值" min-width="60" align="left">
+              <template slot-scope="scope">
+                <el-select v-model="scope.row.zip3" placeholder="" size="small">
+                  <el-option label="区域一" value="shanghai"></el-option>
+                  <el-option label="区域二" value="beijing"></el-option>
+                </el-select>
+              </template>
+            </el-table-column>
+            <el-table-column label="操作" width="100" align="left">
+              <template slot-scope="scope">
+                <el-button type="text" size="small" @click="delItem(scope.$index)" v-if="scope.$index!==0">删除</el-button>
+              </template>
+            </el-table-column>
+          </el-table>
+        </el-form-item>
+      </el-form>
+      <div class="add_detail"><span @click="addItem"><i class="el-icon-plus"></i> 添加规则</span></div>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="clearFormHandle" size="small" type="text">清 空</el-button>
         <el-button @click="dialogVisible = false" size="small">取 消</el-button>
         <el-button type="primary" @click="dialogVisible = false" size="small">提 交</el-button>
       </span>
@@ -50,12 +101,23 @@ export default {
       listType: ['按产品类型', '按销售渠道', '按期限结构'],
       activeIndex: 0,
       dialogVisible: false,
+      dialogAdd: false,
       tableData: [
         { zip1: '其中:1年及以上固收稳利(低波)', zip2: '其中:1年及以上固收稳利(权益0.5%)', zip3: '-' },
         { zip1: '其中:1年及以上固收稳利(权益0.5%)', zip2: '其中:1年及以上固收稳利(权益0.5%)', zip3: '-' },
         { zip1: '其中:1年及以上固收稳利(低波)', zip2: '其中:1年及以上固收稳利(权益0.5%)', zip3: '-' },
         { zip1: '其中:1年及以上固收稳利(权益0.5%)', zip2: '其中:1年及以上固收稳利(权益0.5%)', zip3: '-' }
-      ]
+      ],
+      tableDataAdd: [
+        { zip1: '赛道', zip2: '等于', zip3: '固收' },
+        { zip1: 'shanghai', zip2: '等于', zip3: '固收' },
+        { zip1: '赛道2', zip2: '等于', zip3: '固收' },
+        { zip1: '赛道3', zip2: '等于', zip3: '固收' },
+      ],
+      ruleForm: {
+        name: '',
+        desc: ''
+      },
     }
   },
   methods: {
@@ -68,6 +130,24 @@ export default {
     },
     deleteRow(index, data) {
 
+    },
+    addDetailHandle() {
+      this.dialogVisible = false;
+      this.dialogAdd = true
+    },
+    clearFormHandle() {
+      console.log('clear');
+      this.ruleForm = {
+        name: '',
+        desc: ''
+      }
+    },
+    addItem(){
+      this.tableDataAdd = [...this.tableDataAdd, { zip1: '', zip2: '', zip3: '' }];
+    },
+    delItem(index) {
+      console.log(index);
+      this.tableDataAdd.splice(index,1)
     }
   }
 }
