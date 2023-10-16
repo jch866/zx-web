@@ -31,8 +31,8 @@
         <span class="t_w_t2"><el-button size="small" icon="el-icon-setting" slot="reference">列表设置</el-button></span>
       </div> -->
       <!-- :header-row-style="{color:'#333'}"  show-summary :sum-text="'合计'"-->
-      <el-table :data="tableData.slice(0, 6)" style="width: 100%" header-row-class-name="table_header" :border="true"
-        :span-method="arraySpanMethod" :header-cell-style="handerMethod">
+      <el-table :data="tableData.slice(0, 7)" style="width: 100%" header-row-class-name="table_header" :border="true"
+        :span-method="arraySpanMethod" :header-cell-style="handerMethod" :cell-style="cellStyleHandle">
 
         <el-table-column prop="name1" label="产品数量" width="120">
         </el-table-column>
@@ -40,7 +40,7 @@
         </el-table-column>
         <el-table-column prop="name3" label="较年初" width="120">
         </el-table-column>
-        <el-table-column prop="name2" label="产品数量" width="120" :show-overflow-tooltip="true">
+        <el-table-column prop="zip" label="产品数量" width="120" :show-overflow-tooltip="true">
         </el-table-column>
         <el-table-column prop="zip" label="09-28" width="120">
         </el-table-column>
@@ -130,21 +130,21 @@ export default {
         zip: '1,999.00'
       }, {
         name1: '项目类资产',
-        name2: '企业债权性资产',
+        name2: '小计',
         name3: '长三角',
         name4: '项⽬类资产',
         name5: '企业债权性资产',
         zip: '1,999.00'
       }, {
         name1: '老产品',
-        name2: '资产市资产12',
+        name2: '--',
         name3: '长三角',
         // name4: '项⽬类资产2',
         name5: '资产市场债权性资产',
         zip: '1,999.00'
       }, {
-        name1: '上海分行',
-        name2: '资产市场投资性资产',
+        name1: '合计',
+        name2: '--',
         name3: '长三角',
         // name4: '项⽬类资产3',
         name5: '资产市场投资性资产',
@@ -255,7 +255,7 @@ export default {
       // }
 
       // 二选一
-      if (rowIndex === 5) {
+      if (rowIndex === 5 || rowIndex ===6 ) {
         if (columnIndex === 0) {
           return [1, 3]
         }
@@ -264,6 +264,25 @@ export default {
         }
       }
 
+    },
+    //控制单元格样式的方法
+    cellStyleHandle({ row, column, rowIndex, columnIndex }){
+      if (rowIndex === 4 ) {
+        if (columnIndex === 1) {
+          return "background:#D7E3FD";
+        }
+        if (columnIndex > 2) {
+          return "background:#FFF3D9";
+        }
+      }
+      if ( rowIndex ===6 ) {
+        if (columnIndex === 0) {
+          return "background:#D7E3FD";
+        }
+        if (columnIndex > 2) {
+          return "background:#FFF3D9";
+        }
+      }
     },
     getSummaries(param) { }
 
