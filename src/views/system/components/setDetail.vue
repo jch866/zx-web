@@ -96,7 +96,7 @@
 <script>
 export default {
   name: 'setDetail',
-  data() {
+  data () {
     return {
       listType: ['按产品类型', '按销售渠道', '按期限结构'],
       activeIndex: 0,
@@ -112,42 +112,43 @@ export default {
         { zip1: '赛道', zip2: '等于', zip3: '固收' },
         { zip1: 'shanghai', zip2: '等于', zip3: '固收' },
         { zip1: '赛道2', zip2: '等于', zip3: '固收' },
-        { zip1: '赛道3', zip2: '等于', zip3: '固收' },
+        { zip1: '赛道3', zip2: '等于', zip3: '固收' }
       ],
       ruleForm: {
         name: '',
         desc: ''
-      },
+      }
     }
   },
   methods: {
-    onTypesHandle(index) {
+    onTypesHandle (index) {
       this.activeIndex = index
+      this.$emit('setTable', index)
     },
-    editRow(index, data) {
+    editRow (index, data) {
       console.log(index)
       console.log(data)
     },
-    deleteRow(index, data) {
+    deleteRow (index, data) {
 
     },
-    addDetailHandle() {
-      this.dialogVisible = false;
+    addDetailHandle () {
+      this.dialogVisible = false
       this.dialogAdd = true
     },
-    clearFormHandle() {
-      console.log('clear');
+    clearFormHandle () {
+      console.log('clear')
       this.ruleForm = {
         name: '',
         desc: ''
       }
     },
-    addItem(){
-      this.tableDataAdd = [...this.tableDataAdd, { zip1: '', zip2: '', zip3: '' }];
+    addItem () {
+      this.tableDataAdd = [...this.tableDataAdd, { zip1: '', zip2: '', zip3: '' }]
     },
-    delItem(index) {
-      console.log(index);
-      this.tableDataAdd.splice(index,1)
+    delItem (index) {
+      console.log(index)
+      this.tableDataAdd.splice(index, 1)
     }
   }
 }

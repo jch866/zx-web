@@ -167,7 +167,7 @@
 import searchBox from './../components/searchBox'
 import echartsDemo from './../components/echartsDemo.vue'
 import echartsDemo2 from './../components/echartsDemo2.vue'
-import echartsDemo3 from './../components/echartsDemo3.vue'
+// import echartsDemo3 from './../components/echartsDemo3.vue'
 import echartsDemo4 from './../components/echartsDemo4.vue'
 import listingSet from './../components/listingSet.vue'
 export default {
@@ -176,11 +176,11 @@ export default {
     searchBox,
     echartsDemo,
     echartsDemo2,
-    echartsDemo3,
+    // echartsDemo3,
     echartsDemo4,
     listingSet
   },
-  data() {
+  data () {
     return {
       value1: '',
       value: '',
@@ -265,21 +265,21 @@ export default {
       }]
     }
   },
-  created() {
+  created () {
 
   },
   methods: {
-    handerMethod({ row, column, rowIndex, columnIndex }) {
+    handerMethod ({ row, column, rowIndex, columnIndex }) {
 
     },
-    searchFn() {
+    searchFn () {
       console.log('searchFn')
     },
-    resetFn() {
+    resetFn () {
       console.log('resetFn')
     },
     // 表格合并的方法
-    arraySpanMethod({ row, column, rowIndex, columnIndex }) {
+    arraySpanMethod ({ row, column, rowIndex, columnIndex }) {
       const len = this.tableData.length
       let _row = 0
       let _col = 0
@@ -311,7 +311,7 @@ export default {
         }
       }
     },
-    getSummaries(param) { }
+    getSummaries (param) { }
   }
 }
 

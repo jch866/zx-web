@@ -50,19 +50,8 @@
         </el-table-column>
       </el-table>
       <!-- 分隔 -->
-      <setDetail />
-      <el-table :data="tableData" style="width: 100%" header-row-class-name="table_header" :border="true">
-        <el-table-column prop="name1" label="销售渠道" width="200" :show-overflow-tooltip="true">
-        </el-table-column>
-        <el-table-column prop="name2" label="产品数量" width="120" :show-overflow-tooltip="true">
-        </el-table-column>
-        <el-table-column prop="zip" label="09-28" width="120">
-        </el-table-column>
-        <el-table-column prop="zip" label="较上月末" width="120">
-        </el-table-column>
-        <el-table-column prop="zip" label="较年初" width="120">
-        </el-table-column>
-      </el-table>
+      <setDetail @setTable="setTableShow"/>
+      <Component :is="this.comMap[this.activeIndex]" />
     </div>
   </div>
 </template>
@@ -89,135 +78,68 @@
 }, -->
 <script>
 import setDetail from './../components/setDetail'
+import { data1, data2 } from './data'
+import table1 from './table1.vue'
+import table2 from './table2.vue'
+import table3 from './table3.vue'
 export default {
   name: 'report4',
   components: {
-    setDetail
+    setDetail, table1, table2, table3
   },
-  data() {
+  data () {
     return {
       value1: '',
       value: '',
-
       alldata: [],
-      tableData: [{
-        name1: '上海分行1',
-        name2: '信用债',
-        name3: '长三角',
-        name4: '货币市场⼯具类资产',
-        name5: '活期存款类',
-        zip: '1,999.00'
-      }, {
-        name1: '上海分行',
-        name2: '信用债',
-        name3: '长三角',
-        name4: '货币市场⼯具类资产',
-        name5: '定期存款类(含⼤额存单)',
-        zip: '1,999.00'
-      }, {
-        name1: '债权类资产',
-        name2: '信用债',
-        name3: '长三角',
-        name4: '债权类资产',
-        name5: '信⽤债',
-        zip: '1,999.00'
-      }, {
-        name1: '上海分行',
-        name2: '资产⽀持证券',
-        name3: '长三角',
-        name4: '债权类资产',
-        name5: '资产⽀持证券',
-        zip: '1,999.00'
-      }, {
-        name1: '项目类资产',
-        name2: '小计',
-        name3: '长三角',
-        name4: '项⽬类资产',
-        name5: '企业债权性资产',
-        zip: '1,999.00'
-      }, {
-        name1: '老产品',
-        name2: '--',
-        name3: '长三角',
-        // name4: '项⽬类资产2',
-        name5: '资产市场债权性资产',
-        zip: '1,999.00'
-      }, {
-        name1: '合计',
-        name2: '--',
-        name3: '长三角',
-        // name4: '项⽬类资产3',
-        name5: '资产市场投资性资产',
-        zip: '1,999.00'
-      }, {
-        name1: '上海分行',
-        name2: '股权类资产',
-        name3: '长三角',
-        // name4: '项⽬类资产4',
-        name5: '股权类资产',
-        zip: '1,999.00'
-      }, {
-        name1: '上海分行',
-        name2: '同业债权性资产',
-        name3: '长三角',
-        // name4: '项⽬类资产5',
-        name5: '同业债权性资产',
-        zip: '1,999.00'
-      }, {
-        name1: '上海分行',
-        name2: '资产⽀持证券类⾮标资产',
-        name3: '长三角',
-        // name4: '项⽬类资产6',
-        name5: '资产⽀持证券类⾮标资产',
-        zip: '1,999.00'
-      }, {
-        name1: '上海分行',
-        name2: '公募REITS',
-        name3: '长三角',
-        // name4: '项⽬类资产7',
-        name5: '公募REITS',
-        zip: '1,999.00'
-      }]
+      tableData: data1,
+      tableData2: data2,
+      bg1: 'background:#D7E3FD',
+      bg2: 'background:#FFF3D9',
+      activeIndex: 0,
+      comMap: { 0: 'table1', 1: 'table2', 2: 'table3' }
     }
   },
-  created() {
+  created () {
 
   },
   methods: {
-    handerMethod({ row, column, rowIndex, columnIndex }) {
-
-      if ((columnIndex == 1) | (columnIndex == 2)) {
-        return { display: "none" };
+    setTableShow (index) {
+      this.activeIndex = index
+    },
+    handerMethod ({ row, column, rowIndex, columnIndex }) {
+      if ((columnIndex === 1) | (columnIndex === 2)) {
+        return { display: 'none' }
       }
       // 第二步， 由于1、2列没有了，后续列就会贴上来（后续列往左错位问题）
-      if ((rowIndex == 0) & (columnIndex == 0)) {
+      if ((rowIndex === 0) & (columnIndex === 0)) {
         // 解决后续列错位问题，就是将隐去的第1、2列的位置再补上，通过第0列来补
         this.$nextTick(() => {
           // 原来第0列只占据一个位置，现在要去占据三个位置。即占据三列，即设置为横向三个单元格
-          document.querySelector(`.${column.id}`).setAttribute("colspan", "3");
+          document.querySelector(`.${column.id}`).setAttribute('colspan', '3')
           // 这里的column.id实际是dom元素的class，故用点.不用井#，可审查dom验证
           // 通过设置原生的colspan属性，让原来的第一列只占据一个单元格的表头占据3个单元格即可
-        });
+        })
       }
     },
 
-    searchFn() {
+    searchFn () {
       console.log('searchFn')
     },
-    resetFn() {
+    resetFn () {
       console.log('resetFn')
     },
     // 表格合并的方法
-    arraySpanMethod({ row, column, rowIndex, columnIndex }) {
+    arraySpanMethod ({ row, column, rowIndex, columnIndex }) {
       if (columnIndex === 0) {
-        let array = [1, 2, 3, 4];
+        const array = [1, 2, 3, 4]
         if (rowIndex === 0) {
           return [5, 1]
         }
         if (array.includes(rowIndex)) {
           return [0, 1]
         }
-        //如果写else会对在columnIndex === 0 情况下的其它行产生影响
+        // 如果写else会对在columnIndex === 0 情况下的其它行产生影响
       }
       if (columnIndex === 1) {
         if (rowIndex === 0 || rowIndex === 2) {
@@ -241,21 +163,21 @@ export default {
       // if (columnIndex === 0) {
       //   if (rowIndex === 5) {
       //     return [1, 3]
-      //   }  
+      //   }
       // }
       // if (columnIndex === 1) {
       //   if (rowIndex === 5) {
       //     return [1, 0]
-      //   }  
+      //   }
       // }
       // if (columnIndex === 2) {
       //   if (rowIndex === 5) {
       //     return [1, 0]
-      //   }  
+      //   }
       // }
 
       // 二选一
-      if (rowIndex === 5 || rowIndex ===6 ) {
+      if (rowIndex === 5 || rowIndex === 6) {
         if (columnIndex === 0) {
           return [1, 3]
         }
@@ -263,28 +185,29 @@ export default {
           return [1, 0]
         }
       }
-
     },
-    //控制单元格样式的方法
-    cellStyleHandle({ row, column, rowIndex, columnIndex }){
-      if (rowIndex === 4 ) {
+    // 控制单元格样式的方法
+    cellStyleHandle ({ row, column, rowIndex, columnIndex }) {
+      if (rowIndex === 4) {
         if (columnIndex === 1) {
-          return "background:#D7E3FD";
+          return this.bg1
         }
         if (columnIndex > 2) {
-          return "background:#FFF3D9";
+          return this.bg2
         }
       }
-      if ( rowIndex ===6 ) {
+      if (rowIndex === 6) {
         if (columnIndex === 0) {
-          return "background:#D7E3FD";
+          return this.bg1
         }
         if (columnIndex > 2) {
-          return "background:#FFF3D9";
+          return this.bg2
         }
       }
     },
-    getSummaries(param) { }
+    getSummaries (param) { },
+    resetHandler () { },
+    searchHandler () { }
 
   }
 }

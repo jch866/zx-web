@@ -21,7 +21,7 @@ export default {
   components: {
 
   },
-  data() {
+  data () {
     return {
       visible: false,
       data: [{
@@ -63,29 +63,29 @@ export default {
       }
     }
   },
-  created() {
+  created () {
     console.log(this)
   },
   methods: {
-    handleDragStart(node, ev) {
+    handleDragStart (node, ev) {
       console.log('drag start', node)
     },
-    handleDragEnter(draggingNode, dropNode, ev) {
+    handleDragEnter (draggingNode, dropNode, ev) {
       console.log('tree drag enter: ', dropNode.label)
     },
-    handleDragLeave(draggingNode, dropNode, ev) {
+    handleDragLeave (draggingNode, dropNode, ev) {
       console.log('tree drag leave: ', dropNode.label)
     },
-    handleDragOver(draggingNode, dropNode, ev) {
+    handleDragOver (draggingNode, dropNode, ev) {
       console.log('tree drag over: ', dropNode.label)
     },
-    handleDragEnd(draggingNode, dropNode, dropType, ev) {
+    handleDragEnd (draggingNode, dropNode, dropType, ev) {
       console.log('tree drag end: ', dropNode && dropNode.label, dropType)
     },
-    handleChange(value) {
+    handleChange (value) {
       console.log(value)
     },
-    closePopHandler() {
+    closePopHandler () {
       this.$refs.popoverlisting.doClose()
     }
   }
