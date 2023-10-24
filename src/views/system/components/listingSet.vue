@@ -5,10 +5,10 @@
         <i class="el-icon-close close_new" @click="closePopHandler"></i>
       </div>
       <div style="margin:0 10px">
-        <el-tree :data="data" show-checkbox node-key="id" :default-expanded-keys="[2, 3]" :default-checked-keys="[5]"
+        <el-tree :data="data" show-checkbox node-key="id" :default-expanded-keys="[]" :default-checked-keys="[1,2,3,10]"
           :props="defaultProps" draggable @node-drag-start="handleDragStart" @node-drag-enter="handleDragEnter"
           @node-drag-leave="handleDragLeave" @node-drag-over="handleDragOver" @node-drag-end="handleDragEnd"
-          @node-drop="handleDrop">
+          @node-drop="handleDrop" @check-change="handleCheckChange">
         </el-tree>
       </div>
       <el-button size="small" icon="el-icon-setting" slot="reference">列表设置</el-button>
@@ -19,73 +19,48 @@
 export default {
   name: 'listingSet',
   components: {
-
   },
-  data () {
+  props:['filterData'],
+  data() {
     return {
       visible: false,
-      data: [{
-        id: 1,
-        label: '资产分类',
-        children: [{
-          id: 4,
-          label: '二级 1-1',
-          children: [{
-            id: 9,
-            label: '三级 1-1-1'
-          }, {
-            id: 10,
-            label: '三级 1-1-2'
-          }]
-        }]
-      }, {
-        id: 2,
-        label: '资产规模数量',
-        children: [{
-          id: 5,
-          label: '期初存量'
-        }, {
-          id: 6,
-          label: '新增投放'
-        }]
-      }, {
-        id: 3,
-        label: '加权平均期限',
-        children: []
-      }, {
-        id: 4,
-        label: '加权平均收益率',
-        children: []
-      }],
+      data: this.filterData,
       defaultProps: {
         children: 'children',
         label: 'label'
       }
     }
   },
-  created () {
-    console.log(this)
+  created() {
+    console.log(this.filterData)
   },
   methods: {
-    handleDragStart (node, ev) {
+    handleDragStart(node, ev) {
       console.log('drag start', node)
     },
-    handleDragEnter (draggingNode, dropNode, ev) {
+    handleDragEnter(draggingNode, dropNode, ev) {
       console.log('tree drag enter: ', dropNode.label)
     },
-    handleDragLeave (draggingNode, dropNode, ev) {
+    handleDragLeave(draggingNode, dropNode, ev) {
       console.log('tree drag leave: ', dropNode.label)
     },
-    handleDragOver (draggingNode, dropNode, ev) {
+    handleDragOver(draggingNode, dropNode, ev) {
       console.log('tree drag over: ', dropNode.label)
     },
-    handleDragEnd (draggingNode, dropNode, dropType, ev) {
+    handleDragEnd(draggingNode, dropNode, dropType, ev) {
       console.log('tree drag end: ', dropNode && dropNode.label, dropType)
     },
-    handleChange (value) {
+    handleDrop(draggingNode, dropNode, dropType, ev) {
+      console.log('tree drop: ', dropNode && dropNode.label, dropType)
+    },
+    handleCheckChange(data, checked, indeterminate) {
+      console.log(data, checked, indeterminate);
+      this.$emit('showChange',{data, checked, indeterminate})
+    },
+    handleChange(value) {
       console.log(value)
     },
-    closePopHandler () {
+    closePopHandler() {
       this.$refs.popoverlisting.doClose()
     }
   }

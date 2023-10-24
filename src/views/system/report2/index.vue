@@ -32,54 +32,61 @@
       <div class="table_wrap_title">
         <span class="t_w_t1">资产规模数据</span>
         <span class="t_w_t2">
-          <listingSet/>
+          <listingSet :filterData="filterData" @showChange="showChange" />
         </span>
       </div>
       <!-- :header-row-style="{color:'#333'}" -->
       <el-table :data="tableData" style="width: 100%" header-row-class-name="table_header" :span-method="arraySpanMethod"
-        :border="true" show-summary :sum-text="'资产合计'" :summary-method="getSummaries">
-        <el-table-column prop="name1" label="资产一分类" width="100" :show-overflow-tooltip="true">
+        :border="true" show-summary :sum-text="'资产合计'" :summary-method="getSummaries" ref="multipleTable">
+        <!-- <template v-for="(item,index) in tableCol">
+          if(!item.prop&&item.children.length>0){
+
+          }
+          <el-table-column prop="name1" label="资产一分类" width="100" :show-overflow-tooltip="true">
         </el-table-column>
-        <el-table-column prop="name2" label="资产二分类" width="100" :show-overflow-tooltip="true">
+        </template> -->
+        <el-table-column prop="name1" v-if="showobj.n1" label="资产一分类" width="100" :show-overflow-tooltip="true">
         </el-table-column>
-        <el-table-column label="资产规模数据(万元)">
+        <el-table-column prop="name2" v-if="showobj.n2" label="资产二分类" width="100" :show-overflow-tooltip="true">
+        </el-table-column>
+        <el-table-column label="资产规模数据(万元)" v-if="showobj.n3">
+          <el-table-column prop="zip" label="期初存量" width="120" v-if="showobj.n4">
+          </el-table-column>
+          <el-table-column prop="zip" label="新增投放" width="120" v-if="showobj.n5">
+          </el-table-column>
+          <el-table-column prop="zip" label="投放到期" width="120" v-if="showobj.n6">
+          </el-table-column>
+          <el-table-column prop="zip" label="净投放" width="120" v-if="showobj.n7">
+          </el-table-column>
+          <el-table-column prop="zip" label="期未存量" width="120" v-if="showobj.n8">
+          </el-table-column>
+          <el-table-column prop="zip" label="期间均值" width="120" v-if="showobj.n9">
+          </el-table-column>
+        </el-table-column>
+        <el-table-column label="加权平均期限(年)" v-if="showobj.n10">
+          <el-table-column prop="zip" label="期初存量" width="120" v-if="showobj.n11">
+          </el-table-column>
+          <el-table-column prop="zip" label="新增投放" width="120" v-if="showobj.n12">
+          </el-table-column>
+          <el-table-column prop="zip" label="期未存量" width="120" v-if="showobj.n13">
+          </el-table-column>
+        </el-table-column>
+        <!-- <el-table-column label="加权平均收益率">
           <el-table-column prop="zip" label="期初存量" width="120">
           </el-table-column>
           <el-table-column prop="zip" label="新增投放" width="120">
           </el-table-column>
-          <el-table-column prop="zip" label="投放到期" width="120">
-          </el-table-column>
-          <el-table-column prop="zip" label="净投放" width="120">
-          </el-table-column>
           <el-table-column prop="zip" label="期未存量" width="120">
           </el-table-column>
-          <el-table-column prop="zip" label="期间均值" width="120">
-          </el-table-column>
-        </el-table-column>
-        <el-table-column label="加权平均期限(年)">
+        </el-table-column> -->
+        <!-- <el-table-column label="加权平均收益率(期限)">
           <el-table-column prop="zip" label="期初存量" width="120">
           </el-table-column>
           <el-table-column prop="zip" label="新增投放" width="120">
           </el-table-column>
           <el-table-column prop="zip" label="期未存量" width="120">
           </el-table-column>
-        </el-table-column>
-        <el-table-column label="加权平均收益率">
-          <el-table-column prop="zip" label="期初存量" width="120">
-          </el-table-column>
-          <el-table-column prop="zip" label="新增投放" width="120">
-          </el-table-column>
-          <el-table-column prop="zip" label="期未存量" width="120">
-          </el-table-column>
-        </el-table-column>
-        <el-table-column label="加权平均收益率(期限)">
-          <el-table-column prop="zip" label="期初存量" width="120">
-          </el-table-column>
-          <el-table-column prop="zip" label="新增投放" width="120">
-          </el-table-column>
-          <el-table-column prop="zip" label="期未存量" width="120">
-          </el-table-column>
-        </el-table-column>
+        </el-table-column> -->
       </el-table>
       <!-- 分隔 -->
       <div class="table_wrap_title">
@@ -137,123 +144,88 @@
 <script>
 import searchBox from './../components/searchBox'
 import listingSet from './../components/listingSet'
-
+import {filterData,tableData} from './data'
 export default {
   name: 'report2',
   components: {
     searchBox, listingSet
   },
-  data () {
+  data() {
+
     return {
       alldata: [],
-      tableData: [{
-        name1: '货币市场工具类资产',
-        name2: '信用债',
-        name3: '长三角',
-        name4: '货币市场⼯具类资产',
-        name5: '活期存款类',
-        zip: '1,999.00'
-      }, {
-        name1: '上海分行',
-        name2: '信用债',
-        name3: '长三角',
-        name4: '货币市场⼯具类资产',
-        name5: '定期存款类(含⼤额存单)',
-        zip: '1,999.00'
-      }, {
-        name1: '债权类资产',
-        name2: '信用债',
-        name3: '长三角',
-        name4: '债权类资产',
-        name5: '信⽤债',
-        zip: '1,999.00'
-      }, {
-        name1: '上海分行',
-        name2: '资产⽀持证券',
-        name3: '长三角',
-        name4: '债权类资产',
-        name5: '资产⽀持证券',
-        zip: '1,999.00'
-      }, {
-        name1: '项目类资产',
-        name2: '企业债权性资产',
-        name3: '长三角',
-        name4: '项⽬类资产',
-        name5: '企业债权性资产',
-        zip: '1,999.00'
-      }, {
-        name1: '上海分行',
-        name2: '资产市场债权性资产',
-        name3: '长三角',
-        // name4: '项⽬类资产2',
-        name5: '资产市场债权性资产',
-        zip: '1,999.00'
-      }, {
-        name1: '上海分行',
-        name2: '资产市场投资性资产',
-        name3: '长三角',
-        // name4: '项⽬类资产3',
-        name5: '资产市场投资性资产',
-        zip: '1,999.00'
-      }, {
-        name1: '上海分行',
-        name2: '股权类资产',
-        name3: '长三角',
-        // name4: '项⽬类资产4',
-        name5: '股权类资产',
-        zip: '1,999.00'
-      }, {
-        name1: '上海分行',
-        name2: '同业债权性资产',
-        name3: '长三角',
-        // name4: '项⽬类资产5',
-        name5: '同业债权性资产',
-        zip: '1,999.00'
-      }, {
-        name1: '上海分行',
-        name2: '资产⽀持证券类⾮标资产',
-        name3: '长三角',
-        // name4: '项⽬类资产6',
-        name5: '资产⽀持证券类⾮标资产',
-        zip: '1,999.00'
-      }, {
-        name1: '上海分行',
-        name2: '公募REITS',
-        name3: '长三角',
-        // name4: '项⽬类资产7',
-        name5: '公募REITS',
-        zip: '1,999.00'
-      }]
+      tableData,
+      filterData,
+      showobj: {
+        n1: true,
+        n2: true,
+        n3: true,
+        n4: true,
+        n5: true,
+        n6: true,
+        n7: true,
+        n8: true,
+        n9: true,
+        n10: true,
+        n11: true,
+        n12: true,
+        n13: true,
+      },
+      // showMap: {
+      //   1: "n1",
+      //   2: "n2",
+      //   3: "n3",
+      //   4: "n4",
+      //   5: "n5",
+      //   6: "n6",
+      //   7: "n7",
+      //   8: "n8",
+      //   9: "n9",
+      //   10: "n10",
+      //   11: "n11",
+      //   12: "n12",
+      //   13: "n13",
+      // },
     }
   },
-  created () {
+  created() {
 
   },
   methods: {
-    // renderHeader(h, { column, $index }) {
-    //   return h("span", [
-    //     h(
-    //       "el-tooltip",
-    //       {
-    //         attrs: {
-    //           class: "item",
-    //           effect: "dark",
-    //           content: column.label,
-    //           placement: "top",
-    //         },
-    //       },
-    //       [h("span", column.label)]
-    //     ),
-    //   ]);
-    // },
-    searchFn () {
+    //传递给 data 属性的数组中该节点所对应的对象、节点本身是否被选中、节点的子树中是否有被选中的节点
+    showChange({data, checked, indeterminate}) {
+      if(indeterminate){return}
+      // const key = this.showMap[data.id];
+      // this.showobj[key] = checked;
+      this.showobj[data.showProps] = checked;
+      this.$nextTick(() => {
+        this.$refs.multipleTable.doLayout();
+      });
+    },
+    renderHeader(h, { column, $index }) {
+      return h("span", [
+        h(
+          "el-tooltip",
+          {
+            attrs: {
+              class: "item",
+              effect: "dark",
+              content: column.label,
+              placement: "top",
+            },
+          },
+          [h("span", column.label)]
+        ),
+      ]);
+    },
+    searchFn() {
       console.log('searchFn')
     },
-    resetFn () {
+    resetFn() {
       console.log('resetFn')
     },
     // 表格合并的方法
-    arraySpanMethod ({ row, column, rowIndex, columnIndex }) {
+    arraySpanMethod({ row, column, rowIndex, columnIndex }) {
       const len = this.tableData.length
       let _row = 0
       let _col = 0
@@ -285,7 +257,7 @@ export default {
         }
       }
     },
-    getSummaries (param) {}
+    getSummaries(param) { }
   }
 }
 
